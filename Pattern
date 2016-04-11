@@ -1,0 +1,32 @@
+1. Introduction
+  1.1 LHC Phase 2 conditions
+  1.2 HGCAL description
+  1.3 Clustering overview
+  1.4 HLT for HGCAL needs
+  1.5 Computation challanges
+
+2. GPU architecture
+  ...
+  2.? Testing hardware (my desktop)
+
+3. K-Dimensional binary search tree
+  3.1 General description of the KD-tree
+  3.1.1 Building
+  3.1.2 Searching - Traversing the tree
+  3.2 First incarnation: volume KD-tree
+  3.3 CUDA porting
+  3.4 Results and comments
+
+4. FKDTree
+  4.1 Building a Left Balanced tree
+  4.2 Non-recursive searching
+  4.3 CUDA porting, tips and tricks
+  4.4 Tests with rnd numbers
+  4.5 Tests with simulated hits+searchBox
+
+5. Alternate hardware
+  5.1 Jetson TK1
+  5.2 Intel embedded + OpenCL
+  5.3 Search time/Watts
+
+6. Conclusions
