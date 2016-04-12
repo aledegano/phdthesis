@@ -1,0 +1,58 @@
+\documentclass[12pt,pdfa]{toptesi}
+%\documentclass[12pt,a4paper]{toptesi}
+%\usepackage[english]{babel} 
+%\usepackage{toptesi}
+\usepackage[breaklinks=true]{hyperref}
+\hypersetup{%
+    pdfpagemode={UseOutlines},
+    pdfstartview={FitH},
+    colorlinks,
+    bookmarksnumbered,
+    plainpages,
+    a4paper,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+  }
+%\usepackage[square]{natbib}
+\usepackage{cite}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\interdisplaylinepenalty=2500
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{pstricks}
+\usepackage[footnotesize]{caption}
+\usepackage{subfigure}
+\usepackage{float}
+\usepackage{floatflt}
+\usepackage{multirow}
+\usepackage{textcomp}
+\usepackage{setspace}
+\usepackage{eurosym}
+\usepackage{lscape}
+\input{commands}
+
+\begin{document}
+\english
+\include{cover}
+\clearpage
+\pagenumbering{roman}
+\include{summary}
+\pagenumbering{arabic}
+% \addtocounter{chapter}{4}
+%\setcounter{page}{0}
+\include{ch1}
+\include{ch2}
+\include{ch3}
+\include{conclusions}
+\bibliographystyle{ieeetr}
+\bibliography{BibTex}%{}
+
+\listoftables
+\listoffigures
+
+\end{document}

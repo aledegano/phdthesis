@@ -1,0 +1,12 @@
+\chapter*{Abstract}
+\thispagestyle{empty}
+The increase in instantaneous luminosity, number of interactions per bunch crossing and detector granularity will pose an interesting challenge for the event reconstruction and the High Level Trigger system in the CMS experiment at the High Luminosity LHC (HL-LHC), as the amount of information to be handled will increase by 2 orders of magnitude.\\
+In order to reconstruct the Calorimetric clusters for a given event detected by CMS it is necessary to search for all the "hits" in a given volume inside the Calorimeter. In particular, the forward regions of the Electromagnetic Calorimeter (ECAL) will be substituted by an innovative tracking calorimeter, the High Granularity Calorimeter (HGCAL) equipped with $6.8\times10^6$ readout channels. Online reconstruction of the large events expected at HL-LHC require the development of novel, highly parallel reduction algorithms.\\
+In this work, we present algorithms that,  levering the computational power of a Graphical Processor Unit (GPU), are able to perform a Nearest-Neighbors search with timing performances compatible with the constraints imposed by the Phase 2 conditions.\\
+We will describe the process through which the sequential and parallel algorithms have been refined to achieve the best performance to cope with the given task. In particular, we will motivate the engineering decisions implemented in the highly-parallelized GPU-specific code, and report how the knowledge acquired in its development allowed to improve the benchmarks of the sequential CPU code.\\
+The final performance of the Nearest Neighbors search in $3\times10^5$ points randomly generated following a uniform distribution is 850 ms for the sequential CPU algorithm (on an Intel i7-3770) and  41 ms for the GPU parallel algorithm (on a Nvidia Tesla K40c), resulting in an average speedup of $\sim$20.\\
+The results on different hardware testbeds are also presented along with consideration on the power requirement.\\
+
+\cleardoublepage
+
+\indici

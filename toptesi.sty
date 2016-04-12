@@ -1,0 +1,516 @@
+% Document style extension package TOPTESI per la preparazione di tesi di laurea
+% Il Politecnico di Torino e' considerato l'Ateneo di default, ma vale per qualunque
+% universita' e puo' essere usato anche con lingue diverse dall'italiano.
+% Vedi Toptesi.txt e inizio di toptesi.tex
+%
+% Preparato da Claudio Beccari - Dipartimento di Elettronica
+% Politecnico di Torino
+%
+% Il trucco seguente evita di leggere due volte il file
+%
+\ifx\TOPTESIvers\undefined\else\expandafter\endinput\fi
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{toptesi}[2003/02/04 v. 2.23606797749 Italian thesis style]%
+\def\TOPTESIvers{2.23606797749} % valore limite: 2.2360679774997896964091736687313
+\def\TOPTESIdate{Novembre 2002}
+%
+%%%% Debugging
+\def\TRON{\tracingcommands 2 \tracingmacros 2\relax}
+\def\TROFF{\tracingcommands0 \tracingmacros 0\relax}\let\TROF\TROFF
+%%%%%%%%%%%%%%%%
+% Impostazione dell'opzione per 14pt e dell'opzione trieste
+\DeclareOption{14pt}{\input{size14.clo}}
+\DeclareOption{trieste}{\AtEndOfPackage{\RequirePackage{trieste}}}
+\ProcessOptions
+
+%
+% Verifica che *non* sia usato come style con \documentstyle; il seguente test
+% e' vero solo se toptesi e' letto come se fosse un file di classe
+%
+\ifx\chapter\undefined\PackageError{toptesi}{%
+\MessageBreak 
+TOPTESI fatal error\MessageBreak 
+\MessageBreak 
+**********************************************\MessageBreak 
+* Uso corretto dalla versione 2.10 in poi:\MessageBreak 
+*  \protect\documentclass[12pt,...]{report}\MessageBreak 
+*  \protect\usepackage{toptesi}\MessageBreak 
+**********************************************\MessageBreak}%
+{Type X <Enter> to quit}\fi
+
+%
+% L'altezza della pagina di testo viene impostata in modo da riempire bene
+% un foglio UNI A4
+%
+
+%\setlength{\baselineskip}{2\baselineskip}%baseline
+
+\textheight 585pt %\textheight 585pt
+\divide\textheight by \baselineskip
+\multiply\textheight by \baselineskip
+\advance\textheight by \topskip
+%
+\ifx\f@size\@xivpt
+    \textwidth=138mm
+\else
+    \textwidth=150mm
+\fi
+\oddsidemargin=210mm
+\advance\oddsidemargin -\textwidth
+\divide\oddsidemargin \tw@
+\advance\oddsidemargin -1in
+\evensidemargin=\oddsidemargin
+%
+\if@twoside
+ \typeout{Messaggio Toptesi: Ricalcolo i margini}
+ \advance\oddsidemargin 7mm
+ \advance\evensidemargin -7mm
+\fi
+%
+%    ****************************************
+%    *         STILI DELLE PAGINE           *
+%    ****************************************
+%
+
+\mark{{}{}}
+\newbox\@intesta
+%
+\def\ps@plain{\let\@mkboth\@gobbletwo
+\def\@oddfoot{\hbox{}\hfill {\textbf{\thepage}}\hfill \hbox{}}\def\@oddhead{}
+\def\@evenhead{}\let\@evenfoot\@oddfoot}
+%
+\if@twoside
+\def\ps@headings{\let\@mkboth\markboth%
+\def\@oddfoot{\hbox{} \hfill {\textbf{\thepage}} \hfill \hbox{}}
+\let\@evenfoot\@oddfoot
+%
+\def\@evenhead{\setbox\@intesta\hbox{\footnotesize\sl\leftmark}%
+\ifdim\wd\@intesta>\textwidth \headWarn{\chapter}\fi%
+\underline{\makebox[\textwidth]{\footnotesize\sl
+\rule[-0.5ex]{0pt}{0.5ex}\leftmark}}}%
+\def\@oddhead{\setbox\@intesta\hbox{\footnotesize\sl\rightmark}%
+\ifdim\wd\@intesta>\textwidth \headWarn{\section}\fi%
+\underline{\makebox[\textwidth]{\footnotesize\sl
+\rule[-0.5ex]{0pt}{0.5ex}\rightmark}}}%
+%                       L'heading e` separato dal testo con una riga orizzontale
+\def\chaptermark##1{\markboth{\thechapter\ -- ##1}{}}
+\def\sectionmark##1{\markright{\ifnum \c@secnumdepth >\z@ \thesection\ -- %
+\fi ##1}}}
+\else
+\def\ps@headings{\let\@mkboth\markboth
+\def\@oddfoot{\hbox{} \hfill {\bf \thepage} \hfill \hbox{}}
+\def\@evenfoot{}
+\def\@oddhead{\setbox\@intesta\hbox{\footnotesize\sl\rightmark}%
+\ifdim\wd\@intesta>\textwidth \headWarn{\chapter}\fi%
+\underline{\makebox[\textwidth]{\footnotesize\sl
+\rule[-0.5ex]{0pt}{0.5ex}\rightmark}}}%
+%                       L'heading e` separato dal testo con una riga orizzontale
+\def\chaptermark##1{\markright{\thechapter\ -- ##1}}}
+\fi
+%
+\def\headWarn#1{\typeout{^^JTOPTESI warning: L'INTESTAZIONE E` TROPPO LUNGA
+^^JBisogna modificare usando l'argomento facoltativo del comando
+\string#1.^^JVedi manuale LaTeX al paragrafo C.3.1^^J}}
+
+
+
+%
+%----------------------------------------------------------------------------------
+%
+%  COMANDI PER IL SOMMARIO, I RINGRAZIAMENTI E GLI INDICI, FRONTMATTER E MAINMATTER
+%
+% ---------------------------------------------------------------------------------
+%
+\newif\iffigurespage 
+\newif\iftablespage 
+\newif\ifnumeriromani
+\newif\iffrontmatter
+
+\def\frontmatter{\clearpage\ps@plain\pagenumbering{roman}\numeriromanitrue\frontmattertrue}
+\def\mainmatter{\clearpage\ps@headings\pagenumbering{arabic}\numeriromanifalse\frontmatterfalse}
+\AtBeginDocument{\frontmatter}
+
+\figurespagefalse
+\tablespagefalse
+
+% Definizioni di default
+
+\def\summaryname{Summary}%
+\def\conclusionname{Conclusions}%
+\def\acknowledgename{Acknowledgements}
+%
+% \def\sommario{%
+%  \iffrontmatter\else\frontmatter\fi
+%  \if@openright\cleardoublepage\else\clearpage\fi
+%  \global\@topnum\z@
+%  \@afterindentfalse
+%  \@schapter{\summaryname}%
+%  \addcontentsline{toc}{chapter}{\summaryname}%
+%  \oddhead{Summary}
+%  \evenhead{Summary}
+
+%         }
+\def\sommario{%
+ \iffrontmatter\else\frontmatter\fi
+ \if@openright\cleardoublepage\else\clearpage\fi
+ \global\@topnum\z@
+ \clearpage\ps@headings\numeriromanifalse\frontmatterfalse
+ \@afterindentfalse
+ \@schapter{\summaryname}%
+ \addcontentsline{toc}{chapter}{\summaryname}%
+
+\def\@evenhead{\setbox\@intesta\hbox{\footnotesize\sl\leftmark}%
+\ifdim\wd\@intesta>\textwidth \headWarn{\chapter}\fi%
+\underline{\makebox[\textwidth]{\footnotesize\sl
+\rule[-0.5ex]{0pt}{0.5ex}\leftmark}}}%
+\def\@oddhead{\setbox\@intesta\hbox{\footnotesize\sl\rightmark}%
+\ifdim\wd\@intesta>\textwidth \headWarn{\section}\fi%
+\underline{\makebox[\textwidth]{\footnotesize\sl
+\rule[-0.5ex]{0pt}{0.5ex}\rightmark}}}%
+
+        }
+\def\conclusioni{%
+ \iffrontmatter\else\frontmatter\fi
+ \if@openright\cleardoublepage\else\clearpage\fi
+ \global\@topnum\z@
+ \@afterindentfalse
+ \@schapter{\conclusionname}%
+ \addcontentsline{toc}{chapter}{\conclusionname}%
+        }
+\def\ringraziamenti{%
+ \iffrontmatter\else\frontmatter\fi
+ \if@openright\cleardoublepage\else\clearpage\fi
+ \global\@topnum\z@
+ \@afterindentfalse
+ \@schapter{\acknowledgename}%
+ \addcontentsline{toc}{chapter}{\acknowledgename}%
+        }
+
+% E' necessario ridefinire \chapter per tenere in conto correttamante di \frontmatter
+\renewcommand\chapter{\if@openright\cleardoublepage\else\clearpage\fi
+                    \iffrontmatter\mainmatter\fi
+                    \thispagestyle{plain}%
+                    \global\@topnum\z@
+                    \@afterindentfalse
+                    \secdef\@chapter\@schapter}
+                    
+% Lo stesso per \part
+\renewcommand\part{%
+  \if@openright\cleardoublepage\else\clearpage\fi
+  \iffrontmatter\mainmatter\fi
+  \thispagestyle{empty}%
+  \if@twocolumn\onecolumn\@tempswatrue\else\@tempswafalse\fi
+  \null\vfil
+  \secdef\@part\@spart}
+  
+% Lo stesso per \tableofcontents
+
+\renewcommand\tableofcontents{%
+ \if@twocolumn\@restonecoltrue\onecolumn\else\@restonecolfalse\fi
+ \iffrontmatter\else\frontmatter\fi
+ \if@openright\cleardoublepage\else\clearpage\fi
+ \global\@topnum\z@
+ \@afterindentfalse
+ \@schapter{\contentsname}%
+ \@starttoc{toc}%
+ \if@restonecol\twocolumn\fi
+    }
+
+% -------------------------------------------------------------------
+\def\indici{%\TRON%
+ \iffrontmatter\else\frontmatter\fi
+        \tableofcontents
+        \clearpage
+        \iftablespage
+                {\addvspace{10pt}
+                \let\saveaddvspace=\addvspace
+                \def\addvspace##1{}
+                \listoftables
+                \let\addvspace=\saveaddvspace}
+                \clearpage
+        \fi
+        \iffigurespage
+                {\addvspace{10pt}
+                \let\saveaddvspace=\addvspace
+                \def\addvspace##1{}
+                \listoffigures
+                \let\addvspace=\saveaddvspace}
+                \clearpage
+        \fi
+}
+
+%-------------------------------------------------------------------
+% Il comando \onecolumn non sarebbe necessario, ma sostanzialmente
+% impedisce che venga resa attiva l'eventuale opzione twocolumn
+% specificata con il comando \documentclass
+
+\onecolumn
+
+\if@twoside
+    \flushbottom
+\else
+    \ifx\@xivpt\f@size
+        \raggedbottom
+    \else
+        \flushbottom
+    \fi
+\fi
+%
+% -------------------------------------------------------------------
+% Inibizione del fine pagina con suddivisione in sillabe:
+% -------------------------------------------------------------------
+%
+\brokenpenalty=10000
+%
+%
+% ------------------------------------------------------------------
+% Modifica dell'interlinea standard, con relativo ambiente
+% ------------------------------------------------------------------
+%
+\def\interlinea#1{%
+    \linespread{#1}\selectfont
+}
+\def\endinterlinea{\par}
+%
+% Su figure e tabelle viene mantenuta l'interlinea standard dello
+% stile rapporto o report che si e` prescelto:
+
+\def \@floatboxreset {%
+        \reset@font
+        \linespread{1}%
+        \normalsize
+        \@setminipage
+}
+%
+% Posizione di default di figure e tabelle
+%
+\def\fps@figure{htb} \def\fps@table{htb}
+%
+% Questi numeri sono critici; li ho ridefiniti, dopo il carattere di commento
+% c'e` il valore originale
+%
+\setcounter{topnumber}{2}
+\def\topfraction{1}                     % {.7}
+\setcounter{bottomnumber}{1}
+\def\bottomfraction{.5}                 % {.3}
+\setcounter{totalnumber}{3}
+\def\textfraction{0}                    % {.2}
+\def\floatpagefraction{0}               % {.5}
+\setcounter{dbltopnumber}{2}
+\def\dbltopfraction{1}                  % {.7}
+\def\dblfloatpagefraction{0}            % {.5}
+%
+%--------------------------------------------------------------------------
+%
+% Comando per la composizione della didascalia delle
+% figure e delle tabelle
+\newdimen\captionwidth
+\long\def\@makecaption#1#2{%
+ \vskip 10pt\captionwidth=\hsize
+\advance\captionwidth-3em
+\setbox0 \vbox{\hsize=\captionwidth \linespread{0.9}%
+\small \parskip\z@ \parindent\z@               %   \italiano
+\finalhyphendemerits 100000
+#1.\quad#2\par\global\setbox2\lastbox}%
+\setbox2\hbox to\captionwidth{\hfill\unhbox2 \hfill}%
+\setbox0\vbox{\unvbox0\box2}\hskip1.5em\box0}
+%
+%--------------------------------------------------------------------------
+%
+% Per variare la bibliografia, se alla fine della tesi o parziale in ogni
+% capitolo
+\newif\ifchapterbibliography \chapterbibliographyfalse% Per la bibliografia
+%                                                alla fine di ogni capitolo
+\def\chapterbib{\chapterbibliographytrue}
+%
+\let\endthebibliography=\endlist
+
+
+\def\redef@bibitem{\def\@bibitem##1{\item\if@filesw
+       \immediate\write\@auxout
+       {\string\bibcite{##1}{\thechapter.\the\c@enumi}}\fi\ignorespaces}}
+
+
+
+\def\thebibliography#1{%
+ \ifchapterbibliography\section*{\bibname}\relax
+    \if@twoside\markright{\bibname}\fi
+    \addcontentsline{toc}{section}{\bibname}\relax
+    \redef@bibitem
+    \list{[\thechapter.\arabic{enumi}]}{%
+    \settowidth\labelwidth{[\thechapter.#1]}\leftmargin\labelwidth
+    \advance\leftmargin\labelsep\itemsep\z@ plus 1pt\parsep\z@
+    \usecounter{enumi}}
+ \else
+    \chapter*{\bibname}\relax
+    \@mkboth{\bibname}{\bibname}\relax
+    \addcontentsline{toc}{chapter}{\bibname}\relax
+    \list{[\arabic{enumi}]}{\settowidth\labelwidth{[#1]}%
+    \leftmargin\labelwidth
+    \advance\leftmargin\labelsep\itemsep\z@ plus 1pt\parsep\z@
+    \usecounter{enumi}}
+ \fi
+ \def\newblock{\hskip .11em plus .33em minus -.07em}
+ \sloppy
+ \sfcode`\.=1000\relax}
+
+%
+% -------------------------------------------------------------------
+% Interlinea normale anche nelle note a pie' di pagina:
+
+\long\def\@footnotetext#1{\insert\footins{\linespread{1}\footnotesize
+    \interlinepenalty\interfootnotelinepenalty
+    \splittopskip\footnotesep
+    \splitmaxdepth \dp\strutbox \floatingpenalty \@MM
+    \hsize\columnwidth \@parboxrestore
+   \edef\@currentlabel{\csname p@footnote\endcsname\@thefnmark}\@makefntext
+    {\rule{\z@}{\footnotesep}\ignorespaces
+      #1\strut}}}
+
+%
+% ----------------------------------------------------------------------
+% Definizioni varie
+% ----------------------------------------------------------------------
+%
+\mathcode`\,="013B      % Perche` la virgola sia il separatore decimale
+\catcode`\^^Z=10        % Tratta il ^Z come se fosse un blank
+\topmargin 0pt
+%
+% ----------------------------------------------------------------------
+% Stile generale della tesi (default): poiche' al \begin{document}
+% viene eseguito il comando \frontmatter, la composizione della tesi
+% avviene in stile plain; il primo comando \chapter provvede a
+% cambiare stile.
+% ----------------------------------------------------------------------
+%
+% ---------------------------------------------------------------------
+% Inclusione degli altri file specializzati
+% ---------------------------------------------------------------------
+%
+\def\englishcaptions{%
+      \def\partname{Part}%
+      \def\chaptername{Chapter}%
+      \def\appendixname{Appendix}%
+      \def\contentsname{Table of contents}%
+      \def\listfigurename{List of figures}%
+      \def\listtablename{List of tables}%
+      \def\bibname{Bibliography}%
+      \def\indexname{Index}%
+      \def\figurename{Figure}%
+      \def\tablename{Table}%
+      \def\abstractname{Summary}%
+      \edef\summaryname{\summaryname}%
+      \edef\acknowledgename{\acknowledgename}%
+      \def\today{\ifcase\month\or
+        January\or February\or March\or April\or May\or June\or
+        July\or August\or September\or October\or November\or December\fi
+        \space\number\day, \number\year}%
+}
+
+
+\def\italiancaptions{%
+%       \def\partname{Parte}%
+%       \def\chaptername{Capitolo}%
+%       \def\appendixname{Appendice}%
+%       \def\contentsname{Indice}%
+%       \def\listfigurename{Elenco delle figure}%
+%       \def\listtablename{Elenco delle tabelle}%
+%       \def\bibname{Bibliografia}%
+%       \def\indexname{Indice analitico}%
+%       \def\figurename{Figura}%
+%       \def\tablename{Tabella}%
+%       \def\abstractname{Sommario}%
+%       \edef\summaryname{\summaryname}%
+%       \edef\acknowledgename{\acknowledgename}%
+%       \def\today{\number\day\space \ifcase\month\or
+%         gennaio\or febbraio\or marzo\or aprile\or maggio\or giugno\or
+%         luglio\or agosto\or settembre\or ottobre\or novembre\or dicembre\fi
+%         \number\year}%
+      \def\partname{Part}%
+      \def\chaptername{Chapter}%
+      \def\appendixname{Appendix}%
+      \def\contentsname{Table of contents}%
+      \def\listfigurename{List of figures}%
+      \def\listtablename{List of tables}%
+      \def\bibname{Bibliography}%
+      \def\indexname{Index}%
+      \def\figurename{Figure}%
+      \def\tablename{Table}%
+      \def\abstractname{Summary}%
+      \edef\summaryname{\summaryname}%
+      \edef\acknowledgename{\acknowledgename}%
+      \def\today{\ifcase\month\or
+        January\or February\or March\or April\or May\or June\or
+        July\or August\or September\or October\or November\or December\fi
+        \space\number\day, \number\year}%
+}
+
+
+\def\setcaptions{%
+  \ifnum\language=\l@english
+     \englishcaptions
+  \else
+    \ifnum\language=\l@italian
+        \italiancaptions
+    \else
+        \typeout{Per usare una lingua diversa dall'italiano e dall'inglese^^J
+        usare il pacchetto babel.^^J
+        Vedere l'inizio di toptesi.tex per esempi^^J
+        =========================================}
+    \fi
+  \fi
+}
+%
+% --------------------------------------------------------------------
+% Eventuale specificazione della lingua italiana se si sta lavorando
+% con TeX versione 3.x
+% --------------------------------------------------------------------
+%
+\let\summaryname\empty
+\let\acknowledgename\empty
+\ifx\language\undefined\else
+   \expandafter\ifx\csname l@italian\endcsname\relax
+      \typeout{\string\l@italian\space non e' definito^^J%
+      Assumo che l'italiano sia caricato come lingua n.1^^J}%
+      \chardef\l@italian=1\relax%
+   \else
+      \ifnum\language=\l@italian% 
+        \def\summaryname{Sommario}%
+        \def\acknowledgename{Ringraziamenti}%
+      \fi
+   \fi
+   \ifx\italiano\undefined
+      \def\italiano{\language\l@italian\righthyphenmin2\lccode`\'=`\'\relax
+      \def\summaryname{Sommario}%
+      \def\acknowledgename{Ringraziamenti}}%
+   \fi
+   \expandafter\ifx\csname l@english\endcsname\relax
+      \typeout{\string\l@english\space undefined^^J%
+      I assume English was loaded as language n.0^^J}%
+      \chardef\l@english=0\relax%
+   \else
+      \ifnum\language=\l@english
+        \def\summaryname{Summary}%
+        \def\acknowledgename{Acknowledgments}%
+      \fi
+   \fi
+   \ifx\inglese\undefined
+      \def\english{\language\l@english\righthyphenmin3\lccode`\'=\z@
+      \def\summaryname{Summary}%
+      \def\acknowledgename{Acknowledgments}}%
+      \let\inglese\english
+   \else
+      \let\english\inglese
+   \fi
+\fi
+
+\AtBeginDocument{%
+    \setcaptions
+    \renewcommand\@chapapp{\chaptername}%
+}
+
+
+\input topfront.sty        % Solo frontespizio
+\input topcoman.sty        % Comandi utili anche fuori del contesto della tesi
+
+\endinput

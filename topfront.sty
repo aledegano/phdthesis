@@ -1,0 +1,364 @@
+% Preparato da Claudio Beccari - Dipartimento di Elettronica
+% Politecnico di Torino
+% Novembre 1989  Versione 2.1
+% Ottobre 1993   versione 2.2
+% Novembre 1996  versione 2.3
+% Febbraio 1997  versione 2.4
+% Maggio 2001    versione 2.5
+% Settembre 2001 versione 2.6
+% Novembre2001   versione 2.7
+% Novembre 2002  versione 2.8 adattato alla monografia per la lurea triennale
+% Febbraio 2003  versione 2.9 inserito arg. facoltativo in \facolta per indicare l'ordinale della facolta'
+%                             modificato il frontespizio delle tesi di dottorato
+%
+% Questo file viene incluso da TOPTESI.STY (versione 2.x), ma puo` essere
+% usato anche da solo.
+%
+% Esso contiene tutte le definizioni per fare il solo FRONTESPIZIO della tesi
+% secondo lo stile di TOPTESI.STY (versione 2.x).
+%
+%    ****************************************
+%    *             FRONTESPIZIO             *
+%    ****************************************
+%
+% La prima pagina della tesi contenente il titolo, ed i nomi del candidato
+% e del relatore, viene prodotta dai seguenti comandi.
+%
+\newif\iffemminile
+\newif\ifdottorato \dottoratofalse
+\newif\iflaureatriennale \laureatriennalefalse
+\def\monografia#1{\global\laureatriennaletrue
+      \global\dottoratofalse\global\def\titolo##1{\PackageWarning{toptesi}%
+      {Il titolo e' gia' stato impostato con il comando \string\monografia}}%
+      \gdef\@title{#1}}
+\def\sottotitolo#1{\gdef\@subtitle{#1}}
+\def\Materia#1{\def\@materia{#1}}\let\materia\Materia
+\let\@materia\empty
+\let\@stitle\empty % default
+\newcommand*{\titolo}[2][]{{\def\@tempA{#1}%
+    \ifx\@tempA\empty\gdef\@stitle{#2}\else\gdef\@stitle{#1}\fi
+    \gdef\@title{#2}}}
+\def\relatore#1{\gdef\@principaladviser{#1}}
+\newif\ifDirettore \Direttorefalse
+\def\direttore{\Direttoretrue\relatore}%
+\def\coordinatore{\Direttorefalse\relatore}%
+\def\secondorelatore#1{\gdef\@secondadviser{#1}}
+\def\terzorelatore#1{\gdef\@thirdadviser{#1}}
+\def\tutore#1{\gdef\@tutore{#1}}
+\def\candidato#1{\gdef\@author{#1}\femminilefalse}
+\def\candidata#1{\gdef\@author{#1}\femminiletrue}
+\def\secondocandidato#1{\gdef\@secondauthor{#1}\femminilefalse}
+\def\secondacandidata#1{\gdef\@secondauthor{#1}}
+\def\terzocandidato#1{\gdef\@thirdauthor{#1}\femminilefalse}
+\def\terzacandidata#1{\gdef\@thirdauthor{#1}}
+\def\sedutadilaurea#1{\getseduta#1 !}
+\def\getseduta#1 #2!{%
+    \def\@tempA{#2}%
+    \ifx\@tempA\empty
+        \def\@submitdate{#1}%
+    \else
+        \expandafter
+        \ifx\csname StileTrieste\endcsname\relax
+            \def\@submitdate{#1 #2}%
+        \else
+            \s@dutaTrieste#1 #2!%
+        \fi
+    \fi
+}%
+\def\s@dutaTrieste#1 #2!{%
+    \if@ldstyle
+        \s@paranumeri#2-!%
+        \ifx\2\empty
+            \edef\@submitdate{\noexpand#1 \noexpand\oldstylenums{#2}}%
+        \else
+            \s@paranumeri#2!%
+            \edef\@submitdate{\noexpand#1 \noexpand\oldstylenums{\1} -- \noexpand\oldstylenums{\2}}%
+        \fi
+        \let\1\undefined
+        \let\2\undefined
+    \else
+        \def\@submitdate{#1 #2}%
+    \fi
+}
+\def\s@paranumeri#1-#2!{\def\1{#1}\def\2{#2}}%
+\let\esamedidottorato\sedutadilaurea
+\def\ciclodidottorato#1{\gdef\@ciclo{#1}}%
+\def\corsodilaurea#1{\global\dottoratofalse\gdef\@corso{#1}}
+\def\corsodidottorato#1{\global\dottoratotrue\global\laureatriennalefalse\gdef\@corso{#1}}
+\def\ateneo#1{\gdef\@ateneo{\expandafter\uppercase{\expandafter #1}}}
+\def\nomeateneo#1{\gdef\@nomeat{\expandafter\uppercase{\expandafter #1}}}
+\newcommand\facolta[2][]{\gdef\@facolta{\def\@tempA{#1}\ifx\@tempA\empty\else#1 \fi Facolt\`{a} di #2}}
+\def\@title{}
+\def\@author{}
+\def\@principaladviser{}
+\def\@secondadviser{}
+\def\@thirdadviser{}
+\def\@tutore{}
+\def\@secondauthor{}
+\def\@thirdauthor{}
+\def\@nomerelatore{}
+\def\@nomecandidato{}
+\def\Candidato{Candidato}
+\def\Candidata{Candidata}
+\def\@subtitle{}
+\def\@corso{}
+\def\@ciclo{}
+\def\@ateneo{UNIVERSIT\`{A} DEGLI STUDI DI TORINO}
+\def\@nomeat{}
+\def\@facolta{Facolt\`{a} di Ingegneria}
+\def\@submitdate{\ifcase\the\month\or
+  Gennaio\or Febbraio\or Marzo\or Aprile\or Maggio\or Giugno\or
+  Luglio\or Agosto\or Settembre\or Ottobre\or Novembre\or Dicembre\fi
+  \space \the\year}
+\def\logosede#1{\edef\@logosede{\noexpand\gr@phicswrn\noexpand\includegraphics[width=3cm]{#1}}}
+\let\@logosede\relax
+\def\gr@phicswrn{\ifx\includegraphics\undefined
+    \PackageWarning{toptesi}{%
+    The graphicx package is required \MessageBreak
+    to insert the University logo
+    }%
+    \let\includegraphics\d@mmyincludegr
+\fi}
+\def\TesidiLaurea{Tesi di Laurea}
+\def\d@mmyincludegr[#1]#2{}
+%
+% -------------------------------------------------------------------
+\def\frontespizio{%
+% Nella pagina del frontespizio la stringa col nome dell'Ateneo
+% default (Politecnico di Torino) viene
+% messa nell'header mentre la data della seduta di laurea viene messa
+% nel footer; l'eventuale nome proprio dell'Ateneo viene inserito solo
+% se non e` una stringa nulla.
+%
+\begingroup
+%
+% Ridefinizione locale di myheadings
+%
+      \def\ps@myheadings{\let\@mkboth\markboth
+      \def\@oddhead{\vbox{%
+      \hbox to \hsize{\hfill {\LARGE \@ateneo}\hfill}%
+      \expandafter
+      \ifx\csname StileTrieste\endcsname\relax
+      \else
+            \hbox to \hsize{\hfil\vrule\@width\z@
+        \@height3.5ex\vrule\@height1.4\p@\@depth-\p@\@width50mm\hfil}%
+      \fi
+      }}%
+      \def\@oddfoot{\vbox to 15mm{\vss
+      \expandafter
+      \ifx\csname StileTrieste\endcsname\relax
+      \else
+            \hbox to \hsize{\hfil\raisebox{-.3ex}[\z@][\z@]{%
+        \vrule\@height-2.6\p@\@depth3\p@\@width50mm}\hfil}%
+      \fi
+      \hbox to\hsize{\hfill{\Large{\@submitdate}}\hfill}}%
+      }%
+      \let\@evenhead\@oddhead
+      \let\@evenfoot\@oddfoot
+      }%
+%
+      \thispagestyle{myheadings}%
+      \null\setcounter{page}{0}%
+      \normalfont % default
+% Inserisce l'eventuale nome dell'ateneo
+      \ifx\@nomeat\empty \else
+            {\vspace*{-3\topskip}\centering \expandafter{\Large \@nomeat}\par}\vfill
+      \fi
+% Inserisce il nome della facolta'
+      \begin{center}
+      {\rm
+      \ifdottorato
+            \large SCUOLA DI DOTTORATO
+      \else
+            \LARGE\expandafter{\@facolta}%
+      \fi
+      }\par
+      \ifx\@corso\empty \else{\large
+            \ifdottorato
+                  {Dottorato in \@corso\ifx\@ciclo\empty\else~--~\@ciclo\fi}%
+            \else
+                  {Corso di Laurea in \@corso}%
+            \fi
+            \par}
+      \fi
+      \end{center}
+
+% Inserisce il nome del rapporto
+      \vfill
+      \begin{center}
+        \LARGE
+        \ifdottorato
+            Tesi di Dottorato%
+        \else
+            \iflaureatriennale
+                  Monografia di Laurea%
+            \else
+                  \TesidiLaurea%
+            \fi
+        \fi
+% con l'eventuale materia specifica nell'ambito della quale si e' svolto il lavoro
+        \ifx\empty\@materia\else
+            \\in\\\@materia
+        \fi
+      \end{center}
+
+% inserisce il titolo impostato con \titolo o con \monografia
+      \vfill
+      \begin{center}
+        {\huge\bf \baselineskip=0.95em plus 1pt \expandafter{\@title \par}}
+      \end{center}
+% con l'eventuale sottotitolo
+      \ifx\@subtitle\empty \else
+            \begin{center}%
+              {\large\rm\expandafter{\@subtitle \par}}
+            \end{center}%
+      \fi
+% con le variazioni per lo stile di Trieste
+      \expandafter
+      \ifx\csname StileTrieste\endcsname\relax
+      \else
+            \expandafter
+            \ifnum\value{tomo}>\z@
+                  \par\bigskip
+                  \noindent\makebox[\textwidth]{%
+                  \large\bf
+                  Tomo \ifcase\c@tomo%
+                        \or primo%
+                        \or secondo%
+                        \or terzo%
+                        \or quarto%
+                        \else
+                        \PackageWarning{toptesi}{Il contatore tomo vale \the\c@tomo\MessageBreak
+                              Non e' previsto di separare la tesi in piu' di quattro tomi}%
+                        \fi}%
+            \fi
+      \fi
+      \par
+% Inserisce l'eventuale logo della sede
+      \vspace*{\bigskipamount}
+      {\centering \@logosede\par}
+% Se non si tratta di laurea triennale definisce il nome del relatore
+      \vfill
+      \iflaureatriennale\else
+            \let\@nomerelatore\empty
+            \ifdottorato
+                  \edef\@nomerelatore{\ifDirettore Direttore \else Coordinatore \fi del corso di dottorato}
+            \else
+                  \ifx\@principaladviser\empty\else
+                        \def\@nomerelatore{Relatore:}
+                  \fi
+                  \expandafter
+                  \ifx\csname StileTrieste\endcsname\relax
+                        \ifx\@secondadviser\empty \else
+                              \def\@nomerelatore{Relatori:}
+                        \fi
+                  \fi
+            \fi
+      \fi
+% Inserisce i nomi da attribuire ai candidati/laureandi
+      \ifdottorato
+            \let\@nomecandidato\empty
+      \else
+            \iffemminile
+                  \def\@nomecandidato{\Candidata:}%
+            \else
+                  \def\@nomecandidato{\Candidato:}%
+            \fi
+            \ifx\@secondauthor\empty \else
+                  \iffemminile
+                        \def\@nomecandidato{Candidate:}%
+                  \else
+                        \def\@nomecandidato{Candidati:}%
+                  \fi
+            \fi
+      \fi
+%
+      \iflaureatriennale
+            \begin{center}%
+                  \large\mdseries\textsc{\@author}% Laurea triennale: solo il nome dell'unico autore
+            \end{center}%
+      \else
+            \def\BoxRelatori{% Per laurea e dottorato con relatori e correlatori...
+                  \begin{tabular}[t]{l}%
+                  \hbox{{\expandafter\ifx\csname StileTrieste\endcsname\relax\large\fi
+                        \rm{\protect\@nomerelatore}}}\\[.6ex]
+                  \hbox{{\large\rm{\protect\@principaladviser}}}%
+                  \ifx\@secondadviser\empty \else
+                        \expandafter
+                        \ifx\csname StileTrieste\endcsname\relax
+                        \else
+                              \ifx\@thirdadviser\empty
+                                    \ifx\@secondadviser\empty\else
+                                          \\[1.5ex]{Correlatore:}%
+                                    \fi
+                              \else
+                                    \\[1.5ex]{Correlatori:}%
+                              \fi
+                        \fi
+                        \\[.6ex] \hbox{{\large\rm{\protect\@secondadviser}}}%
+                  \fi
+                  \ifx\@thirdadviser\empty \else
+                        \\ \hbox{{\large\rm{\protect\@thirdadviser}}}%
+                  \fi
+                  \end{tabular}%
+            }%
+            \def\BoxCandidati{% ... e con i nomi dei candidati in due \hbox da inserire nella pagina successivamente
+                  \begin{tabular}[t]{l}%
+                        \hbox{{\expandafter
+                              \ifx\csname StileTrieste\endcsname\relax\large\fi
+                              \rm{\protect\@nomecandidato}}}\\[.6ex]
+                              \hbox{{\large\rm{\protect\@author}}}%
+                              \ifx\@secondauthor\empty
+                              \else
+                                    \\ \hbox{{\large\rm{\protect\@secondauthor}}}%
+                              \fi
+                              \ifx\@thirdauthor\empty
+                              \else
+                                    \\ \hbox{{\large\rm{\protect\@thirdauthor}}}%
+                              \fi
+                  \end{tabular}%
+            }%
+% Stampa effettivamente questi nomi...
+            \ifdottorato% ... per la tesi di dottorato, e...
+                  \begin{center}\large
+                        {\bf\@author}\\[3em]
+                        {\normalsize
+                        \begin {tabular*}{\hsize}{@{\extracolsep{\fill}}ccc}
+                        \ifx\@tutore\empty\else
+                            Tutore
+                        \fi
+                        &\relax&
+                        \ifx\@principaladviser\empty\else
+                              \@nomerelatore
+                        \fi
+                        \\
+                        \ifx\@tutore\empty\else
+                              \@tutore
+                        \fi
+                        &\relax&
+                        \ifx\@principaladviser\empty\else
+                              \@principaladviser
+                        \fi
+                        \end{tabular*}
+                        }%
+                  \end{center}
+            \else% ... per la tesi della laurea quinquennale (L. specialistica ancora da fare 2002-11-11)
+                  \expandafter
+                  \ifx\csname StileTrieste\endcsname\relax
+                        \begin{flushleft}%
+                              \BoxRelatori
+                        \end{flushleft}%
+                        \begin{flushright}%
+                              \BoxCandidati
+                        \end{flushright}\par
+                  \else
+                        \noindent\makebox[\textwidth]{\BoxRelatori\hfill\BoxCandidati}\par
+                  \fi
+             \fi
+      \fi% Fine dell'\if che si riferisce alla laurea triennale
+% Termina il frontespizio
+      \vfill\par
+      \clearpage
+\endgroup}
+
+\endinput
