@@ -1,5 +1,4 @@
 \select@language {italian}
-\select@language {italian}
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}LHC Phase 2 conditions}{1}{section.1.1}
 \contentsline {section}{\numberline {1.2}HGCAL description}{1}{section.1.2}
@@ -14,6 +13,6 @@
 \contentsline {subsection}{\numberline {3.1.2}Traversing a 3D tree}{4}{subsection.3.1.2}
 \contentsline {section}{\numberline {3.2}Volume kd-tree}{5}{section.3.2}
 \contentsline {subsection}{\numberline {3.2.1}Implementation}{5}{subsection.3.2.1}
-\contentsline {subsubsection}{Build}{5}{section*.4}
-\contentsline {chapter}{Summary}{6}{chapter*.5}
-\contentsline {chapter}{Bibliography}{7}{chapter*.6}
+\contentsline {subsubsection}{Build}{5}{section*.3}
+\contentsline {chapter}{Summary}{7}{chapter*.4}
+\contentsline {chapter}{Bibliography}{8}{chapter*.5}

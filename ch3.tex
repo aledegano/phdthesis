@@ -27,5 +27,28 @@ The advantage of such an implementation is that every sub-tree describes the 3D 
 \subsection{Implementation}
 Following we will describe the specific implementation of the volume kd-tree we developed for this work.
 \subsubsection{Build}
-As mentioned above this implementation uses volumes as node of the tree which, being \textit{rectangular cuboid} in a 3D Cartesian space, can be described by two triplets: the coordinates of the \textit{minimum} and the \textit{maximum} vertices. Where the minimum vertex is defined to be the one of which each coordinate is the smallest, while the maximum the one with the greatest coordinates. This method of describing the tree nodes will benefit both the memory footprint of the tree and the process of comparing the search box position with respect to the tree nodes.\\
-The building is performed similarly to what described in the generic kd tree with the exception that for every iteration splitting in half the volume, two new volumes are created (the children). The two new volumes have the same vertices of their parent except a single coordinate in one of the two vertices: the left-child has the coordinate of the maximum vertex corresponding to the axis along which the parent has been split equal to the value of the plane splitting the children. The right-child has the same coordinate change but in the minimum vertex.\\
+As mentioned above this implementation uses volumes as nodes of the tree which, being \textit{rectangular cuboids} in a 3D Cartesian space, can be described by only two triplets: the coordinates of the \textit{minimum} and the \textit{maximum} vertices. Where the minimum vertex is defined to be the one of which each coordinate is the smallest, while the maximum the one with the greatest coordinates. This method of describing the tree nodes will benefit both the memory footprint of the tree and the process of comparing the search box position with respect to the tree nodes.\\
+The building is performed similarly to what described in the generic kd tree with the exception that for every iteration splitting in half the volume, two new volumes are created (the children).\\
+For this implementation the splitting plane pass through the median point among the set contained in that sub-tree, which is found by using the \textit{$tbb::parallel\_sort$} method provided by Intel's Threading Building Blocks library to parallelize the sorting on the CPU when a multi-core processor is available.\\
+The left-child is then defined to have the same minimum vertex of its parent, while the maximum is the same of the parent except one coordinate: the one along the axis of the splitting. That coordinate is then the same of the median point found by sorting the set. The right-child is built similarly by substituting the coordinate in the minimum vertex.\\
+
+\begin{algorithm}
+\caption{The build of the volume 3D-tree}
+\label{volume_kdtree_build}
+\begin{algorithmic}
+\State BuildKDTree(totalNuberOfPoints, allPoints, 0) \Comment First call to the recursive function
+\Procedure{BuildKDTree}{numberOfPoints, points, depth}
+  \State $axis \gets depth \bmod 3$
+  \State $medianValue \gets ceil(numberOfPoints / 2)$ \Comment The index of the median point
+  \State $\textbf{sort}(points, axis)$ \Comment Parallel sort of the input point along axis
+  \State $newCoordinate \gets points[medianValue][axis]$
+  \State $leftChild \gets newCoordinate$
+  \State $rightChild \gets newCoordinate$
+  \State $tree \gets leftChild$
+  \State $tree \gets rightChild$
+  \If{$remainPoints > 0$}
+  \State $\textbf{return}\, BuildKDTree(ceil(numberOfPoints / 2), remainPoints, depth+1)$
+  \EndIf
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
