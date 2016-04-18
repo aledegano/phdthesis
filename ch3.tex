@@ -17,15 +17,38 @@ The relations between each node and its sons is then recorded and the procedure 
 \subsection{Traversing a 3D tree}
 The purpose of creating a binary tree data-structure is to greatly reduce the number of comparisons required to search a given point in the whole set.\\
 The procedure is again recursive, let's consider for instance the search of the nearest neighbor of an arbitrary input point among the points of the data set: usign the same axis-cycling described in the building evaluate if the point is smaller or greater than the root along the axis picked. If it is smaller the search will continue on the left-child of the root, otherwise on the right-child. The second step is to compare the point to be searched with the node child of root chosen by the previous step, again comparing it along the next axis in the cycle (always maintaining the same axis-cycling order used in the construction). The procedure continues until it is reached a node without any child: a leaf, which is the closest point of the set to the input point.\\
-Considering the procedure described above it is clear that this type of search discards half of the points of the data set at each step. It is therefore expected that the complexity of this search to be $\mathcal{O}(\log{} n)$ (it can be deduced from the partial sum of the harmonic series) where the complexity of the "naive" method would be $\mathcal{O}(n)$ as it would require to compare the input point to every other point in the set.\\
+Considering the procedure described above it is clear that this type of search discards half of the points of the data set at each step. It is therefore expected that the complexity of this search to be $\mathcal{O}(\log{} n)$ where the complexity of the "naive" method would be $\mathcal{O}(n)$ as it would require to compare the input point to every other point in the set.\\
 The nearest neighbors search is just a slight variation of the above described procedure. Suppose to be searching all the points in the data-set contained in a cube centered around an input point, those are the Nearest Neighbors of the input. The search procedure for the "box" would be similar to the one explained for the single nearest neighbor, the only caveat being that the box can be not only "left" or "right" of a given node but also intersecting it. In the case of intersection both child of the node will be considered for further searching and the node itself -even if it's not a leaf- will be considered a nearest neighbor as it lies in the search volume. It is clear that the complexity of this case has to be worse than that of a single point, in particular has been demonstrated \cite{worst-case-search} that the worse-case run-time is $\mathcal{O}(k N ^{1 - {1\over k}})$ for a k-dimensional tree.
 
 \section{Volume kd-tree}
-A possible implementation of the above-described algorithm uses as tree nodes volumes in the 3D space that splits the space in which the data set points lies. Therefore the root node will be the smallest volume containing all the data set points, its children will be each half of the root, their children a quarter and so on until the leaves are created as the smallest possible volume.\\
-The advantage of such an implementation is that every sub-tree describe the 3D region containing all of its elements, therefore when performing a nearest neighbors search the search box it is compared with volumes of decreasing size (the nodes of the tree) up to a point where the search box fully encloses a node: at this stage the search procedure can halt without reaching the leaves, as all the nearest neighbors are the points of the sub-tree reached which are known because of the tree structure.\\
+A possible implementation of the above-described algorithm uses as tree nodes volumes in the 3D space that splits the space in which the data set points lies. Therefore the root node will be the smallest volume containing all the data set points, its children will be each half of the root, their children a quarter and so on until the leaves are created.\\
+The advantage of such an implementation is that every sub-tree describes the 3D region containing all of its elements, therefore, when performing a nearest neighbors search, the search box is compared with volumes of decreasing size (the nodes of the tree) up to a point where the search box fully encloses a node: at this stage the search procedure can halt without reaching the leaves, since all the nearest neighbors are the points of the sub-tree reached, which are known because of the tree structure.\\
 
 \subsection{Implementation}
 Following we will describe the specific implementation of the volume kd-tree we developed for this work.
 \subsubsection{Build}
-As mentioned above this implementation uses volumes as node of the tree which, being \textit{rectangular cuboid} in a 3D Cartesian space, can be described by two triplets: the coordinates of the \textit{minimum} and the \textit{maximum} vertices. Where the minimum vertex is defined to be the one of which each coordinate is the smallest, while the maximum the one with the greatest coordinates. This method of describing the tree nodes will benefit both the memory footprint of the tree and the process of comparing the search box position with respect to the tree nodes.\\
-The building is performed similarly to what described in the generic kd tree with the exception that for every iteration splitting in half the volume, two new volumes are created (the children). The two new volumes have the same vertices of their parent except a single coordinate in one of the two vertices: the left-child has the coordinate of the maximum vertex corresponding to the axis along which the parent has been split equal to the value of the plane splitting the children. The right-child has the same coordinate change but in the minimum vertex.\\
+As mentioned above this implementation uses volumes as nodes of the tree which, being \textit{rectangular cuboids} in a 3D Cartesian space, can be described by only two triplets: the coordinates of the \textit{minimum} and the \textit{maximum} vertices. Where the minimum vertex is defined to be the one of which each coordinate is the smallest, while the maximum the one with the greatest coordinates. This method of describing the tree nodes will benefit both the memory footprint of the tree and the process of comparing the search box position with respect to the tree nodes.\\
+The building is performed similarly to what described in the generic kd tree with the exception that for every iteration splitting in half the volume, two new volumes are created (the children).\\
+For this implementation the splitting plane pass through the median point among the set contained in that sub-tree, which is found by using the \textit{$tbb::parallel\_sort$} method provided by Intel's Threading Building Blocks library to parallelize the sorting on the CPU when a multi-core processor is available.\\
+The left-child is then defined to have the same minimum vertex of its parent, while the maximum is the same of the parent except one coordinate: the one along the axis of the splitting. That coordinate is then the same of the median point found by sorting the set. The right-child is built similarly by substituting the coordinate in the minimum vertex.\\
+
+\begin{algorithm}
+\caption{The build of the volume 3D-tree}
+\label{volume_kdtree_build}
+\begin{algorithmic}
+\State BuildKDTree(totalNuberOfPoints, allPoints, 0) \Comment First call to the recursive function
+\Procedure{BuildKDTree}{numberOfPoints, points, depth}
+  \State $axis \gets depth \bmod 3$
+  \State $medianValue \gets ceil(numberOfPoints / 2)$ \Comment The index of the median point
+  \State $\textbf{sort}(points, axis)$ \Comment Parallel sort of the input point along axis
+  \State $newCoordinate \gets points[medianValue][axis]$
+  \State $leftChild \gets newCoordinate$
+  \State $rightChild \gets newCoordinate$
+  \State $tree \gets leftChild$
+  \State $tree \gets rightChild$
+  \If{$remainPoints > 0$}
+  \State $\textbf{return}\, BuildKDTree(ceil(numberOfPoints / 2), remainPoints, depth+1)$
+  \EndIf
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
