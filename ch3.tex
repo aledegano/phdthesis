@@ -1,4 +1,4 @@
-\chapter{K-Dimensional binary search tree}\label{ch:3}
+\chapter{K-Dimensional binary search tree}\label{ch:volume_kd}
 A k-d tree is a data-structure used to partition a k-dimensional space and is a special case of a binary-search tree.
 
 \section{General description of the KD-tree}
@@ -29,26 +29,79 @@ Following we will describe the specific implementation of the volume kd-tree we 
 \subsubsection{Build}
 As mentioned above this implementation uses volumes as nodes of the tree which, being \textit{rectangular cuboids} in a 3D Cartesian space, can be described by only two triplets: the coordinates of the \textit{minimum} and the \textit{maximum} vertices. Where the minimum vertex is defined to be the one of which each coordinate is the smallest, while the maximum the one with the greatest coordinates. This method of describing the tree nodes will benefit both the memory footprint of the tree and the process of comparing the search box position with respect to the tree nodes.\\
 The building is performed similarly to what described in the generic kd tree with the exception that for every iteration splitting in half the volume, two new volumes are created (the children).\\
-For this implementation the splitting plane pass through the median point among the set contained in that sub-tree, which is found by using the \textit{$tbb::parallel\_sort$} method provided by Intel's Threading Building Blocks library to parallelize the sorting on the CPU when a multi-core processor is available.\\
-The left-child is then defined to have the same minimum vertex of its parent, while the maximum is the same of the parent except one coordinate: the one along the axis of the splitting. That coordinate is then the same of the median point found by sorting the set. The right-child is built similarly by substituting the coordinate in the minimum vertex.\\
+For this implementation the splitting plane passes through the median point among the set contained in that sub-tree, which is found by using the \textit{tbb::parallel\_sort} method provided by Intel's Threading Building Blocks library \cite{intel_tbb} to parallelize the sorting on the CPU when a multi-core processor is available.\\
+The left-child is then defined to have the same minimum vertex of its parent, while the maximum is the same of the parent except one coordinate: the one along the axis of the splitting. That coordinate is then the same of the median point found by sorting the set. The right-child is built similarly by substituting the coordinate in the minimum vertex. The procedure is described by algorithm \ref{volume_kdtree_build}.\\
 
 \begin{algorithm}
 \caption{The build of the volume 3D-tree}
 \label{volume_kdtree_build}
 \begin{algorithmic}
-\State BuildKDTree(totalNuberOfPoints, allPoints, 0) \Comment First call to the recursive function
+\State BuildKDTree(totalNuberOfPoints, allPoints, 0) \Comment First call
 \Procedure{BuildKDTree}{numberOfPoints, points, depth}
-  \State $axis \gets depth \bmod 3$
-  \State $medianValue \gets ceil(numberOfPoints / 2)$ \Comment The index of the median point
-  \State $\textbf{sort}(points, axis)$ \Comment Parallel sort of the input point along axis
-  \State $newCoordinate \gets points[medianValue][axis]$
-  \State $leftChild \gets newCoordinate$
-  \State $rightChild \gets newCoordinate$
-  \State $tree \gets leftChild$
-  \State $tree \gets rightChild$
-  \If{$remainPoints > 0$}
-  \State $\textbf{return}\, BuildKDTree(ceil(numberOfPoints / 2), remainPoints, depth+1)$
+  \State axis $\gets$ depth $\bmod$ 3
+  \State medianValue $\gets$ ceil(numberOfPoints / 2) \Comment The index of the median point
+  \State \textbf{sort}(points, axis) \Comment Parallel sort of the input point along axis
+  \State newCoordinate $\gets$ points[medianValue][axis]
+  \State leftChild $\gets$ newCoordinate
+  \State rightChild $\gets$ newCoordinate
+  \State tree $\gets$ leftChild
+  \State tree $\gets$ rightChild
+  \If{(remainderPoints $>$ 0)}
+  \State \textbf{return} BuildKDTree(ceil(numberOfPoints / 2), remainderPoints, depth+1)
   \EndIf
 \EndProcedure
 \end{algorithmic}
 \end{algorithm}
+
+\subsubsection{Range search}
+The search of a given point nearest neighbors begins by defining a region of the space to search the neighbors in.
+The "search box" is defined by the pair of coordinates describing a volume enclosing the point for which the neighbors are searched. The search is again recursive, it starts from the tree's root. The minimum and maximum coordinates of the search box along the root's splitting axis are compared to the coordinate along the same axis where the division took place at the construction phase. If both coordinates of the search box are smaller than splitting plane the search will continue only on the root's left child, if both are greater the search will proceed on the right child only and if the splitting plane happens to be between the search box coordinates the search proceeds on both child nodes.\\
+The search proceeds cycling through the axis until a leaf is reached or when a node is fully contained in the search box: since the tree nodes are volumes this condition can be check at each step and when is true all the points belonging to that sub-tree are added to the neighbors, potentially saving the computational time that would be needed to examine the children of the sub-tree. The whole procedure is explained by algorithm \ref{volume_kdtree_search}.\\
+\begin{algorithm}
+\caption{The build of the volume 3D-tree}
+\label{volume_kdtree_search}
+\begin{algorithmic}
+\State SearchKDTree(searchBox, root, 0) \Comment First call
+\Procedure{SearchKDTree}{searchVolume, nodeToSearch, depth}
+  \If {(nodeToSearch is a leaf)}
+    \State \textbf{return} node[thisPoint]
+  \EndIf
+  \State axis $\gets$ depth $\bmod$ 3
+  \State searchBoxMin $\gets$ searchBox[minimumVertex][axis]
+  \State searchBoxMax $\gets$ searchBox[maximumVertex][axis]
+  \State nodeMin $\gets$ nodeToSearch[minimumVertex][axis]
+  \State nodeMax $\gets$ nodeToSearch[maximumVertex][axis]
+  \If{ (searchBoxMin $\leqslant$ nodeMin \&\& searchBoxMax $\geqslant$ nodeMax)} 
+  \State nearestNeighbors $\gets$ node[points] \Comment save all node points as NN
+  \Else
+  	\If{ searchBoxMin $\leqslant$ nodeMin}
+  	  \State \textbf{return} SearchKDTree(searchVolume, leftChild, depth + 1)
+  	\EndIf
+  	\If{ searchBoxMax $\geqslant$ nodeMax}
+ 	  \State \textbf{return} SearchKDTree(searchVolume, rightChild, depth + 1)
+	\EndIf
+  \EndIf
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{Validation}
+We implemented the algorithm described above in \CC and developed the following method to validate the results of the searches performed with the volume kd-tree.\\
+Using the Standard Template Library (STL) pseudo-random uniform generator defined by the c++11 ISO standard we place $3 \times 10^{5}$ points in a cube of side 100 arbitrary units (a.u.). We build a volume tree with the generated points and for each of the points we perform a range search for a cube of side 4.0 a.u. centered on the point for which we want to search the NN and the results are recorded.\\
+As comparison we perform again the nearest neighbors search through a method called \textit{naive} since it is the simplest possible way to perform such a search: for each search box every single point of the data set is checked if it lies inside the box it is recorded. It is also clear that the naive method is very inefficient having complexity $\mathcal{O}(n^{2})$ for this type of search. However it is a simple and reliable method to validate less intuitive algorithms and we used it extensively throughout this work.\\
+The data set random generation is repeated for different number of data set points and different sizes of the search boxes, the results of the two methods are then compared for each generation and if they are always identical the kd-tree range search algorithm is declared valid.
+
+\subsection{GPU porting}
+The GPU architecture we described in Chapter \ref{ch:intro} requires some adaptations of the code to best perform on this device. We list here the most relevant:
+\begin{itemize}
+\item Input data must be moved on the GPU device and must have the smallest possible byte size to avoid that the data rate transfer becomes a significant bottle-neck.
+\item Several processes must run simultaneously as, ideally, all the GPU computational cores must be used at the same time.
+\item Output data must be moved back from the GPU device to the host machine and the size of the output data has to be known.
+\end{itemize}
+We first attempted to perform the tree construction on the GPU device, should that have been well performing not only we would have exploited the GPU computation for this part of the algorithm too, but we would have had the tree saved on the GPU memory without needing to move it. Unfortunately it became soon apparent that it wasn't possible to build the tree in a way that employed all the GPU cores at the same time and the performance were worse that those obtained on the CPU.\\
+The all nearest neighbors search is much simpler to parallelize to fill up the GPU cores: by assigning a search box to each GPU core they can all run simultaneously and independently. Therefore once the tree is built on the host machine there are two inputs that needs to be loaded onto the GPU memory: the tree itself, which can be expressed as an array of pair of vertices of N elements for N data set points and the search boxes which again is an array of pair of veritices of N elements.
+
+
+
+
+

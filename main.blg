@@ -1,5 +1,4 @@
-This is BibTeX, Version 0.99c (Web2C 7.5.6)
-The top-level auxiliary file: main.aux
+This is BibTeX, Version 0.99dThe top-level auxiliary file: main.aux
 A level-1 auxiliary file: cover.aux
 A level-1 auxiliary file: summary.aux
 A level-1 auxiliary file: ch1.aux
@@ -9,45 +8,4 @@ A level-1 auxiliary file: conclusions.aux
 The style file: ieeetr.bst
 Database file #1: BibTex.bib
 Warning--empty year in worst-case-search
-You've used 1 entry,
-            1876 wiz_defined-function locations,
-            489 strings with 3707 characters,
-and the built_in function-call counts, 295 in all, are:
-= -- 28
-> -- 4
-< -- 0
-+ -- 2
-- -- 1
-* -- 23
-:= -- 47
-add.period$ -- 1
-call.type$ -- 1
-change.case$ -- 1
-chr.to.int$ -- 0
-cite$ -- 2
-duplicate$ -- 15
-empty$ -- 29
-format.name$ -- 1
-if$ -- 69
-int.to.chr$ -- 0
-int.to.str$ -- 1
-missing$ -- 1
-newline$ -- 6
-num.names$ -- 1
-pop$ -- 3
-preamble$ -- 1
-purify$ -- 0
-quote$ -- 0
-skip$ -- 10
-stack$ -- 0
-substring$ -- 23
-swap$ -- 7
-text.length$ -- 0
-text.prefix$ -- 0
-top$ -- 0
-type$ -- 0
-warning$ -- 1
-while$ -- 3
-width$ -- 2
-write$ -- 12
 (There was 1 warning)
