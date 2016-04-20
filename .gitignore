@@ -2,3 +2,6 @@
 *~
 *.log
 *.dvi
+main.out
+main.lof
+main.lot
