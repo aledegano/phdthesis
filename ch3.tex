@@ -54,9 +54,9 @@ The left-child is then defined to have the same minimum vertex of its parent, wh
 \end{algorithm}
 
 \subsubsection{Range search}
-The search of a given point nearest neighbors begins by defining a region of the space to search the neighbors in.
-The "search box" is defined by the pair of coordinates describing a volume enclosing the point for which the neighbors are searched. The search is again recursive, it starts from the tree's root. The minimum and maximum coordinates of the search box along the root's splitting axis are compared to the coordinate along the same axis where the division took place at the construction phase. If both coordinates of the search box are smaller than splitting plane the search will continue only on the root's left child, if both are greater the search will proceed on the right child only and if the splitting plane happens to be between the search box coordinates the search proceeds on both child nodes.\\
-The search proceeds cycling through the axis until a leaf is reached or when a node is fully contained in the search box: since the tree nodes are volumes this condition can be check at each step and when is true all the points belonging to that sub-tree are added to the neighbors, potentially saving the computational time that would be needed to examine the children of the sub-tree. The whole procedure is explained by algorithm \ref{volume_kdtree_search}.\\
+The search for the nearest neighbors of a given point begins by defining a region of the space to search the neighbors in.
+The "search box" is defined by the pair of coordinates describing a volume enclosing the point for which the neighbors are searched. The search is again recursive, it starts from the tree's root. The minimum and maximum coordinates of the search box along the root's splitting axis are compared to the coordinate along the same axis where the division took place at the construction phase. As usual only the coordinates along the axis determined by the depth of the tree are considered: if both coordinates of the search box are smaller than that of the splitting plane the search will continue only on the root's left child, if both are greater the search will proceed on the right child only and if the splitting plane happens to be between the search box coordinates the search proceeds on both child nodes.\\
+The search proceeds cycling through the axis until a leaf is reached or when a node is fully contained in the search box: since the tree nodes are volumes this condition can be check at each step and when is true all the points belonging to that sub-tree are added to the neighbors, potentially saving the computational time that would be needed to examine the children of the sub-tree. The whole procedure is illustrated in algorithm \ref{volume_kdtree_search}.\\
 \begin{algorithm}
 \caption{The build of the volume 3D-tree}
 \label{volume_kdtree_search}
@@ -72,7 +72,7 @@ The search proceeds cycling through the axis until a leaf is reached or when a n
   \State nodeMin $\gets$ nodeToSearch[minimumVertex][axis]
   \State nodeMax $\gets$ nodeToSearch[maximumVertex][axis]
   \If{ (searchBoxMin $\leqslant$ nodeMin \&\& searchBoxMax $\geqslant$ nodeMax)} 
-  \State nearestNeighbors $\gets$ node[points] \Comment save all node points as NN
+  \State nearestNeighbors $\gets$ node[points] \Comment save all node's points as NN
   \Else
   	\If{ searchBoxMin $\leqslant$ nodeMin}
   	  \State \textbf{return} SearchKDTree(searchVolume, leftChild, depth + 1)
@@ -86,21 +86,35 @@ The search proceeds cycling through the axis until a leaf is reached or when a n
 \end{algorithm}
 
 \subsection{Validation}
-We implemented the algorithm described above in \CC and developed the following method to validate the results of the searches performed with the volume kd-tree.\\
-Using the Standard Template Library (STL) pseudo-random uniform generator defined by the c++11 ISO standard we place $3 \times 10^{5}$ points in a cube of side 100 arbitrary units (a.u.). We build a volume tree with the generated points and for each of the points we perform a range search for a cube of side 4.0 a.u. centered on the point for which we want to search the NN and the results are recorded.\\
-As comparison we perform again the nearest neighbors search through a method called \textit{naive} since it is the simplest possible way to perform such a search: for each search box every single point of the data set is checked if it lies inside the box it is recorded. It is also clear that the naive method is very inefficient having complexity $\mathcal{O}(n^{2})$ for this type of search. However it is a simple and reliable method to validate less intuitive algorithms and we used it extensively throughout this work.\\
-The data set random generation is repeated for different number of data set points and different sizes of the search boxes, the results of the two methods are then compared for each generation and if they are always identical the kd-tree range search algorithm is declared valid.
+We implemented the algorithm described above in \CC\ and developed the following method to validate the results of the searches performed with the volume kd-tree.\\
+Using the Standard Template Library (STL) pseudo-random uniform generator defined by the \CC 11 ISO standard we place a number of points ranging from $2 \times 10^{4}$ to $3 \times 10^{5}$ in a cube of side 100 arbitrary units (a.u.). We build a volume tree with the generated points and for each of the points we perform a range search for a cube of side ranging from 1.0 a.u to 10.0 a.u. centered on the point for which we want to search the NN and the results are recorded.\\
+As comparison we perform again the nearest neighbors search through a method called \textit{naive} since it is the simplest possible way to perform such a search: for each search box every single point of the data set is checked: if it lies inside the box it is recorded. It is also clear that the naive method is very inefficient having complexity $\mathcal{O}(n^{2})$ for this type of search. However it is a simple and reliable method to validate less intuitive algorithms and we used it extensively as a validation tool throughout this work.\\
+The data set random generation is executed for different number of data set points and different sizes of the search boxes and both searches -naive and kd-tree based- performed, the results of the two methods are then compared for each generation and only when they are always identical the kd-tree range search algorithm is declared valid.
 
 \subsection{GPU porting}
-The GPU architecture we described in Chapter \ref{ch:intro} requires some adaptations of the code to best perform on this device. We list here the most relevant:
+The GPU architecture we described in Chapter \ref{ch:gpu} requires some adaptations of the code to best perform on this device. We list here the most relevant:
 \begin{itemize}
 \item Input data must be moved on the GPU device and must have the smallest possible byte size to avoid that the data rate transfer becomes a significant bottle-neck.
 \item Several processes must run simultaneously as, ideally, all the GPU computational cores must be used at the same time.
 \item Output data must be moved back from the GPU device to the host machine and the size of the output data has to be known.
 \end{itemize}
 We first attempted to perform the tree construction on the GPU device, should that have been well performing not only we would have exploited the GPU computation for this part of the algorithm too, but we would have had the tree saved on the GPU memory without needing to move it. Unfortunately it became soon apparent that it wasn't possible to build the tree in a way that employed all the GPU cores at the same time and the performance were worse that those obtained on the CPU.\\
-The all nearest neighbors search is much simpler to parallelize to fill up the GPU cores: by assigning a search box to each GPU core they can all run simultaneously and independently. Therefore once the tree is built on the host machine there are two inputs that needs to be loaded onto the GPU memory: the tree itself, which can be expressed as an array of pair of vertices of N elements for N data set points and the search boxes which again is an array of pair of veritices of N elements.
+The all nearest neighbors search is much simpler to parallelize in order to fill up the GPU cores: by assigning a search box to each GPU core they can all run simultaneously and independently. Therefore once the tree is built on the host machine there are two inputs that needs to be loaded onto the GPU memory: the tree itself, which can be expressed as an array of pair of vertices of N elements for N data set points and the search boxes which again is an array of pair of veritices of N elements.\\
+The search code itself is the very same that runs sequentially on the CPU, however the code generates one CUDA thread for every search box to be found, then the GPU device scheduler takes care of executing each of those threads on all the available GPU cores, reaching the concurrential execution desired.\\
+The output result is a single array where the indices of the nearest neighbors are recorded. As mentioned before the size of this array must be known before the search is performed which impies the need of an assumption on the number of nearest neighbors found for each search box. In the case of the uniform random generation of $N_{total}$ points in a volume $\mathcal{V}$ we evaluate the statistical average density of nearest neighbors found in a search box of volume $\mathcal{V_s}$ and we double the average number of points per search volume to take into account the statistical variance.
+\begin{center}
+\begin{equation}
+N\!N_{max} =  N_{total} \cdot \dfrac{\mathcal{V_s}}{\mathcal{V}} \cdot 2.0
+\end{equation}
+\end{center}
 
+Thus the array size is $N_{total} \cdot N\!N_{max}$, however most of the times the number of actual NN found is lower than the maximum allowed, therefore a trailing $-1$ is used to instruct the code reading the output that there aren not any more nearest neighbors for that search box.\\
+The formula described above clearly cannot be applied to real-world applications where the distribution of points is not uniform, therefore other assumptions must be evaluated.\\
+
+\subsection{Performance analysis}
+The assessment of the performance of the GPU algorithm is done by comparison with the same code running sequentially on the CPU.\\
+The two search methods runs on the exact same points, generated by a uniform random distribution, similarly to what is done for the validation. Likewise the measurements are repeated for a series of number of initial points, ranging from  $2 \times 10^{4}$ to $3 \times 10^{5}$. The volume in which the points are generated is a cube of side 100.0 a.u. while the reference search box is a cube of side 4.0 a.u.\\
+The computational time spent in each search is evaluated through \textit{cudaEvent} provided by the CUDA libraries which provides a time resolution of $\sim 0.5\unit{ms}$. The tests are performed on the benchmark machine described in Paragraph \ref{sec:benchmark}, in Table \ref{volume_kd_tree_tab} are reported some selected results, while Graph \ref{volume_kdtree_plot} shows the timing in a logaritmic scale for all the tests performed.
 
 
 
