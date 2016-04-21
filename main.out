@@ -1,21 +1,21 @@
-\BOOKMARK [0][-]{chapter.1}{1 Introduction}{}% 1
-\BOOKMARK [1][-]{section.1.1}{1.1 LHC Phase 2 conditions}{chapter.1}% 2
-\BOOKMARK [1][-]{section.1.2}{1.2 HGCAL description}{chapter.1}% 3
-\BOOKMARK [1][-]{section.1.3}{1.3 Clustering overview}{chapter.1}% 4
-\BOOKMARK [1][-]{section.1.4}{1.4 HLT for HGCAL needs}{chapter.1}% 5
-\BOOKMARK [1][-]{section.1.5}{1.5 Computation challanges}{chapter.1}% 6
-\BOOKMARK [0][-]{chapter.2}{2 GPU Architecture}{}% 7
-\BOOKMARK [1][-]{section.2.1}{2.1 Testing hardware}{chapter.2}% 8
-\BOOKMARK [0][-]{chapter.3}{3 K-Dimensional binary search tree}{}% 9
-\BOOKMARK [1][-]{section.3.1}{3.1 General description of the KD-tree}{chapter.3}% 10
-\BOOKMARK [2][-]{subsection.3.1.1}{3.1.1 Building a 3D tree}{section.3.1}% 11
-\BOOKMARK [2][-]{subsection.3.1.2}{3.1.2 Traversing a 3D tree}{section.3.1}% 12
-\BOOKMARK [1][-]{section.3.2}{3.2 Volume kd-tree}{chapter.3}% 13
-\BOOKMARK [2][-]{subsection.3.2.1}{3.2.1 Build}{section.3.2}% 14
-\BOOKMARK [2][-]{subsection.3.2.2}{3.2.2 Range search}{section.3.2}% 15
-\BOOKMARK [1][-]{section.3.3}{3.3 Validation}{chapter.3}% 16
-\BOOKMARK [1][-]{section.3.4}{3.4 GPU porting}{chapter.3}% 17
-\BOOKMARK [1][-]{section.3.5}{3.5 Performance analysis}{chapter.3}% 18
-\BOOKMARK [1][-]{section.3.6}{3.6 Algorithm assessment}{chapter.3}% 19
-\BOOKMARK [0][-]{chapter*.7}{Summary}{}% 20
-\BOOKMARK [0][-]{chapter*.8}{Bibliography}{}% 21
+\BOOKMARK [0][-]{chapter.1}{1 Introduction}{}
+\BOOKMARK [1][-]{section.1.1}{1.1 LHC Phase 2 conditions}{chapter.1}
+\BOOKMARK [1][-]{section.1.2}{1.2 HGCAL description}{chapter.1}
+\BOOKMARK [1][-]{section.1.3}{1.3 Clustering overview}{chapter.1}
+\BOOKMARK [1][-]{section.1.4}{1.4 HLT for HGCAL needs}{chapter.1}
+\BOOKMARK [1][-]{section.1.5}{1.5 Computation challanges}{chapter.1}
+\BOOKMARK [0][-]{chapter.2}{2 GPU Architecture}{}
+\BOOKMARK [1][-]{section.2.1}{2.1 Testing hardware}{chapter.2}
+\BOOKMARK [0][-]{chapter.3}{3 K-Dimensional binary search tree}{}
+\BOOKMARK [1][-]{section.3.1}{3.1 General description of the KD-tree}{chapter.3}
+\BOOKMARK [2][-]{subsection.3.1.1}{3.1.1 Building a 3D tree}{section.3.1}
+\BOOKMARK [2][-]{subsection.3.1.2}{3.1.2 Traversing a 3D tree}{section.3.1}
+\BOOKMARK [1][-]{section.3.2}{3.2 Volume kd-tree}{chapter.3}
+\BOOKMARK [2][-]{subsection.3.2.1}{3.2.1 Build}{section.3.2}
+\BOOKMARK [2][-]{subsection.3.2.2}{3.2.2 Range search}{section.3.2}
+\BOOKMARK [1][-]{section.3.3}{3.3 Validation}{chapter.3}
+\BOOKMARK [1][-]{section.3.4}{3.4 GPU porting}{chapter.3}
+\BOOKMARK [1][-]{section.3.5}{3.5 Performance analysis}{chapter.3}
+\BOOKMARK [1][-]{section.3.6}{3.6 Algorithm assessment}{chapter.3}
+\BOOKMARK [0][-]{chapter*.3}{Summary}{}
+\BOOKMARK [0][-]{chapter*.4}{Bibliography}{}
