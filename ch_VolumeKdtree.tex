@@ -12,7 +12,13 @@ For all intents and purposes of this work, from here on we will consider k=3, th
 The procedure of the tree construction is recursive: a starting point is chosen and it will be called the root of the tree, a plane passing through the root point and orthogonal to one of the axis defines the regions of the two sub-trees children of root, for each of those a new root is chosen between the points of the sub-tree repeating the procedure until all the sub-trees contains no points, those are the leaves of the tree.\\
 In order to construct a balanced tree, where each sub-tree of a given level contains the same amount of points, there are two requirements: the first is that the subdivision must be performed cycling along the Cartesian axes, so if the first splitting is done by a plane orthogonal to $x$, the second will be done with respect to $y$, the third to $z$, the fourth again through $x$ and so on until all the leaves are created.\\
 The second requirement is to choose the root of each sub-tree in such a way that both of its sons will contains the same amount of points (with the exception of one point in case of odd numbering that will conventionally be assigned to the left son). To achieve that all the points of a sub-tree are sorted according to their coordinate in the axis along which the sub-tree will be divided, the root will be the middle point defined by that with as many points preceding as many following it.\\
-The relations between each node and its sons is then recorded and the procedure stops when all the elements of the set are also nodes of the tree.
+The relations between each node and its sons is then recorded and the procedure stops when all the elements of the set are also nodes of the tree.\\
+
+\begin{figure}
+\includegraphics[width=\textwidth]{volumeKdPlot/scheme_volume_kdtree.png}
+\caption{Example of a 2D tree building. $1^{st}$ step: find the middle point with respect to the $x$ axis and split the area in two passing through it (blue line). $2^{nd}$ step: the two children gets split by finding the middle point among those contained in each children and splitting the area through them along $y$ (red lines). $N^{th}$ step: all points belong to a leaf and all volumes are created.}
+\label{volume_kdtree_speedup}
+\end{figure}
 
 \subsection{Traversing a 3D tree}
 The purpose of creating a binary tree data-structure is to greatly reduce the number of comparisons required to search a given point -and/or its neighbors- in the whole set.\\
@@ -157,7 +163,6 @@ According to Figure \ref{volume_kdtree_speedup} the parallel GPU code is always 
 Further analysis of the code, performed at runtime, reveals two major issues with the algorithm developed for the range search of the volume kd-tree, regardless of its parallel or sequential implementation. The first one is caused by the way we save the tree nodes in the array: as they are not assigned to a specific place, but rather just to the last available place, at every recursion the node visited is asked for the index of its sons. The process of accessing the memory to read the indices of the node's sons is relatively expensive and it adds up quickly when repeated millions of times in all the recursions.\\
 The second issue derives from a missed performance gain opportunity: despite we designed the volume kd-tree in a way that could quickly return sets of near points when the search box would contain an entire node, analysing the code running with the conditions described above, revealed that this feature is seldomly used if ever. As a matter of fact the size chosen for the volume we distribute the initial data set and the size of the search box we used for the testing are such that when the search box contains a node that is not a leaf the node is still too small compared to the total volume and contains few points, making the contribution of this feature negligible.\\
 As a result of the above consideration we determine that the volume kd-tree is not the best suited data-structure for the geometry and times constraints that this work aims to tackle. The following chapter presents a different implementation of a kd-tree where the above issues has been solved.\\
-
 
 
 
