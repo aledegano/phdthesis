@@ -6,3 +6,6 @@
 \contentsline {figure}{\numberline {3.2}{\ignorespaces Volume Kd-tree build timings.}}{11}{figure.3.2}
 \contentsline {figure}{\numberline {3.3}{\ignorespaces Volume Kd-tree search times for CPU sequential and GPU parallel code}}{11}{figure.3.3}
 \contentsline {figure}{\numberline {3.4}{\ignorespaces Volume Kd-tree speedup between CPU sequential and GPU parallel search code}}{12}{figure.3.4}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
