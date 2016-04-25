@@ -2,7 +2,7 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Example of a 2D tree building. $1^{st}$ step: find the middle point with respect to the $x$ axis and split the area in two passing through it (blue line). $2^{nd}$ step: the two children gets split by finding the middle point among those contained in each children and splitting the area through them along $y$ (red lines). $N^{th}$ ste: all points belong to a leaf and all volumes are created.}}{4}{figure.3.1}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Volume Kd-tree build timings.}}{10}{figure.3.2}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Example of a 2D tree building. $1^{st}$ step: find the middle point with respect to the $x$ axis and split the area in two passing through it (blue line). $2^{nd}$ step: the two children gets split by finding the middle point among those contained in each children and splitting the area through them along $y$ (red lines). $N^{th}$ step: all points belong to a leaf and all volumes are created.}}{4}{figure.3.1}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Volume Kd-tree build timings.}}{11}{figure.3.2}
 \contentsline {figure}{\numberline {3.3}{\ignorespaces Volume Kd-tree search times for CPU sequential and GPU parallel code}}{11}{figure.3.3}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Volume Kd-tree speedup between CPU sequential and GPU parallel search code}}{11}{figure.3.4}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Volume Kd-tree speedup between CPU sequential and GPU parallel search code}}{12}{figure.3.4}

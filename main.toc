@@ -18,5 +18,5 @@
 \contentsline {section}{\numberline {3.4}GPU porting}{8}{section.3.4}
 \contentsline {section}{\numberline {3.5}Performance analysis}{9}{section.3.5}
 \contentsline {section}{\numberline {3.6}Algorithm assessment}{11}{section.3.6}
-\contentsline {chapter}{Summary}{13}{chapter*.3}
-\contentsline {chapter}{Bibliography}{14}{chapter*.4}
+\contentsline {chapter}{Summary}{14}{chapter*.3}
+\contentsline {chapter}{Bibliography}{15}{chapter*.4}
