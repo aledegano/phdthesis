@@ -32,7 +32,7 @@ A possible implementation of the above-described algorithm uses as tree nodes vo
 The advantage of such an implementation is that every sub-tree describes the 3D region containing all of its elements, therefore, when performing a nearest neighbors search, the search box is compared with volumes of decreasing size (the nodes of the tree) up to a point where the search box fully encloses a node: at this stage the search procedure can halt without reaching the leaves, since all the nearest neighbors are the points of the sub-tree reached, which are known because of the tree structure.\\
 
 Following we will describe the specific implementation of the volume kd-tree we developed for this work.
-\subsection{Build}
+\subsection{Build}\label{sec:volumeKDBuild}
 As mentioned above this implementation uses volumes as nodes of the tree which, being \textit{rectangular cuboids} in a 3D Cartesian space, can be described by only two triplets: the coordinates of the \textit{minimum} and the \textit{maximum} vertices. Where the minimum vertex is defined to be the one where each coordinate is the smallest, while the maximum the one with the greatest coordinates. This method of describing the tree nodes will benefit both the memory footprint of the tree and the process of comparing the search box position with respect to the tree nodes.\\
 The building is performed similarly to what described in the generic kd-tree with the exception that for every iteration splitting in half the volume, two new volumes are created (the children).\\
 For this implementation the splitting plane passes through the median point among the set contained in that sub-tree, which is found by using the \textit{tbb::parallel\_sort} method provided by Intel's Threading Building Blocks library \cite{intel_tbb} to parallelize the sorting on the CPU when a multi-core processor is available.\\
@@ -158,7 +158,7 @@ GPU ($\unit{ms}$) & 75.3 & 229.7 & 430.5 & 681.8 & 953.9 & 1281 & 1639 \\
 \end{figure}
 \newpage
 
-\section{Algorithm assessment}
+\section{Algorithm assessment}\label{sec:volumeKdAssessment}
 The build times shown in Figure \ref{volume_kdtree_build} suggests that building this kind of ``volume'' tree is expensive as it can use from $\sim 25\%$ up to $\sim 100\%$ of the time employed by the search itself. Furthermore the time spent to build the tree for $3 \times 10^{5}$ points, which is $\sim 1\unit{s}$, is well past the constraints imposed by HGCAL's HLT by itself not considering the search.\\
 In Figure \ref{volume_kdtree_plot} observe the relative performance of the two search methods for the lowest number of points used: in that regime the GPU parallel code is still faster than the sequential one, implying that the data transfer time needed to load the input and unload the output to/from the GPU also scales with the number of points and does not add a significative fixed time contribution to the process. This is an important feature as the algorithm must perform well in all the ranges it needs to operate.\\
 The CPU sequential timings, however, are not very encouraging requiring up to $5.5 \unit{s}$ to process the highest number of points. This result is well outside of the requirements imposed by the Phase 2 of LHC.\\

@@ -21,23 +21,23 @@
 \contentsline {section}{\numberline {3.5}Performance analysis}{9}{section.3.5}
 \contentsline {section}{\numberline {3.6}Algorithm assessment}{11}{section.3.6}
 \contentsline {chapter}{\numberline {4}A better KD-tree implementation}{14}{chapter.4}
-\contentsline {section}{\numberline {4.1}Build a Left-balanced KD-tree}{14}{section.4.1}
-\contentsline {section}{\numberline {4.2}Iterative search}{14}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Fast bitwise operations}{14}{subsection.4.2.1}
-\contentsline {section}{\numberline {4.3}Validation}{14}{section.4.3}
-\contentsline {section}{\numberline {4.4}GPU porting}{14}{section.4.4}
-\contentsline {subsection}{\numberline {4.4.1}GPU queue}{14}{subsection.4.4.1}
-\contentsline {subsection}{\numberline {4.4.2}CUDA streams}{14}{subsection.4.4.2}
-\contentsline {subsection}{\numberline {4.4.3}CUDA threads per block}{14}{subsection.4.4.3}
-\contentsline {section}{\numberline {4.5}Performance analysis}{14}{section.4.5}
-\contentsline {subsection}{\numberline {4.5.1}Uniform random distribution}{14}{subsection.4.5.1}
-\contentsline {subsection}{\numberline {4.5.2}HGCAL simulated RecHits}{14}{subsection.4.5.2}
-\contentsline {section}{\numberline {4.6}Algorithm assessment}{14}{section.4.6}
-\contentsline {chapter}{\numberline {5}Power consumption}{15}{chapter.5}
-\contentsline {section}{\numberline {5.1}Benchmark machine}{15}{section.5.1}
-\contentsline {section}{\numberline {5.2}TK 1}{15}{section.5.2}
-\contentsline {section}{\numberline {5.3}TX 1}{15}{section.5.3}
-\contentsline {section}{\numberline {5.4}Consumption comparisons}{15}{section.5.4}
-\contentsline {chapter}{\numberline {6}Conclusions}{16}{chapter.6}
-\contentsline {chapter}{Summary}{17}{chapter*.3}
-\contentsline {chapter}{Bibliography}{18}{chapter*.4}
+\contentsline {section}{\numberline {4.1}Build of a left-balanced KD-tree}{14}{section.4.1}
+\contentsline {section}{\numberline {4.2}Iterative search}{16}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Fast bitwise operations}{16}{subsection.4.2.1}
+\contentsline {section}{\numberline {4.3}Validation}{16}{section.4.3}
+\contentsline {section}{\numberline {4.4}GPU porting}{16}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}GPU queue}{16}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}CUDA streams}{16}{subsection.4.4.2}
+\contentsline {subsection}{\numberline {4.4.3}CUDA threads per block}{16}{subsection.4.4.3}
+\contentsline {section}{\numberline {4.5}Performance analysis}{16}{section.4.5}
+\contentsline {subsection}{\numberline {4.5.1}Uniform random distribution}{16}{subsection.4.5.1}
+\contentsline {subsection}{\numberline {4.5.2}HGCAL simulated RecHits}{16}{subsection.4.5.2}
+\contentsline {section}{\numberline {4.6}Algorithm assessment}{16}{section.4.6}
+\contentsline {chapter}{\numberline {5}Power consumption}{17}{chapter.5}
+\contentsline {section}{\numberline {5.1}Benchmark machine}{17}{section.5.1}
+\contentsline {section}{\numberline {5.2}TK 1}{17}{section.5.2}
+\contentsline {section}{\numberline {5.3}TX 1}{17}{section.5.3}
+\contentsline {section}{\numberline {5.4}Consumption comparisons}{17}{section.5.4}
+\contentsline {chapter}{\numberline {6}Conclusions}{18}{chapter.6}
+\contentsline {chapter}{Summary}{19}{chapter*.3}
+\contentsline {chapter}{Bibliography}{20}{chapter*.4}

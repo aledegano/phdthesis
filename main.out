@@ -20,7 +20,7 @@
 \BOOKMARK [1][-]{section.3.5}{3.5 Performance analysis}{chapter.3}
 \BOOKMARK [1][-]{section.3.6}{3.6 Algorithm assessment}{chapter.3}
 \BOOKMARK [0][-]{chapter.4}{4 A better KD-tree implementation}{}
-\BOOKMARK [1][-]{section.4.1}{4.1 Build a Left-balanced KD-tree}{chapter.4}
+\BOOKMARK [1][-]{section.4.1}{4.1 Build of a left-balanced KD-tree}{chapter.4}
 \BOOKMARK [1][-]{section.4.2}{4.2 Iterative search}{chapter.4}
 \BOOKMARK [2][-]{subsection.4.2.1}{4.2.1 Fast bitwise operations}{section.4.2}
 \BOOKMARK [1][-]{section.4.3}{4.3 Validation}{chapter.4}
