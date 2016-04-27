@@ -1,5 +1,4 @@
 \select@language {italian}
-\select@language {italian}
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}LHC Phase 2 conditions}{1}{section.1.1}
 \contentsline {section}{\numberline {1.2}HGCAL description}{1}{section.1.2}
@@ -17,28 +16,28 @@
 \contentsline {section}{\numberline {3.2}Volume kd-tree}{5}{section.3.2}
 \contentsline {subsection}{\numberline {3.2.1}Build}{6}{subsection.3.2.1}
 \contentsline {subsection}{\numberline {3.2.2}Range search}{7}{subsection.3.2.2}
-\contentsline {section}{\numberline {3.3}Validation}{7}{section.3.3}
-\contentsline {section}{\numberline {3.4}GPU porting}{9}{section.3.4}
-\contentsline {section}{\numberline {3.5}Performance analysis}{10}{section.3.5}
-\contentsline {section}{\numberline {3.6}Algorithm assessment}{12}{section.3.6}
+\contentsline {section}{\numberline {3.3}Validation}{8}{section.3.3}
+\contentsline {section}{\numberline {3.4}GPU porting}{8}{section.3.4}
+\contentsline {section}{\numberline {3.5}Performance analysis}{9}{section.3.5}
+\contentsline {section}{\numberline {3.6}Algorithm assessment}{11}{section.3.6}
 \contentsline {chapter}{\numberline {4}A better KD-tree implementation}{14}{chapter.4}
 \contentsline {section}{\numberline {4.1}Build of a left-balanced KD-tree}{14}{section.4.1}
-\contentsline {section}{\numberline {4.2}Iterative search}{16}{section.4.2}
+\contentsline {section}{\numberline {4.2}Iterative range search}{15}{section.4.2}
 \contentsline {subsection}{\numberline {4.2.1}Fast bitwise operations}{16}{subsection.4.2.1}
-\contentsline {section}{\numberline {4.3}Validation}{16}{section.4.3}
-\contentsline {section}{\numberline {4.4}GPU porting}{16}{section.4.4}
-\contentsline {subsection}{\numberline {4.4.1}GPU queue}{16}{subsection.4.4.1}
-\contentsline {subsection}{\numberline {4.4.2}CUDA streams}{16}{subsection.4.4.2}
-\contentsline {subsection}{\numberline {4.4.3}CUDA threads per block}{16}{subsection.4.4.3}
-\contentsline {section}{\numberline {4.5}Performance analysis}{16}{section.4.5}
-\contentsline {subsection}{\numberline {4.5.1}Uniform random distribution}{16}{subsection.4.5.1}
-\contentsline {subsection}{\numberline {4.5.2}HGCAL simulated RecHits}{16}{subsection.4.5.2}
-\contentsline {section}{\numberline {4.6}Algorithm assessment}{16}{section.4.6}
-\contentsline {chapter}{\numberline {5}Power consumption}{17}{chapter.5}
-\contentsline {section}{\numberline {5.1}Benchmark machine}{17}{section.5.1}
-\contentsline {section}{\numberline {5.2}TK 1}{17}{section.5.2}
-\contentsline {section}{\numberline {5.3}TX 1}{17}{section.5.3}
-\contentsline {section}{\numberline {5.4}Consumption comparisons}{17}{section.5.4}
-\contentsline {chapter}{\numberline {6}Conclusions}{18}{chapter.6}
-\contentsline {chapter}{Summary}{19}{chapter*.9}
-\contentsline {chapter}{Bibliography}{20}{chapter*.10}
+\contentsline {section}{\numberline {4.3}Validation}{17}{section.4.3}
+\contentsline {section}{\numberline {4.4}GPU porting}{17}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}GPU queue}{17}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}CUDA streams}{17}{subsection.4.4.2}
+\contentsline {subsection}{\numberline {4.4.3}CUDA threads per block}{17}{subsection.4.4.3}
+\contentsline {section}{\numberline {4.5}Performance analysis}{17}{section.4.5}
+\contentsline {subsection}{\numberline {4.5.1}Uniform random distribution}{17}{subsection.4.5.1}
+\contentsline {subsection}{\numberline {4.5.2}HGCAL simulated RecHits}{17}{subsection.4.5.2}
+\contentsline {section}{\numberline {4.6}Algorithm assessment}{17}{section.4.6}
+\contentsline {chapter}{\numberline {5}Power consumption}{18}{chapter.5}
+\contentsline {section}{\numberline {5.1}Benchmark machine}{18}{section.5.1}
+\contentsline {section}{\numberline {5.2}TK 1}{18}{section.5.2}
+\contentsline {section}{\numberline {5.3}TX 1}{18}{section.5.3}
+\contentsline {section}{\numberline {5.4}Consumption comparisons}{18}{section.5.4}
+\contentsline {chapter}{\numberline {6}Conclusions}{19}{chapter.6}
+\contentsline {chapter}{Summary}{20}{chapter*.3}
+\contentsline {chapter}{Bibliography}{21}{chapter*.4}
