@@ -7,5 +7,6 @@
 \contentsline {figure}{\numberline {3.3}{\ignorespaces Volume Kd-tree search times for CPU sequential and GPU parallel code}}{11}{figure.3.3}
 \contentsline {figure}{\numberline {3.4}{\ignorespaces Volume Kd-tree speedup between CPU sequential and GPU parallel search code}}{12}{figure.3.4}
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Interleaving of four asyncronous CUDA streams. H2D: host to device process, D2H: device to host, Kernel: code execution.}}{19}{figure.4.1}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

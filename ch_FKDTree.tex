@@ -33,21 +33,66 @@ Algorithm \ref{fkdtree_build} shows how we implemented the features described ab
 
 \section{Iterative range search}
 To perform a range search the algorithm takes a ``search box'' as argument for which it finds the points in the data set that are enclosed in it.\\
-The search procedure, recursive by nature, is made iterative by exploiting the the predictible nodes placement described by the build procedure. Particularly, starting from the root node, the algorithm checks if the node -along the splitting axis defined by the tree's depth- is greater than the search box maximum vertex, smaller of the minimum vertex or if it lies in the search box. When the node is greater than the search box the search proceeds on the node's left-child, when is smaller on the right-child and when it lies within the search box both children are considered for the next step in the search and the node is recorded as a nearest neighbor and will not be checked again.\\
+The search procedure, recursive by nature, is made iterative by exploiting the the predictable nodes placement described by the build procedure. Particularly, starting from the root node, the algorithm checks if the node -along the splitting axis defined by the node's depth- is greater than the search box maximum vertex, smaller of the minimum vertex or if it lies in the search box. When the node is greater than the search box the search proceeds on the node's left-child, when is smaller on the right-child and when it lies within the search box both children are considered for the next step in the search and the node is recorded as a nearest neighbor and will not be checked again.\\
 In order to make the above procedure iterative, avoiding the recursion, a loop is performed on all the nodes to compare the search box against. The iteration is initialized by adding to a \textit{queue} the root node index. The loop starts and compare the search box against the root, then one or both of its childrens are added to the queue while the node compared is removed from the queue. The next iteration of the cycle will compare the search box against the last element of the queue (e.g. the node(s) added on the previous step) and remove it from the queue while adding whichever children the search must proceed on. The loop repeats until the queue is empty which means that the leaves are all reached and all the nearest neighbors recorded.\\
 
 \subsection{Fast bitwise operations}
-At every step of the search the axis along which the current node has been created must be known. It can be easily deduced by knowing the depth of the tree the node is situated at, which in turns could be saved as part of the information of the node but we decided against it to reduce to the bare minimum the memory footprint of the array of nodes. The depth of the node in the tree, indeed, can be evaluated from the node index $I$ by inverting the formula described in the previous Section, that is: $d = \lfloor log_2(I) \rfloor$ which in \CC\ can be easily implemented with the embedded C-functions as: $d = floor(log(I,2))$.\\
-However we analysed the performance of the above code and found that it is relatively expensive in execution time. Therefore we replaced the code based on the C-function with a custom function leveraging the bitwise operators: \code{((unsigned int) (31 - \_\_builtin\_clz( I | 1) ))}. Starting from the inner parts the \code{I | 1} cosiders the integer representing the index of the node as a sequence of bits and does the $OR$ with the bit $1$, this ensures that the function works also in the case of $I = 0$. Then \code{\_\_builtin\_clz()} counts the number of leading zeroes in the index of the node when represented in binary form. The total number of bits representing an \code{unsigned int} in most common computer is 32, therefore subtracting the number of leading zeroes of the index to 32 gives the logarithm in base two of the index. Subtracting one to that number and then performing the cast to \code{unsigned int} performs the equivalent of the \code{floor()} operation giving the expected result.\\
-This seemingly harmless substitution in the code resulted in a very tangible increase in performance being up to ten times faster than the code using the C-functions.\\
+At every step of the search the axis along which the current node has been created must be known. It can be easily deduced by knowing the depth of the tree the node is situated at, which in turns could be saved as part of the information of the node, however we decided against it to reduce to the bare minimum the memory footprint of the array of nodes. The depth of the node in the tree, indeed, can be evaluated from the node index $I$ by inverting the formula described in the previous Section, that is: $d = \lfloor log_2(I) \rfloor$ which in \CC\ can be easily implemented with the embedded C functions as: \code{d = floor(log2(I))}.\\
+However we analysed the performance of the above code and found that it is relatively expensive in execution time. Therefore we replaced the code based on the C functions with a custom function leveraging the bitwise operators: \code{((unsigned int) (31 - \_\_builtin\_clz( I | 1) ))}. Starting from the inner parts the \code{I | 1} cosiders the integer representing the index of the node as a sequence of bits and does the $OR$ with the bit $1$, this ensures that the function works also in the case of $I = 0$. Then \code{\_\_builtin\_clz()} counts the number of leading zeroes in the index of the node when represented in binary form. The total number of bits representing an \code{unsigned int} in most common computer architectures is 32, therefore subtracting the number of leading zeroes of the index to 32 gives the logarithm in base two of the index. Subtracting one to that number and then performing the cast to \code{unsigned int} performs the equivalent of the \code{floor()} operation giving the expected result.\\
+This seemingly harmless substitution in the code resulted in a very tangible increase in performance being up to ten times faster than the code using the C functions.\\
+The implementation of the range search is showed in Algorithm \ref{fkdtree_search}.\\
+
+\begin{algorithm}
+\caption{Range search of the left-balanced KD-tree}
+\label{fkdtree_search}
+\begin{algorithmic}
+\Procedure{SearchKDTree}{searchBox}
+  \State nodesToVisit $\gets$ 0
+  \While{(nodesToVisit)}
+  	\State indexToCheck $\gets$ nodesToVisit[last]
+  	\State thisDepth $\gets$ \textbf{FLOOR\_LOG2}(indexToCheck) \Comment as explained above
+	\State axis $\gets$ thisDepth $\bmod$ 3 \Comment 0 = $x$, 1 = $y$, 2 = $z$
+	\If{(searchBox[axis][min] $<=$ indexToCheck[axis] \\ \hspace{4em} \textbf{AND} searchBox[axis][max] $>=$ indexToCheck[axis])}
+		\State nodesToVisit $\gets$ leftChild, rightChild
+		\State nearestNeighborsResult $\gets$ indexToCheck
+	\ElsIf{(searchBox[axis][max] $<=$ indexToCheck[axis])}
+		\State nodesToVisit $\gets$ leftChild
+	\Else
+		\State nodesToVisit $\gets$ rightChild
+	\EndIf		
+	\State nodesToVisit $\textit{remove}$ indexToCheck
+  \EndWhile
+  \State \textbf{return} nearestNeighborsResult
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 
 \section{Validation}
+We implemented the algorithm in \CC\ and validated it with the same technique described in Section \ref{sec:volume_kdtree_validation}, using uniformly distributed random points and comparing the search results with the \textit{naive} method.\\
+As an additional validation and debug tools we implemented two recursive functions for the build and the range search respectively.
+The first, through the classic recursion, verify that the nodes have the correct relative positioning among them. While the second, again recursively, verify that when searching for a single point of the data set used to build the tree, said point is indeed found in the leaf it is supposed to be.\\
 
 \section{GPU porting}
+We focus our attention on parallelizing the range search part of the algorithm and run it on a GPU. We expect to gain a significative increase in performance by running the all nearest neighbors searches in parallel assigning one search box to one CUDA thread and executing several thousends (depending on the actual GPU used) threads at the same time.\\
+In order to port the algorithm described in \ref{fkdtree_search} to CUDA there are some obstacles to get around first.\\
 
 \subsection{GPU queue}
+CUDA does not support STL containers and does not provide a variable size queue (at least in version 7.5 used in this work). Therefore we made our own implementation to save the nodes indices to visit in each loop cycle.\\
+The motivations to have a variable size queue are mainly two: the tree could be arbitrarily long and if the visited node index was not removed at each cycle the size of the array containing the visited nodes could become too big for the very limited registry memory each CUDA core has access to (see Section \ref{sec:gpu_arch}. The second reason is that by having a dynamic size it is always known which is the last element of the queue allowing the search to access it at every cycle and then remove it.\\
+The implementation is reported in Appendix \ref{ch:appendixFKDTree}.
 
 \subsection{CUDA streams}
+The array of search boxes and the array of the nodes (the tree structure) must be both moved on the GPU memory before executing the code that performs the range search, also, the array of the index of the nearest neighbors must be copied back on the host computer once the search is completed. The time necessary to perform those copy can be a relevant fraction of the total time spent for the range search.\\
+Nvidia's GPUs provides a feature that can help mitigate the time cost of copying the data to and from the device. Recent Nvidia GPUs are able to copy data to the device, from the device and execute code at the same time. Clearly to have an output to copy back on the host machine the code execution must have ran which, in turn, must have had access to the input data copied on the GPU device. Therefore to profit of the feature the whole search process must be split in what CUDA calls \textit{streams}, inside every stream the copy to the device, the execution and the copy from the device are executed sequentially, however different streams are asyncronous and indipendent. So, for instance, suppose to have two streams: the first stream begins to copy its portion of data on the device, once it is done its execution begins but, at the same time, the copy of the data on the device of the second stream begins. Likewise the stream 1 can then copy the output back to the host machine while stream 2 is still executing the code.\\
+Figure \ref{cuda_streams} shows how the interleaving of the streams can ``hide'' the cost of the memory management.\\
+
+\begin{figure}
+\includegraphics[width=\textwidth]{fkdtree/cuda_streams.png}
+\caption{Interleaving of four asyncronous CUDA streams. H2D: host to device process, D2H: device to host, Kernel: code execution.}
+\label{cuda_streams}
+\end{figure}
+
+We implemented in the search algorithm the possibility to split the all nearest neighbors search in an arbitrary number of CUDA streams to evaluate which number of streams yields the best performance.\\
 
 \subsection{CUDA threads per block}
 

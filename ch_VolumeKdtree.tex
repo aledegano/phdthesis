@@ -91,7 +91,7 @@ The whole procedure is illustrated in Algorithm \ref{volume_kdtree_search}.\\
 \end{algorithmic}
 \end{algorithm}
 
-\section{Validation}
+\section{Validation}\label{sec:volume_kdtree_validation}
 We implemented the algorithm described above in \CC\ and developed the following method to validate the results of the searches performed with the volume kd-tree.\\
 Using the Standard Template Library (STL) pseudo-random uniform generator defined by the \CC 11 ISO standard we place a number of points ranging from $2 \times 10^{4}$ to $3 \times 10^{5}$ in a cube of side 100 arbitrary units (a.u.). We build a volume tree with the generated points and for each of the points we perform a range search for a cube of side ranging from 1.0 a.u to 10.0 a.u. centered on the point for which we want to search the nearest neighbors and the results are recorded.\\
 As comparison we perform again the nearest neighbors search through a method called \textit{naive} since it is the simplest possible way to perform such a search: for each search box every single point of the data set is checked: if it lies inside the box it is recorded. It is also clear that the naive method is very inefficient having complexity $\mathcal{O}(n^{2})$ when searching the nearest neighbors of all $n$ points. However it is a simple and reliable method to validate less intuitive algorithms and we used it extensively as a validation tool throughout this work.\\

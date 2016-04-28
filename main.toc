@@ -25,19 +25,19 @@
 \contentsline {section}{\numberline {4.2}Iterative range search}{15}{section.4.2}
 \contentsline {subsection}{\numberline {4.2.1}Fast bitwise operations}{16}{subsection.4.2.1}
 \contentsline {section}{\numberline {4.3}Validation}{17}{section.4.3}
-\contentsline {section}{\numberline {4.4}GPU porting}{17}{section.4.4}
-\contentsline {subsection}{\numberline {4.4.1}GPU queue}{17}{subsection.4.4.1}
-\contentsline {subsection}{\numberline {4.4.2}CUDA streams}{17}{subsection.4.4.2}
-\contentsline {subsection}{\numberline {4.4.3}CUDA threads per block}{17}{subsection.4.4.3}
-\contentsline {section}{\numberline {4.5}Performance analysis}{17}{section.4.5}
-\contentsline {subsection}{\numberline {4.5.1}Uniform random distribution}{17}{subsection.4.5.1}
-\contentsline {subsection}{\numberline {4.5.2}HGCAL simulated RecHits}{17}{subsection.4.5.2}
-\contentsline {section}{\numberline {4.6}Algorithm assessment}{17}{section.4.6}
-\contentsline {chapter}{\numberline {5}Power consumption}{18}{chapter.5}
-\contentsline {section}{\numberline {5.1}Benchmark machine}{18}{section.5.1}
-\contentsline {section}{\numberline {5.2}TK 1}{18}{section.5.2}
-\contentsline {section}{\numberline {5.3}TX 1}{18}{section.5.3}
-\contentsline {section}{\numberline {5.4}Consumption comparisons}{18}{section.5.4}
-\contentsline {chapter}{\numberline {6}Conclusions}{19}{chapter.6}
-\contentsline {chapter}{Summary}{20}{chapter*.3}
-\contentsline {chapter}{Bibliography}{21}{chapter*.4}
+\contentsline {section}{\numberline {4.4}GPU porting}{18}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}GPU queue}{18}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}CUDA streams}{18}{subsection.4.4.2}
+\contentsline {subsection}{\numberline {4.4.3}CUDA threads per block}{19}{subsection.4.4.3}
+\contentsline {section}{\numberline {4.5}Performance analysis}{19}{section.4.5}
+\contentsline {subsection}{\numberline {4.5.1}Uniform random distribution}{19}{subsection.4.5.1}
+\contentsline {subsection}{\numberline {4.5.2}HGCAL simulated RecHits}{19}{subsection.4.5.2}
+\contentsline {section}{\numberline {4.6}Algorithm assessment}{19}{section.4.6}
+\contentsline {chapter}{\numberline {5}Power consumption}{20}{chapter.5}
+\contentsline {section}{\numberline {5.1}Benchmark machine}{20}{section.5.1}
+\contentsline {section}{\numberline {5.2}TK 1}{20}{section.5.2}
+\contentsline {section}{\numberline {5.3}TX 1}{20}{section.5.3}
+\contentsline {section}{\numberline {5.4}Consumption comparisons}{20}{section.5.4}
+\contentsline {chapter}{\numberline {6}Conclusions}{21}{chapter.6}
+\contentsline {chapter}{Summary}{22}{chapter*.3}
+\contentsline {chapter}{Bibliography}{23}{chapter*.4}
