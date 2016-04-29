@@ -27,7 +27,6 @@
 \BOOKMARK [1][-]{section.4.4}{4.4 GPU porting}{chapter.4}
 \BOOKMARK [2][-]{subsection.4.4.1}{4.4.1 GPU queue}{section.4.4}
 \BOOKMARK [2][-]{subsection.4.4.2}{4.4.2 CUDA streams}{section.4.4}
-\BOOKMARK [2][-]{subsection.4.4.3}{4.4.3 CUDA threads per block}{section.4.4}
 \BOOKMARK [1][-]{section.4.5}{4.5 Performance analysis}{chapter.4}
 \BOOKMARK [2][-]{subsection.4.5.1}{4.5.1 Uniform random distribution}{section.4.5}
 \BOOKMARK [2][-]{subsection.4.5.2}{4.5.2 HGCAL simulated RecHits}{section.4.5}

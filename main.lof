@@ -8,5 +8,9 @@
 \contentsline {figure}{\numberline {3.4}{\ignorespaces Volume Kd-tree speedup between CPU sequential and GPU parallel search code}}{12}{figure.3.4}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {4.1}{\ignorespaces Interleaving of four asyncronous CUDA streams. H2D: host to device process, D2H: device to host, Kernel: code execution.}}{19}{figure.4.1}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Time spent by the build of the KD-tree.}}{20}{figure.4.2}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Relative performance gain between multiple CUDA streams with respect to the single stream.}}{21}{figure.4.3}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Search times for CPU sequential and GPU parallel code.}}{21}{figure.4.4}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Speedup between CPU sequential and GPU parallel code.}}{22}{figure.4.5}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

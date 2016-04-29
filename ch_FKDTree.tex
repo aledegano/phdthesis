@@ -68,17 +68,17 @@ The implementation of the range search is showed in Algorithm \ref{fkdtree_searc
 \end{algorithm}
 
 \section{Validation}
-We implemented the algorithm in \CC\ and validated it with the same technique described in Section \ref{sec:volume_kdtree_validation}, using uniformly distributed random points and comparing the search results with the \textit{naive} method.\\
+We implemented the KD-tree algorithm in \CC\ and validated it with the same technique described in Section \ref{sec:volume_kdtree_validation}, using uniformly distributed random points and comparing the search results with the \textit{naive} method.\\
 As an additional validation and debug tools we implemented two recursive functions for the build and the range search respectively.
 The first, through the classic recursion, verify that the nodes have the correct relative positioning among them. While the second, again recursively, verify that when searching for a single point of the data set used to build the tree, said point is indeed found in the leaf it is supposed to be.\\
 
 \section{GPU porting}
-We focus our attention on parallelizing the range search part of the algorithm and run it on a GPU. We expect to gain a significative increase in performance by running the all nearest neighbors searches in parallel assigning one search box to one CUDA thread and executing several thousends (depending on the actual GPU used) threads at the same time.\\
+We focus our attention on parallelizing the range search part of the algorithm and run it on a GPU. We expect to gain a significative increase in performance by running the all nearest neighbors searches in parallel assigning one search box to one CUDA thread and executing several thousand (depending on the actual GPU used) threads at the same time.\\
 In order to port the algorithm described in \ref{fkdtree_search} to CUDA there are some obstacles to get around first.\\
 
 \subsection{GPU queue}
 CUDA does not support STL containers and does not provide a variable size queue (at least in version 7.5 used in this work). Therefore we made our own implementation to save the nodes indices to visit in each loop cycle.\\
-The motivations to have a variable size queue are mainly two: the tree could be arbitrarily long and if the visited node index was not removed at each cycle the size of the array containing the visited nodes could become too big for the very limited registry memory each CUDA core has access to (see Section \ref{sec:gpu_arch}. The second reason is that by having a dynamic size it is always known which is the last element of the queue allowing the search to access it at every cycle and then remove it.\\
+The motivations to have a variable size queue are mainly two: the tree could be arbitrarily long and if the visited node index was not removed at each cycle the size of the array containing the visited nodes could become too big for the very limited registry memory each CUDA core has access to (see Section \ref{sec:gpu_arch}). The second reason is that by having a dynamic size it is always known which is the last element of the queue allowing the search to access it at every cycle and then remove it.\\
 The implementation is reported in Appendix \ref{ch:appendixFKDTree}.
 
 \subsection{CUDA streams}
@@ -94,11 +94,58 @@ Figure \ref{cuda_streams} shows how the interleaving of the streams can ``hide''
 
 We implemented in the search algorithm the possibility to split the all nearest neighbors search in an arbitrary number of CUDA streams to evaluate which number of streams yields the best performance.\\
 
-\subsection{CUDA threads per block}
-
 \section{Performance analysis}
+To evaluate the performance of this implementation we use the same method applied to the volume KD-tree used in Section \ref{sec:volumeKd_performance} with further investigation where required.\\
 
 \subsection{Uniform random distribution}
+The first set of tests are performed by building the KD-tree off a uniform random distribution of points. The data sets are produced with a number of points ranging from $2 \times 10^4$ to $5 \times 10^5$.\\
+We measure the time spent building the tree, the search times differences for the GPU parallel code with different number of CUDA streams, the search times of the CPU sequential code and the speedup between the two.\\
+Figure \ref{fkdtree_build_times} shows the time spent building the KD-tree for the various number of data set points.\\
+
+\begin{figure}
+\includegraphics[width=\textwidth]{fkdtree/fkdBuildTimes.png}
+\caption{Time spent by the build of the KD-tree.}
+\label{fkdtree_build_times}
+\end{figure}
+
+Figure \ref{fkdtree_streams} shows the relative performance gain of the search performed with 2 to 16 CUDA streams with respect to the single stream for a number of generated points between $6 \times 10^4$ to $5 \times 10^5$.\\
+\begin{figure}
+\includegraphics[width=\textwidth]{fkdtree/fkdStreams.png}
+\caption{Relative performance gain between multiple CUDA streams with respect to the single stream.}
+\label{fkdtree_streams}
+\end{figure}
+
+Following the results of the streams performance analysis we chose to use 8 CUDA streams to evaluate the performance of the GPU search with respect to the CPU one.\\
+
+Figure \ref{fkdtree_search_times} shows the timings of the CPU sequential search and the GPU parallel one in the full range of the generated data sets, with the times shown in logarithmic scale.
+
+\begin{figure}
+\includegraphics[width=\textwidth]{fkdtree/fkdSearchTimes.png}
+\caption{Search times for CPU sequential and GPU parallel code.}
+\label{fkdtree_search_times}
+\end{figure}
+
+Some selected timings are reported in Table \ref{fkdtree_times_tab}.\\
+
+\begin{center}
+\begin{table}[h]
+\begin{tabular}{ c || r r r r r r r r r r }
+Points ($10^{3}$) & 50 & 100 & 150 & 200 & 250 & 300 & 350 & 400 & 450 & 500 \\
+\hline
+CPU ($\unit{ms}$) & 54 & 142 & 253 & 384 & 539 & 714 & 907 & 1143 & 1384 & 1682 \\
+GPU ($\unit{ms}$) & 3 & 7 & 13 & 21 & 31 & 42 & 54 & 68 & 84 & 101 \\
+\end{tabular}
+\caption{Selected search times for CPU sequential and GPU parallel code.}
+\label{fkdtree_times_tab}
+\end{table}
+\end{center}
+
+Lastly Figure \ref{fkdtree_speedup} shows the speedup between the two search methods.\\
+\begin{figure}
+\includegraphics[width=\textwidth]{fkdtree/fkdSpeedup.png}
+\caption{Speedup between CPU sequential and GPU parallel code.}
+\label{fkdtree_speedup}
+\end{figure}
 
 \subsection{HGCAL simulated RecHits}
 
