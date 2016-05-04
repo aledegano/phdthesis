@@ -6,7 +6,7 @@ A left-balanced binary tree is a tree in which the leaves only occupy the leftmo
 In practice this can be achieved by assigning the index of each node of the tree to a pre-determined value evaluated by the node's depth in the tree and its relative position among the other nodes at the same depth.\\
 The KD-tree nodes are assigned to a binary tree, therefore each node has two children in the next layer and the number of nodes $N_d$ at a given depth $d$ can be evaluated as $N_d = 2^d$ where $d = 0$ is the depth of the root. Moreover the indeces of the children of a given node of index $I_p$ can also be simply evaluated to be $I_{left} = I_p \cdot 2$ and $I_{right} = I_p \cdot 2 + 1$. Using this knowledge we assign to the nodes of the tree a pre-determined index.\\
 For this implementation of KD-tree we also drop the feature used in the volume KD-tree to assign a volume to each node of the tree. In this implementation each node of the tree corresponds to one point of the data set.\\
-By exploiting the predictive placement of the tree's nodes we can also implement a build procedure that is iterative instead of recursive: an outer loop visits all the layers of the tree until all the leaves are created, inside another internal loop -that spans the tree horizontaly- creates one by one the children of the nodes at the current depth, assigning them the index that can be evaluated as powers of 2 as described by the above formula. The inner loops ends when all the children of the next depth are created, and the outer loop ends when each point of the data set is a node of the tree.\\
+By exploiting the predictive placement of the tree nodes we can also implement a build procedure that is iterative instead of recursive: an outer loop visits all the layers of the tree until all the leaves are created, inside another internal loop -that spans the tree horizontaly- creates one by one the children of the nodes at the current depth, assigning them the index that can be evaluated as powers of 2 as described by the above formula. The inner loops ends when all the children of the next depth are created, and the outer loop ends when each point of the data set is a node of the tree.\\
 We determine the point to assign to each node by a sort performed along an axis similar to the one described in Paragraph \ref{sec:volumeKDBuild}, however in this implementation we realize that there is no reason to sort all the points in the range, what is needed, indeed, is to find the median point among them along the sorting axis, and then the points with the coordinate along the splitting axis smaller on one side and those with greater coordinates on the other side: the relative sorting in this two sets is irrelevant and can be avoided to gain some performance. The STL library provides a function that just does that: \textit{std::nth\_element} which we include in the build procedure.\\
 Algorithm \ref{fkdtree_build} shows how we implemented the features described above.\\
 
@@ -33,7 +33,7 @@ Algorithm \ref{fkdtree_build} shows how we implemented the features described ab
 
 \section{Iterative range search}
 To perform a range search the algorithm takes a ``search box'' as argument for which it finds the points in the data set that are enclosed in it.\\
-The search procedure, recursive by nature, is made iterative by exploiting the the predictable nodes placement described by the build procedure. Particularly, starting from the root node, the algorithm checks if the node -along the splitting axis defined by the node's depth- is greater than the search box maximum vertex, smaller of the minimum vertex or if it lies in the search box. When the node is greater than the search box the search proceeds on the node's left-child, when is smaller on the right-child and when it lies within the search box both children are considered for the next step in the search and the node is recorded as a nearest neighbor and will not be checked again.\\
+The search procedure, recursive by nature, is made iterative by exploiting the predictable nodes placement described by the build procedure. Particularly, starting from the root node, the algorithm checks if the node -along the splitting axis defined by the node's depth- is greater than the search box maximum vertex, smaller of the minimum vertex or if it lies in the search box. When the node is greater than the search box the search proceeds on the node's left-child, when is smaller on the right-child and when it lies within the search box both children are considered for the next step in the search and the node is recorded as a nearest neighbor and will not be checked again.\\
 In order to make the above procedure iterative, avoiding the recursion, a loop is performed on all the nodes to compare the search box against. The iteration is initialized by adding to a \textit{queue} the root node index. The loop starts and compare the search box against the root, then one or both of its childrens are added to the queue while the node compared is removed from the queue. The next iteration of the cycle will compare the search box against the last element of the queue (e.g. the node(s) added on the previous step) and remove it from the queue while adding whichever children the search must proceed on. The loop repeats until the queue is empty which means that the leaves are all reached and all the nearest neighbors recorded.\\
 
 \subsection{Fast bitwise operations}
@@ -146,7 +146,41 @@ Lastly Figure \ref{fkdtree_speedup} shows the speedup between the two search met
 \caption{Speedup between CPU sequential and GPU parallel code.}
 \label{fkdtree_speedup}
 \end{figure}
+\newpage
 
 \subsection{HGCAL simulated RecHits}
+
+Simulated data
+
+\begin{figure}
+\includegraphics[width=\textwidth]{rechits/BuildTimes.png}
+\caption{Time spent by the build of the KD-tree on simulated data.}
+\label{fkdtree_build_sim_times}
+\end{figure}
+
+\begin{center}
+\begin{table}[h]
+\begin{tabular}{ c || r r r }
+Points ($10^{3}$) & 37 & 139 & 225\\
+CPU ($\unit{ms}$) & 22.33 & 147.7 & 331.8 \\
+GPU ($\unit{ms}$) & 3.392 & 10.81 & 19.47\\
+\end{tabular}
+\caption{Selected search times for CPU sequential and GPU parallel code searching simulated data.}
+\label{fkdtree_times_sim_tab}
+\end{table}
+\end{center}
+
+\begin{figure}
+\includegraphics[width=\textwidth]{rechits/SearchTimes.png}
+\caption{Search times for CPU sequential and GPU parallel code on simulated data.}
+\label{fkdtree_search_times}
+\end{figure}
+
+\begin{figure}
+\includegraphics[width=\textwidth]{rechits/Speedup.png}
+\caption{Speedup between CPU sequential and GPU parallel code on simulated data.}
+\label{fkdtree_speedup}
+\end{figure}
+\newpage
 
 \section{Algorithm assessment}

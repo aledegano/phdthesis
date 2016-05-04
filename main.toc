@@ -1,5 +1,4 @@
 \select@language {italian}
-\select@language {italian}
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}LHC Phase 2 conditions}{1}{section.1.1}
 \contentsline {section}{\numberline {1.2}HGCAL description}{1}{section.1.2}
@@ -17,10 +16,10 @@
 \contentsline {section}{\numberline {3.2}Volume kd-tree}{5}{section.3.2}
 \contentsline {subsection}{\numberline {3.2.1}Build}{6}{subsection.3.2.1}
 \contentsline {subsection}{\numberline {3.2.2}Range search}{7}{subsection.3.2.2}
-\contentsline {section}{\numberline {3.3}Validation}{7}{section.3.3}
-\contentsline {section}{\numberline {3.4}GPU porting}{9}{section.3.4}
+\contentsline {section}{\numberline {3.3}Validation}{8}{section.3.3}
+\contentsline {section}{\numberline {3.4}GPU porting}{8}{section.3.4}
 \contentsline {section}{\numberline {3.5}Performance analysis}{10}{section.3.5}
-\contentsline {section}{\numberline {3.6}Algorithm assessment}{12}{section.3.6}
+\contentsline {section}{\numberline {3.6}Algorithm assessment}{11}{section.3.6}
 \contentsline {chapter}{\numberline {4}A better KD-tree implementation}{14}{chapter.4}
 \contentsline {section}{\numberline {4.1}Build of a left-balanced KD-tree}{14}{section.4.1}
 \contentsline {section}{\numberline {4.2}Iterative range search}{15}{section.4.2}
@@ -31,13 +30,13 @@
 \contentsline {subsection}{\numberline {4.4.2}CUDA streams}{18}{subsection.4.4.2}
 \contentsline {section}{\numberline {4.5}Performance analysis}{19}{section.4.5}
 \contentsline {subsection}{\numberline {4.5.1}Uniform random distribution}{19}{subsection.4.5.1}
-\contentsline {subsection}{\numberline {4.5.2}HGCAL simulated RecHits}{21}{subsection.4.5.2}
-\contentsline {section}{\numberline {4.6}Algorithm assessment}{21}{section.4.6}
-\contentsline {chapter}{\numberline {5}Power consumption}{23}{chapter.5}
-\contentsline {section}{\numberline {5.1}Benchmark machine}{23}{section.5.1}
-\contentsline {section}{\numberline {5.2}TK 1}{23}{section.5.2}
-\contentsline {section}{\numberline {5.3}TX 1}{23}{section.5.3}
-\contentsline {section}{\numberline {5.4}Consumption comparisons}{23}{section.5.4}
-\contentsline {chapter}{\numberline {6}Conclusions}{24}{chapter.6}
-\contentsline {chapter}{Summary}{25}{chapter*.15}
-\contentsline {chapter}{Bibliography}{26}{chapter*.16}
+\contentsline {subsection}{\numberline {4.5.2}HGCAL simulated RecHits}{22}{subsection.4.5.2}
+\contentsline {section}{\numberline {4.6}Algorithm assessment}{24}{section.4.6}
+\contentsline {chapter}{\numberline {5}Power consumption}{25}{chapter.5}
+\contentsline {section}{\numberline {5.1}Benchmark machine}{25}{section.5.1}
+\contentsline {section}{\numberline {5.2}TK 1}{25}{section.5.2}
+\contentsline {section}{\numberline {5.3}TX 1}{25}{section.5.3}
+\contentsline {section}{\numberline {5.4}Consumption comparisons}{25}{section.5.4}
+\contentsline {chapter}{\numberline {6}Conclusions}{26}{chapter.6}
+\contentsline {chapter}{Summary}{27}{chapter*.3}
+\contentsline {chapter}{Bibliography}{28}{chapter*.4}
