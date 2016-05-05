@@ -150,7 +150,14 @@ Lastly Figure \ref{fkdtree_speedup} shows the speedup between the two search met
 
 \subsection{HGCAL simulated RecHits}
 
-Simulated data
+We start off evaluating the algorithm performances on a simple -albeit not very realistic- simulation.
+In several different events we instruct the simulation to generate a number of electrons of transverse momentum ($P_t$) between 10 $\unit{GeV/c}$ and 50 $\unit{GeV/c}$ starting from the central point of CMS and in a cone of pseudo-rapidity ($\eta$) comprised between 1.6 and 2.9 corresponding to the solid angle covered by HGCAL.\\
+The generation of the electrons, the simulation of the detector response and the reconstruction of the \textit{rechits} -the points in HGCAL in which an energy deposit has been observed- are all handled by CMSSW: the CMS software package used by the collaboration to analyze and reconstruct the data from the experiment.\\
+The points obtained are then passed to the KD-tree algorithm along with the search boxes to perform the all nearest neighbors search and evaluate the performance. The search boxes are defined by the Molière radius of a given layer of the detector. Thus when searching the nearest neighbors of a given rechit the layer of HGCAL it is situated on must be determined and so the Molière radius of that layer, as explained in Section \ref{sec:hgcal_clustering}.\\
+We generate the events in set of: 4, 50, 120 and 200 electrons per event with the characteristics explained above. First we check the build times of the KD-tree to verify that is consistent with the behavior observed with the random points distribution, results are reported in Figure \ref{fkdtree_build_sim_times}.
+Then we measure the search times for both CPU sequential and GPU parallel code, Table \ref{fkdtree_times_sim_tab} reports some selected results.
+Figure \ref{fkdtree_search_times} shows all the times of the CPU and GPU searches on all the simulated data on a logarithmic scale.
+Lastly Figure \ref{fkdtree_speedup} shows the speedup between the two searches.\\
 
 \begin{figure}
 \includegraphics[width=\textwidth]{rechits/BuildTimes.png}
@@ -160,10 +167,10 @@ Simulated data
 
 \begin{center}
 \begin{table}[h]
-\begin{tabular}{ c || r r r }
-Points ($10^{3}$) & 37 & 139 & 225\\
-CPU ($\unit{ms}$) & 22.33 & 147.7 & 331.8 \\
-GPU ($\unit{ms}$) & 3.392 & 10.81 & 19.47\\
+\begin{tabular}{ c || r r r r r }
+Points ($10^{3}$) & 37 & 139 & 225 & 260 & 362\\
+CPU ($\unit{ms}$) & 21.59 & 144.8 & 320.4 & 266.9 & 518.7\\
+GPU ($\unit{ms}$) & 3.388 & 10.69 & 19.17 & 22.87 & 34.54\\
 \end{tabular}
 \caption{Selected search times for CPU sequential and GPU parallel code searching simulated data.}
 \label{fkdtree_times_sim_tab}
@@ -181,6 +188,13 @@ GPU ($\unit{ms}$) & 3.392 & 10.81 & 19.47\\
 \caption{Speedup between CPU sequential and GPU parallel code on simulated data.}
 \label{fkdtree_speedup}
 \end{figure}
+\\
+
 \newpage
+
+By observing the speedup plot we immediately realize there is some factor that can influence the speedup by up to $\sim 30\%$, indeed, while the timings of the GPU codes are compatibles with those obtained in the random generation case, the CPU code timings varies quite significantly. We attribute the variance to the random transverse momentum the electrons are generated with. Therefore it is necessary a further investigation of the algorithm performances with the variance of the $P_t$.
+
+
+\subsubsection{Sets of constant $P_t$}
 
 \section{Algorithm assessment}
