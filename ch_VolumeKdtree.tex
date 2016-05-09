@@ -97,7 +97,7 @@ Using the Standard Template Library (STL) pseudo-random uniform generator define
 As comparison we perform again the nearest neighbors search through a method called \textit{naive} since it is the simplest possible way to perform such a search: for each search box every single point of the data set is checked: if it lies inside the box it is recorded. It is also clear that the naive method is very inefficient having complexity $\mathcal{O}(n^{2})$ when searching the nearest neighbors of all $n$ points. However it is a simple and reliable method to validate less intuitive algorithms and we used it extensively as a validation tool throughout this work.\\
 The data set random generation is executed for different numbers of data set points and different sizes of the search boxes and both searches -naive and kd-tree- performed, the results of the two methods are then compared for each generation and only when they are always identical the kd-tree range search algorithm is declared valid.
 
-\section{GPU porting}
+\section{GPU porting}\label{sec:volume_kdtree_gpuport}
 The GPU architecture we described in Chapter \ref{ch:gpu} requires some adaptations of the code to best perform on this device. We list here the most relevant:
 \begin{itemize}
 \item The specific parts of code that runs on the GPU must be CUDA-compliant e.g. STL containers must be avoided and only some \CC\ constructs can be used.
