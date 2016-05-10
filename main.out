@@ -31,6 +31,9 @@
 \BOOKMARK [2][-]{subsection.4.5.1}{4.5.1 Uniform random distribution}{section.4.5}
 \BOOKMARK [2][-]{subsection.4.5.2}{4.5.2 HGCAL simulated RecHits}{section.4.5}
 \BOOKMARK [1][-]{section.4.6}{4.6 Algorithm assessment}{chapter.4}
+\BOOKMARK [2][-]{subsection.4.6.1}{4.6.1 Build complexity}{section.4.6}
+\BOOKMARK [2][-]{subsection.4.6.2}{4.6.2 CPU sequential search time}{section.4.6}
+\BOOKMARK [2][-]{subsection.4.6.3}{4.6.3 GPU parallel search time}{section.4.6}
 \BOOKMARK [0][-]{chapter.5}{5 Power consumption}{}
 \BOOKMARK [1][-]{section.5.1}{5.1 Benchmark machine}{chapter.5}
 \BOOKMARK [1][-]{section.5.2}{5.2 TK 1}{chapter.5}

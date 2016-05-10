@@ -7,7 +7,7 @@ In practice this can be achieved by assigning the index of each node of the tree
 The KD-tree nodes are assigned to a binary tree, therefore each node has two children in the next layer and the number of nodes $N_d$ at a given depth $d$ can be evaluated as $N_d = 2^d$ where $d = 0$ is the depth of the root. Moreover the indeces of the children of a given node of index $I_p$ can also be simply evaluated to be $I_{left} = I_p \cdot 2$ and $I_{right} = I_p \cdot 2 + 1$. Using this knowledge we assign to the nodes of the tree a pre-determined index.\\
 For this implementation of KD-tree we also drop the feature used in the volume KD-tree to assign a volume to each node of the tree. In this implementation each node of the tree corresponds to one point of the data set.\\
 By exploiting the predictive placement of the tree nodes we can also implement a build procedure that is iterative instead of recursive: an outer loop visits all the layers of the tree until all the leaves are created, inside another internal loop -that spans the tree horizontaly- creates one by one the children of the nodes at the current depth, assigning them the index that can be evaluated as powers of 2 as described by the above formula. The inner loops ends when all the children of the next depth are created, and the outer loop ends when each point of the data set is a node of the tree.\\
-We determine the point to assign to each node by a sort performed along an axis similar to the one described in Paragraph \ref{sec:volumeKDBuild}, however in this implementation we realize that there is no reason to sort all the points in the range, what is needed, indeed, is to find the median point among them along the sorting axis, and then the points with the coordinate along the splitting axis smaller on one side and those with greater coordinates on the other side: the relative sorting in this two sets is irrelevant and can be avoided to gain some performance. The STL library provides a function that just does that: \textit{std::nth\_element} which we include in the build procedure.\\
+We determine the point to assign to each node by a sort performed along an axis similar to the one described in Paragraph \ref{sec:volumeKDBuild}, however in this implementation we realize that there is no reason to sort all the points in the range, what is needed, indeed, is to find the median point among them along the sorting axis, and then the points with the coordinate along the splitting axis smaller on one side and those with greater coordinates on the other side: the relative sorting in this two sets is irrelevant and can be avoided to gain some performance. The STL library provides a function that just does that: \code{std::nth\_element} which we include in the build procedure.\\
 Algorithm \ref{fkdtree_build} shows how we implemented the features described above.\\
 
 \begin{algorithm}
@@ -116,16 +116,15 @@ Figure \ref{fkdtree_streams} shows the relative performance gain of the search p
 \end{figure}
 
 Following the results of the streams performance analysis we chose to use 8 CUDA streams to evaluate the performance of the GPU search with respect to the CPU one.\\
-
 Figure \ref{fkdtree_search_times} shows the timings of the CPU sequential search and the GPU parallel one in the full range of the generated data sets, with the times shown in logarithmic scale.
+Some selected timings are reported in Table \ref{fkdtree_times_tab}.
+Lastly Figure \ref{fkdtree_speedup} shows the speedup between the two search methods.
 
 \begin{figure}
 \includegraphics[width=\textwidth]{fkdtree/fkdSearchTimes.png}
 \caption{Search times for CPU sequential and GPU parallel code.}
 \label{fkdtree_search_times}
 \end{figure}
-
-Some selected timings are reported in Table \ref{fkdtree_times_tab}.\\
 
 \begin{center}
 \begin{table}[h]
@@ -140,7 +139,6 @@ GPU ($\unit{ms}$) & 3 & 7 & 13 & 21 & 31 & 42 & 54 & 68 & 84 & 101 \\
 \end{table}
 \end{center}
 
-Lastly Figure \ref{fkdtree_speedup} shows the speedup between the two search methods.\\
 \begin{figure}
 \includegraphics[width=\textwidth]{fkdtree/fkdSpeedup.png}
 \caption{Speedup between CPU sequential and GPU parallel code.}
@@ -213,7 +211,24 @@ GPU ($\unit{ms}$) & 3.388 & 10.69 & 19.17 & 22.87 & 34.54\\
 \caption{Speedup between CPU sequential and GPU parallel code on simulated data.}
 \label{fkdtree_speedup}
 \end{figure}
-
-\newpage
+\clearpage
 
 \section{Algorithm assessment}
+\subsection{Build complexity}
+The different graphs shows a very uniform and predictible trend of the build times. The dependency of the timings with the number of points is clearly linear which is in good agreement of what is expected from the biggest contribution to the build time: the STL algorithm \code{std::nth\_element}, which, indeed, is claimed to have linear complexity \cite{iso_stl}. The time needed to build the KD-tree even for the highest number of points (e.g. $5 \times 10^5$) is still within the time costraints imposed by the HLT of HGCAL.
+
+\subsection{CPU sequential search time}
+Already from the CPU sequential search timing we observe a great improvement of the current algorithm with respect to the volume KD-tree detailed in the previous Chapter. On the uniform random distribution for the same amount of points the current algorithm is almost a factor of 6 faster than the former.
+However the sequential code would still be too slow to process the HGCAL HLT for a high number of \textit{rechits}. We observe a performance increase when searching the nearest neighbors of the points generated by the detector simulation with respect to the random uniform distributed points. We attribute this difference to the detector noise: the software also simulates what in the real detector would be spurious signals of the aquisition electronics and when those signals are above a given threshold becomes rechits. However those rechits are indipendent of the physical event and statistically are distributed evenly across the detector and, probably, does not have neighbors. When the KD-tree search encounters such rechits finds out quickly that they don't have any neighbors, thanks to the tree structure, making this type of search faster than the one over the uniformly random generated points where each point has, on average, the same amount of nearest neighbors.
+
+\subsection{GPU parallel search time}
+Figure \ref{cuda_streams} shows the impact of using multiple CUDA streams when performing the search over the uniformly distributed random points. Figure \ref{nvvp_streams} shows the execution time of all the kernels (teal colored bars) in a CUDA stream and all the time spent by the memory management (gold colored bars), in a sample run for $3 \times 10^5$ points. Observe the streams being executed asyncronously and, mostly important, how the memory load/offload is executed at the same time of another sets of kernel is executed in a different stream. It would seem that the highest number of streams yields the best performance but as shown by Figure \ref{cuda_streams}, 8 and 16 streams perform worse than lower number of streams for a small number of points. For this reason we chose to always use 8 streams for the performance analysis of the code throughout the tests, although our implementation allows the choice of any number of streams.\\
+The search times as reported in Tables \ref{fkdtree_times_tab}, \ref{fkdtree_times_fixedNN_tab} and \ref{fkdtree_times_sim_tab} shows very promising results. Indeed in any tests performed and for any number of points up to $5 \times 10^5$ the search time of the GPU parallel code is under $100 \unit{ms}$ making it suitable for the High Level Trigger reconstruction of HGCAL even under the harsher scenarios. Moreover the algorithm is very well performing also for a relatively small number of input points, which is an essential feature granting that the code scales well in the whole range where it is supposed to be used.
+
+\subsection{Speedup}
+
+\begin{figure}
+\includegraphics[width=\textwidth]{fkdtree/nvvp_streams.png}
+\caption{Kernel execution time for different number of CUDA streams.}
+\label{nvvp_streams}
+\end{figure}

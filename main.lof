@@ -17,5 +17,6 @@
 \contentsline {figure}{\numberline {4.8}{\ignorespaces Time spent by the build of the KD-tree on simulated data.}}{24}{figure.4.8}
 \contentsline {figure}{\numberline {4.9}{\ignorespaces Search times for CPU sequential and GPU parallel code on simulated data.}}{25}{figure.4.9}
 \contentsline {figure}{\numberline {4.10}{\ignorespaces Speedup between CPU sequential and GPU parallel code on simulated data.}}{25}{figure.4.10}
+\contentsline {figure}{\numberline {4.11}{\ignorespaces Kernel execution time for different number of CUDA streams.}}{28}{figure.4.11}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

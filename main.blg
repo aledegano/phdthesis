@@ -11,37 +11,36 @@ A level-1 auxiliary file: ch_Conclusions.aux
 A level-1 auxiliary file: ch_Summary.aux
 The style file: ieeetr.bst
 Database file #1: BibTex.bib
-Warning--empty year in worst-case-search
-You've used 2 entries,
+You've used 3 entries,
             1876 wiz_defined-function locations,
-            499 strings with 3885 characters,
-and the built_in function-call counts, 448 in all, are:
-= -- 43
-> -- 8
+            504 strings with 3992 characters,
+and the built_in function-call counts, 568 in all, are:
+= -- 54
+> -- 12
 < -- 0
-+ -- 4
-- -- 2
-* -- 31
-:= -- 69
-add.period$ -- 3
-call.type$ -- 2
-change.case$ -- 2
++ -- 6
+- -- 3
+* -- 33
+:= -- 87
+add.period$ -- 4
+call.type$ -- 3
+change.case$ -- 3
 chr.to.int$ -- 0
 cite$ -- 3
-duplicate$ -- 24
-empty$ -- 49
-format.name$ -- 2
-if$ -- 108
+duplicate$ -- 28
+empty$ -- 67
+format.name$ -- 3
+if$ -- 140
 int.to.chr$ -- 0
-int.to.str$ -- 2
+int.to.str$ -- 3
 missing$ -- 3
-newline$ -- 10
-num.names$ -- 2
-pop$ -- 8
+newline$ -- 13
+num.names$ -- 3
+pop$ -- 14
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 11
+skip$ -- 15
 stack$ -- 0
 substring$ -- 23
 swap$ -- 8
@@ -49,8 +48,7 @@ text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 1
-while$ -- 4
-width$ -- 3
-write$ -- 22
-(There was 1 warning)
+warning$ -- 0
+while$ -- 5
+width$ -- 4
+write$ -- 30

@@ -3,10 +3,14 @@
 \bibitem{worst-case-search}
 {D. T. Lee, C. K. Wong}, ``{Worst-case analysis for region and partial region
   searches in multidimensional binary search trees and balanced quad trees},''
-  {\em Acta informatica}, vol.~9, no.~1, pp.~23, 29.
+  {\em Acta informatica}, vol.~9, no.~1, pp.~23, 29, 1977.
 
 \bibitem{intel_tbb}
 J.~Reinders, {\em Intel Threading Building Blocks}.
 \newblock Sebastopol, CA, USA: O'Reilly \& Associates, Inc., first~ed., 2007.
+
+\bibitem{iso_stl}
+{ISO/IEC. (2014). ISO International Standard ISO/IEC}, ``14882:2014 –
+  programming language c++,'' 2014.
 
 \end{thebibliography}

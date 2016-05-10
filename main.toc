@@ -30,14 +30,17 @@
 \contentsline {subsection}{\numberline {4.4.2}CUDA streams}{18}{subsection.4.4.2}
 \contentsline {section}{\numberline {4.5}Performance analysis}{19}{section.4.5}
 \contentsline {subsection}{\numberline {4.5.1}Uniform random distribution}{19}{subsection.4.5.1}
-\contentsline {subsubsection}{Fixed maximum nearest neighbors}{21}{section*.3}
+\contentsline {subsubsection}{Fixed maximum nearest neighbors}{22}{section*.3}
 \contentsline {subsection}{\numberline {4.5.2}HGCAL simulated RecHits}{23}{subsection.4.5.2}
-\contentsline {section}{\numberline {4.6}Algorithm assessment}{25}{section.4.6}
-\contentsline {chapter}{\numberline {5}Power consumption}{26}{chapter.5}
-\contentsline {section}{\numberline {5.1}Benchmark machine}{26}{section.5.1}
-\contentsline {section}{\numberline {5.2}TK 1}{26}{section.5.2}
-\contentsline {section}{\numberline {5.3}TX 1}{26}{section.5.3}
-\contentsline {section}{\numberline {5.4}Consumption comparisons}{26}{section.5.4}
-\contentsline {chapter}{\numberline {6}Conclusions}{27}{chapter.6}
-\contentsline {chapter}{Summary}{28}{chapter*.4}
-\contentsline {chapter}{Bibliography}{29}{chapter*.5}
+\contentsline {section}{\numberline {4.6}Algorithm assessment}{26}{section.4.6}
+\contentsline {subsection}{\numberline {4.6.1}Build complexity}{26}{subsection.4.6.1}
+\contentsline {subsection}{\numberline {4.6.2}CPU sequential search time}{26}{subsection.4.6.2}
+\contentsline {subsection}{\numberline {4.6.3}GPU parallel search time}{26}{subsection.4.6.3}
+\contentsline {chapter}{\numberline {5}Power consumption}{29}{chapter.5}
+\contentsline {section}{\numberline {5.1}Benchmark machine}{29}{section.5.1}
+\contentsline {section}{\numberline {5.2}TK 1}{29}{section.5.2}
+\contentsline {section}{\numberline {5.3}TX 1}{29}{section.5.3}
+\contentsline {section}{\numberline {5.4}Consumption comparisons}{29}{section.5.4}
+\contentsline {chapter}{\numberline {6}Conclusions}{30}{chapter.6}
+\contentsline {chapter}{Summary}{31}{chapter*.4}
+\contentsline {chapter}{Bibliography}{32}{chapter*.5}
