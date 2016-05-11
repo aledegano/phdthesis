@@ -190,10 +190,10 @@ Figure \ref{fkdtree_build_sim_times} shows the timing of the KD-tree build. Tabl
 
 \begin{center}
 \begin{table}[h]
-\begin{tabular}{ c || r r r r r }
-Points ($10^{3}$) & 37 & 139 & 225 & 260 & 362\\
-CPU ($\unit{ms}$) & 21.59 & 144.8 & 320.4 & 266.9 & 518.7\\
-GPU ($\unit{ms}$) & 3.388 & 10.69 & 19.17 & 22.87 & 34.54\\
+\begin{tabular}{ c || r r r r r r r r r r}
+Points ($10^{3}$) & 135 & 177 & 210 & 238 & 259 & 276 & 293 & 316 & 333 & 345 \\
+CPU ($\unit{ms}$) & 151.6 & 198.7 & 250.6 & 301.5 & 349.3 & 378.4 & 405.2 & 444.3 & 482 & 502.8 \\
+GPU ($\unit{ms}$) & 12.61 & 15.83 & 18.76 & 21.21 & 24.77 & 25.94 & 29.03 & 32.59 & 35.41 & 36.81 \\
 \end{tabular}
 \caption{Selected search times for CPU sequential and GPU parallel code searching simulated data.}
 \label{fkdtree_times_sim_tab}
@@ -234,4 +234,6 @@ The search times as reported in Tables \ref{fkdtree_times_tab}, \ref{fkdtree_tim
 \subsection{Speedup}
 Lastly we evaluate the relative performance of the parallel code with respect to the sequential one.
 Figure \ref{fkdtree_speedup} shows the speedup when the GPU code is tuned to have a dynamic maximum number of nearest neighbors evaluated through the average density as explained in Section \ref{sec:volume_kdtree_gpuport}. The speedup is good and consistent across the wide range of number of points evaluated and it is almost always between 16 and 20. The figure shows a clear trend of speedup reduction with the increase in number of points evaluated, we attribute this decrease to the increase of memory management the GPU has to perform. Indeed while the CPU doesn't have to move the results once the search is complete the GPU has to move the output and also the KD-tree in input. Obviously with the increase in number of generated points also the memory moving overhead of the GPU increases.\\
-This effect becomes even more evident when considering Figure \ref{fkdtree_times_fixedNN_speedup} where the same test as before is performed while the maximum number of nearest neighbors has been fixed to 200. We observe a low speedup with increasing trend for a number of generated points smaller than $1.5 \times 10^5$ while the speedup is constant for the remaining points. We explain again the behavior with the memory moving overhead: with small number of input points the cost of always moving from the GPU to the host machine an array of size $200 \time number\_of\_points$ is very significant with respect to the actual time spent performing the search, while for bigger input numbers the cost of memory management becomes negligible with respect to the search time.\\
+This effect becomes even more evident when considering Figure \ref{fkdtree_times_fixedNN_speedup} where the same test as before is performed while the maximum number of nearest neighbors has been fixed to 200. We observe a low speedup with increasing trend for a number of generated points smaller than $1.5 \times 10^5$ while the speedup is constant for the remaining points. We explain again the behavior with the memory moving overhead: with small number of input points the cost of always moving from the GPU to the host machine an array of size $200 \times number\_of\_points$ is very significant with respect to the actual time spent performing the search, while for bigger input numbers the cost of memory management becomes negligible with respect to the search time.\\
+Figure \ref{fkdtree_search_times} shows the speedup in the case of simulated data. Here the relative performance gain is smaller than the one obtained for the uniform random generated points as it ranges from 10 to 16 approximately. We noted in the absolute search times of the simulated data that both the sequential and the parallel code had better performance in the simulation case, however the GPU parallel search code does not improve as well as the sequential one. This is due once again to the memory movement time that introduces a fixed time for the GPU parallel code.\\
+

@@ -1,0 +1,804 @@
+Evaluating performance for 135089 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 27 ms.
+[CudaFKDTree] Node copy on GPU time: 0.78656 ms.
+[CudaFKDTree] search completed for 135089 points in: 12.6062 ms.
+[FKDTree] Node set in: 28 ms.
+[FKDTree] search completed for 135089 points in: 151.639 ms.
+This event had a max NN count of 51
+Evaluating performance for 130969 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 25 ms.
+[CudaFKDTree] Node copy on GPU time: 0.971392 ms.
+[CudaFKDTree] search completed for 130969 points in: 11.7513 ms.
+[FKDTree] Node set in: 26 ms.
+[FKDTree] search completed for 130969 points in: 109.279 ms.
+This event had a max NN count of 64
+Evaluating performance for 135840 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 27 ms.
+[CudaFKDTree] Node copy on GPU time: 0.732992 ms.
+[CudaFKDTree] search completed for 135840 points in: 11.9676 ms.
+[FKDTree] Node set in: 28 ms.
+[FKDTree] search completed for 135840 points in: 112.597 ms.
+This event had a max NN count of 51
+Evaluating performance for 136198 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 26 ms.
+[CudaFKDTree] Node copy on GPU time: 1.37072 ms.
+[CudaFKDTree] search completed for 136198 points in: 12.0234 ms.
+[FKDTree] Node set in: 28 ms.
+[FKDTree] search completed for 136198 points in: 117.173 ms.
+This event had a max NN count of 51
+Evaluating performance for 137414 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 27 ms.
+[CudaFKDTree] Node copy on GPU time: 0.768672 ms.
+[CudaFKDTree] search completed for 137414 points in: 12.0937 ms.
+[FKDTree] Node set in: 28 ms.
+[FKDTree] search completed for 137414 points in: 116.731 ms.
+This event had a max NN count of 51
+Evaluating performance for 133600 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 26 ms.
+[CudaFKDTree] Node copy on GPU time: 0.851648 ms.
+[CudaFKDTree] search completed for 133600 points in: 11.8392 ms.
+[FKDTree] Node set in: 27 ms.
+[FKDTree] search completed for 133600 points in: 114.283 ms.
+This event had a max NN count of 64
+Evaluating performance for 132219 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 26 ms.
+[CudaFKDTree] Node copy on GPU time: 0.756064 ms.
+[CudaFKDTree] search completed for 132219 points in: 11.8093 ms.
+[FKDTree] Node set in: 27 ms.
+[FKDTree] search completed for 132219 points in: 110.923 ms.
+This event had a max NN count of 64
+Evaluating performance for 135522 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 26 ms.
+[CudaFKDTree] Node copy on GPU time: 0.77712 ms.
+[CudaFKDTree] search completed for 135522 points in: 12.1296 ms.
+[FKDTree] Node set in: 27 ms.
+[FKDTree] search completed for 135522 points in: 109.702 ms.
+This event had a max NN count of 51
+Evaluating performance for 135109 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 27 ms.
+[CudaFKDTree] Node copy on GPU time: 0.616448 ms.
+[CudaFKDTree] search completed for 135109 points in: 12.0067 ms.
+[FKDTree] Node set in: 28 ms.
+[FKDTree] search completed for 135109 points in: 113.23 ms.
+This event had a max NN count of 64
+Evaluating performance for 137069 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 26 ms.
+[CudaFKDTree] Node copy on GPU time: 0.621984 ms.
+[CudaFKDTree] search completed for 137069 points in: 12.2326 ms.
+[FKDTree] Node set in: 28 ms.
+[FKDTree] search completed for 137069 points in: 113.195 ms.
+This event had a max NN count of 51
+Evaluating performance for 177822 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 35 ms.
+[CudaFKDTree] Node copy on GPU time: 0.678912 ms.
+[CudaFKDTree] search completed for 177822 points in: 15.8299 ms.
+[FKDTree] Node set in: 36 ms.
+[FKDTree] search completed for 177822 points in: 198.721 ms.
+This event had a max NN count of 192
+Evaluating performance for 175601 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 34 ms.
+[CudaFKDTree] Node copy on GPU time: 0.61648 ms.
+[CudaFKDTree] search completed for 175601 points in: 15.2569 ms.
+[FKDTree] Node set in: 36 ms.
+[FKDTree] search completed for 175601 points in: 173.719 ms.
+This event had a max NN count of 174
+Evaluating performance for 175597 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 35 ms.
+[CudaFKDTree] Node copy on GPU time: 0.658976 ms.
+[CudaFKDTree] search completed for 175597 points in: 15.2707 ms.
+[FKDTree] Node set in: 35 ms.
+[FKDTree] search completed for 175597 points in: 157.552 ms.
+This event had a max NN count of 174
+Evaluating performance for 182408 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 37 ms.
+[CudaFKDTree] Node copy on GPU time: 0.660896 ms.
+[CudaFKDTree] search completed for 182408 points in: 16.1981 ms.
+[FKDTree] Node set in: 38 ms.
+[FKDTree] search completed for 182408 points in: 169.222 ms.
+This event had a max NN count of 176
+Evaluating performance for 183415 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 36 ms.
+[CudaFKDTree] Node copy on GPU time: 0.692288 ms.
+[CudaFKDTree] search completed for 183415 points in: 16.3062 ms.
+[FKDTree] Node set in: 37 ms.
+[FKDTree] search completed for 183415 points in: 172.244 ms.
+This event had a max NN count of 176
+Evaluating performance for 179235 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 34 ms.
+[CudaFKDTree] Node copy on GPU time: 0.66112 ms.
+[CudaFKDTree] search completed for 179235 points in: 15.5228 ms.
+[FKDTree] Node set in: 38 ms.
+[FKDTree] search completed for 179235 points in: 169.261 ms.
+This event had a max NN count of 192
+Evaluating performance for 174202 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 34 ms.
+[CudaFKDTree] Node copy on GPU time: 0.663104 ms.
+[CudaFKDTree] search completed for 174202 points in: 15.6936 ms.
+[FKDTree] Node set in: 36 ms.
+[FKDTree] search completed for 174202 points in: 157.899 ms.
+This event had a max NN count of 199
+Evaluating performance for 178262 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 35 ms.
+[CudaFKDTree] Node copy on GPU time: 0.681024 ms.
+[CudaFKDTree] search completed for 178262 points in: 15.9111 ms.
+[FKDTree] Node set in: 36 ms.
+[FKDTree] search completed for 178262 points in: 159.32 ms.
+This event had a max NN count of 192
+Evaluating performance for 176905 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 35 ms.
+[CudaFKDTree] Node copy on GPU time: 0.655072 ms.
+[CudaFKDTree] search completed for 176905 points in: 16.0589 ms.
+[FKDTree] Node set in: 36 ms.
+[FKDTree] search completed for 176905 points in: 163.937 ms.
+This event had a max NN count of 174
+Evaluating performance for 178551 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 35 ms.
+[CudaFKDTree] Node copy on GPU time: 0.671904 ms.
+[CudaFKDTree] search completed for 178551 points in: 15.8634 ms.
+[FKDTree] Node set in: 37 ms.
+[FKDTree] search completed for 178551 points in: 162.908 ms.
+This event had a max NN count of 192
+Evaluating performance for 210932 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 42 ms.
+[CudaFKDTree] Node copy on GPU time: 0.762464 ms.
+[CudaFKDTree] search completed for 210932 points in: 18.757 ms.
+[FKDTree] Node set in: 43 ms.
+[FKDTree] search completed for 210932 points in: 250.586 ms.
+This event had a max NN count of 124
+Evaluating performance for 203567 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 39 ms.
+[CudaFKDTree] Node copy on GPU time: 0.748288 ms.
+[CudaFKDTree] search completed for 203567 points in: 18.2396 ms.
+[FKDTree] Node set in: 41 ms.
+[FKDTree] search completed for 203567 points in: 225.279 ms.
+This event had a max NN count of 124
+Evaluating performance for 209308 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 42 ms.
+[CudaFKDTree] Node copy on GPU time: 0.757312 ms.
+[CudaFKDTree] search completed for 209308 points in: 18.6177 ms.
+[FKDTree] Node set in: 43 ms.
+[FKDTree] search completed for 209308 points in: 203.279 ms.
+This event had a max NN count of 124
+Evaluating performance for 212745 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 42 ms.
+[CudaFKDTree] Node copy on GPU time: 0.781312 ms.
+[CudaFKDTree] search completed for 212745 points in: 18.7168 ms.
+[FKDTree] Node set in: 44 ms.
+[FKDTree] search completed for 212745 points in: 217.498 ms.
+This event had a max NN count of 117
+Evaluating performance for 212868 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 44 ms.
+[CudaFKDTree] Node copy on GPU time: 0.77392 ms.
+[CudaFKDTree] search completed for 212868 points in: 18.7209 ms.
+[FKDTree] Node set in: 44 ms.
+[FKDTree] search completed for 212868 points in: 216.683 ms.
+This event had a max NN count of 131
+Evaluating performance for 207136 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 42 ms.
+[CudaFKDTree] Node copy on GPU time: 0.77568 ms.
+[CudaFKDTree] search completed for 207136 points in: 18.3896 ms.
+[FKDTree] Node set in: 44 ms.
+[FKDTree] search completed for 207136 points in: 211.114 ms.
+This event had a max NN count of 124
+Evaluating performance for 210404 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 42 ms.
+[CudaFKDTree] Node copy on GPU time: 0.7488 ms.
+[CudaFKDTree] search completed for 210404 points in: 18.6101 ms.
+[FKDTree] Node set in: 44 ms.
+[FKDTree] search completed for 210404 points in: 208.586 ms.
+This event had a max NN count of 109
+Evaluating performance for 211441 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 41 ms.
+[CudaFKDTree] Node copy on GPU time: 0.764256 ms.
+[CudaFKDTree] search completed for 211441 points in: 18.7235 ms.
+[FKDTree] Node set in: 43 ms.
+[FKDTree] search completed for 211441 points in: 201.334 ms.
+This event had a max NN count of 109
+Evaluating performance for 205332 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 40 ms.
+[CudaFKDTree] Node copy on GPU time: 0.762912 ms.
+[CudaFKDTree] search completed for 205332 points in: 18.1882 ms.
+[FKDTree] Node set in: 41 ms.
+[FKDTree] search completed for 205332 points in: 203.322 ms.
+This event had a max NN count of 124
+Evaluating performance for 214079 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 43 ms.
+[CudaFKDTree] Node copy on GPU time: 0.780288 ms.
+[CudaFKDTree] search completed for 214079 points in: 18.5648 ms.
+[FKDTree] Node set in: 43 ms.
+[FKDTree] search completed for 214079 points in: 209.325 ms.
+This event had a max NN count of 131
+Evaluating performance for 238572 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 48 ms.
+[CudaFKDTree] Node copy on GPU time: 0.835712 ms.
+[CudaFKDTree] search completed for 238572 points in: 21.2086 ms.
+[FKDTree] Node set in: 50 ms.
+[FKDTree] search completed for 238572 points in: 301.469 ms.
+This event had a max NN count of 199
+Evaluating performance for 226787 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 45 ms.
+[CudaFKDTree] Node copy on GPU time: 0.834912 ms.
+[CudaFKDTree] search completed for 226787 points in: 20.2017 ms.
+[FKDTree] Node set in: 47 ms.
+[FKDTree] search completed for 226787 points in: 264.112 ms.
+This event had a max NN count of 185
+Evaluating performance for 233373 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 48 ms.
+[CudaFKDTree] Node copy on GPU time: 0.8448 ms.
+[CudaFKDTree] search completed for 233373 points in: 20.9155 ms.
+[FKDTree] Node set in: 47 ms.
+[FKDTree] search completed for 233373 points in: 238.442 ms.
+This event had a max NN count of 199
+Evaluating performance for 237626 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 47 ms.
+[CudaFKDTree] Node copy on GPU time: 0.848512 ms.
+[CudaFKDTree] search completed for 237626 points in: 21.5809 ms.
+[FKDTree] Node set in: 49 ms.
+[FKDTree] search completed for 237626 points in: 254.987 ms.
+This event had a max NN count of 199
+Evaluating performance for 239794 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 49 ms.
+[CudaFKDTree] Node copy on GPU time: 0.867456 ms.
+[CudaFKDTree] search completed for 239794 points in: 21.3068 ms.
+[FKDTree] Node set in: 49 ms.
+[FKDTree] search completed for 239794 points in: 255.976 ms.
+This event had a max NN count of 182
+Evaluating performance for 231595 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 46 ms.
+[CudaFKDTree] Node copy on GPU time: 0.8368 ms.
+[CudaFKDTree] search completed for 231595 points in: 20.838 ms.
+[FKDTree] Node set in: 48 ms.
+[FKDTree] search completed for 231595 points in: 249.909 ms.
+This event had a max NN count of 185
+Evaluating performance for 232228 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 47 ms.
+[CudaFKDTree] Node copy on GPU time: 0.808448 ms.
+[CudaFKDTree] search completed for 232228 points in: 20.5046 ms.
+[FKDTree] Node set in: 48 ms.
+[FKDTree] search completed for 232228 points in: 241.35 ms.
+This event had a max NN count of 161
+Evaluating performance for 233055 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 47 ms.
+[CudaFKDTree] Node copy on GPU time: 0.837824 ms.
+[CudaFKDTree] search completed for 233055 points in: 21.0349 ms.
+[FKDTree] Node set in: 48 ms.
+[FKDTree] search completed for 233055 points in: 234.912 ms.
+This event had a max NN count of 199
+Evaluating performance for 235301 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 46 ms.
+[CudaFKDTree] Node copy on GPU time: 0.822848 ms.
+[CudaFKDTree] search completed for 235301 points in: 21.1381 ms.
+[FKDTree] Node set in: 48 ms.
+[FKDTree] search completed for 235301 points in: 246.52 ms.
+This event had a max NN count of 199
+Evaluating performance for 241409 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 50 ms.
+[CudaFKDTree] Node copy on GPU time: 0.861536 ms.
+[CudaFKDTree] search completed for 241409 points in: 22.258 ms.
+[FKDTree] Node set in: 51 ms.
+[FKDTree] search completed for 241409 points in: 250.643 ms.
+This event had a max NN count of 199
+Evaluating performance for 259909 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 51 ms.
+[CudaFKDTree] Node copy on GPU time: 0.929088 ms.
+[CudaFKDTree] search completed for 259909 points in: 24.7679 ms.
+[FKDTree] Node set in: 55 ms.
+[FKDTree] search completed for 259909 points in: 349.341 ms.
+This event had a max NN count of 157
+Evaluating performance for 249869 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 50 ms.
+[CudaFKDTree] Node copy on GPU time: 0.902304 ms.
+[CudaFKDTree] search completed for 249869 points in: 23.6071 ms.
+[FKDTree] Node set in: 51 ms.
+[FKDTree] search completed for 249869 points in: 314.7 ms.
+This event had a max NN count of 186
+Evaluating performance for 254459 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 51 ms.
+[CudaFKDTree] Node copy on GPU time: 0.912832 ms.
+[CudaFKDTree] search completed for 254459 points in: 24.3241 ms.
+[FKDTree] Node set in: 55 ms.
+[FKDTree] search completed for 254459 points in: 275.866 ms.
+This event had a max NN count of 180
+Evaluating performance for 258719 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 52 ms.
+[CudaFKDTree] Node copy on GPU time: 0.9312 ms.
+[CudaFKDTree] search completed for 258719 points in: 24.489 ms.
+[FKDTree] Node set in: 53 ms.
+[FKDTree] search completed for 258719 points in: 296.888 ms.
+This event had a max NN count of 180
+Evaluating performance for 262668 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 54 ms.
+[CudaFKDTree] Node copy on GPU time: 0.944736 ms.
+[CudaFKDTree] search completed for 262668 points in: 24.8952 ms.
+[FKDTree] Node set in: 54 ms.
+[FKDTree] search completed for 262668 points in: 301.412 ms.
+This event had a max NN count of 148
+Evaluating performance for 254768 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 51 ms.
+[CudaFKDTree] Node copy on GPU time: 0.935712 ms.
+[CudaFKDTree] search completed for 254768 points in: 24.1262 ms.
+[FKDTree] Node set in: 53 ms.
+[FKDTree] search completed for 254768 points in: 291.044 ms.
+This event had a max NN count of 180
+Evaluating performance for 256625 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 51 ms.
+[CudaFKDTree] Node copy on GPU time: 0.928928 ms.
+[CudaFKDTree] search completed for 256625 points in: 24.2251 ms.
+[FKDTree] Node set in: 53 ms.
+[FKDTree] search completed for 256625 points in: 280.722 ms.
+This event had a max NN count of 180
+Evaluating performance for 257136 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 53 ms.
+[CudaFKDTree] Node copy on GPU time: 0.947392 ms.
+[CudaFKDTree] search completed for 257136 points in: 24.4635 ms.
+[FKDTree] Node set in: 53 ms.
+[FKDTree] search completed for 257136 points in: 274.551 ms.
+This event had a max NN count of 180
+Evaluating performance for 253430 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 51 ms.
+[CudaFKDTree] Node copy on GPU time: 0.9448 ms.
+[CudaFKDTree] search completed for 253430 points in: 24.0014 ms.
+[FKDTree] Node set in: 53 ms.
+[FKDTree] search completed for 253430 points in: 285.791 ms.
+This event had a max NN count of 186
+Evaluating performance for 262772 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 54 ms.
+[CudaFKDTree] Node copy on GPU time: 1.00294 ms.
+[CudaFKDTree] search completed for 262772 points in: 24.6158 ms.
+[FKDTree] Node set in: 57 ms.
+[FKDTree] search completed for 262772 points in: 292.741 ms.
+This event had a max NN count of 148
+Evaluating performance for 276188 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 58 ms.
+[CudaFKDTree] Node copy on GPU time: 0.993408 ms.
+[CudaFKDTree] search completed for 276188 points in: 25.9401 ms.
+[FKDTree] Node set in: 58 ms.
+[FKDTree] search completed for 276188 points in: 378.414 ms.
+This event had a max NN count of 116
+Evaluating performance for 267915 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 54 ms.
+[CudaFKDTree] Node copy on GPU time: 1.03888 ms.
+[CudaFKDTree] search completed for 267915 points in: 24.8072 ms.
+[FKDTree] Node set in: 56 ms.
+[FKDTree] search completed for 267915 points in: 355.41 ms.
+This event had a max NN count of 119
+Evaluating performance for 277521 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 57 ms.
+[CudaFKDTree] Node copy on GPU time: 1.03024 ms.
+[CudaFKDTree] search completed for 277521 points in: 26.6792 ms.
+[FKDTree] Node set in: 59 ms.
+[FKDTree] search completed for 277521 points in: 317.255 ms.
+This event had a max NN count of 140
+Evaluating performance for 282770 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 57 ms.
+[CudaFKDTree] Node copy on GPU time: 1.06512 ms.
+[CudaFKDTree] search completed for 282770 points in: 27.4821 ms.
+[FKDTree] Node set in: 60 ms.
+[FKDTree] search completed for 282770 points in: 331.98 ms.
+This event had a max NN count of 168
+Evaluating performance for 289628 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 61 ms.
+[CudaFKDTree] Node copy on GPU time: 1.06992 ms.
+[CudaFKDTree] search completed for 289628 points in: 28.0057 ms.
+[FKDTree] Node set in: 62 ms.
+[FKDTree] search completed for 289628 points in: 338.473 ms.
+This event had a max NN count of 181
+Evaluating performance for 275394 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 56 ms.
+[CudaFKDTree] Node copy on GPU time: 1.01997 ms.
+[CudaFKDTree] search completed for 275394 points in: 25.9666 ms.
+[FKDTree] Node set in: 59 ms.
+[FKDTree] search completed for 275394 points in: 327.357 ms.
+This event had a max NN count of 118
+Evaluating performance for 275366 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 58 ms.
+[CudaFKDTree] Node copy on GPU time: 1.0079 ms.
+[CudaFKDTree] search completed for 275366 points in: 25.6431 ms.
+[FKDTree] Node set in: 60 ms.
+[FKDTree] search completed for 275366 points in: 313.848 ms.
+This event had a max NN count of 116
+Evaluating performance for 277963 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 58 ms.
+[CudaFKDTree] Node copy on GPU time: 1.02147 ms.
+[CudaFKDTree] search completed for 277963 points in: 26.5237 ms.
+[FKDTree] Node set in: 59 ms.
+[FKDTree] search completed for 277963 points in: 310.452 ms.
+This event had a max NN count of 140
+Evaluating performance for 274071 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 56 ms.
+[CudaFKDTree] Node copy on GPU time: 1.02557 ms.
+[CudaFKDTree] search completed for 274071 points in: 25.4368 ms.
+[FKDTree] Node set in: 60 ms.
+[FKDTree] search completed for 274071 points in: 317.856 ms.
+This event had a max NN count of 118
+Evaluating performance for 282149 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 58 ms.
+[CudaFKDTree] Node copy on GPU time: 1.10442 ms.
+[CudaFKDTree] search completed for 282149 points in: 27.3306 ms.
+[FKDTree] Node set in: 60 ms.
+[FKDTree] search completed for 282149 points in: 321.107 ms.
+This event had a max NN count of 159
+Evaluating performance for 293449 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 60 ms.
+[CudaFKDTree] Node copy on GPU time: 1.04602 ms.
+[CudaFKDTree] search completed for 293449 points in: 29.0281 ms.
+[FKDTree] Node set in: 63 ms.
+[FKDTree] search completed for 293449 points in: 405.209 ms.
+This event had a max NN count of 198
+Evaluating performance for 290503 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 60 ms.
+[CudaFKDTree] Node copy on GPU time: 1.08266 ms.
+[CudaFKDTree] search completed for 290503 points in: 28.3871 ms.
+[FKDTree] Node set in: 61 ms.
+[FKDTree] search completed for 290503 points in: 379.494 ms.
+This event had a max NN count of 198
+Evaluating performance for 292811 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 60 ms.
+[CudaFKDTree] Node copy on GPU time: 1.0832 ms.
+[CudaFKDTree] search completed for 292811 points in: 29.1625 ms.
+[FKDTree] Node set in: 64 ms.
+[FKDTree] search completed for 292811 points in: 353.997 ms.
+This event had a max NN count of 198
+Evaluating performance for 304828 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 63 ms.
+[CudaFKDTree] Node copy on GPU time: 1.10634 ms.
+[CudaFKDTree] search completed for 304828 points in: 30.7785 ms.
+[FKDTree] Node set in: 66 ms.
+[FKDTree] search completed for 304828 points in: 367.696 ms.
+This event had a max NN count of 199
+Evaluating performance for 305843 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 61 ms.
+[CudaFKDTree] Node copy on GPU time: 1.09718 ms.
+[CudaFKDTree] search completed for 305843 points in: 31.5185 ms.
+[FKDTree] Node set in: 64 ms.
+[FKDTree] search completed for 305843 points in: 377.2 ms.
+This event had a max NN count of 199
+Evaluating performance for 289628 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 61 ms.
+[CudaFKDTree] Node copy on GPU time: 1.04416 ms.
+[CudaFKDTree] search completed for 289628 points in: 29.0594 ms.
+[FKDTree] Node set in: 62 ms.
+[FKDTree] search completed for 289628 points in: 355.865 ms.
+This event had a max NN count of 181
+Evaluating performance for 293732 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 60 ms.
+[CudaFKDTree] Node copy on GPU time: 1.04518 ms.
+[CudaFKDTree] search completed for 293732 points in: 28.9386 ms.
+[FKDTree] Node set in: 64 ms.
+[FKDTree] search completed for 293732 points in: 343.9 ms.
+This event had a max NN count of 199
+Evaluating performance for 297062 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 62 ms.
+[CudaFKDTree] Node copy on GPU time: 1.08845 ms.
+[CudaFKDTree] search completed for 297062 points in: 29.459 ms.
+[FKDTree] Node set in: 62 ms.
+[FKDTree] search completed for 297062 points in: 341.176 ms.
+This event had a max NN count of 199
+Evaluating performance for 295219 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 61 ms.
+[CudaFKDTree] Node copy on GPU time: 1.08934 ms.
+[CudaFKDTree] search completed for 295219 points in: 29.093 ms.
+[FKDTree] Node set in: 64 ms.
+[FKDTree] search completed for 295219 points in: 351.486 ms.
+This event had a max NN count of 199
+Evaluating performance for 300026 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 62 ms.
+[CudaFKDTree] Node copy on GPU time: 1.0865 ms.
+[CudaFKDTree] search completed for 300026 points in: 30.1131 ms.
+[FKDTree] Node set in: 63 ms.
+[FKDTree] search completed for 300026 points in: 353.751 ms.
+This event had a max NN count of 199
+Evaluating performance for 316620 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 65 ms.
+[CudaFKDTree] Node copy on GPU time: 1.14304 ms.
+[CudaFKDTree] search completed for 316620 points in: 32.5904 ms.
+[FKDTree] Node set in: 68 ms.
+[FKDTree] search completed for 316620 points in: 444.302 ms.
+This event had a max NN count of 199
+Evaluating performance for 303097 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 63 ms.
+[CudaFKDTree] Node copy on GPU time: 1.08643 ms.
+[CudaFKDTree] search completed for 303097 points in: 30.2736 ms.
+[FKDTree] Node set in: 64 ms.
+[FKDTree] search completed for 303097 points in: 399.503 ms.
+This event had a max NN count of 199
+Evaluating performance for 314889 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 63 ms.
+[CudaFKDTree] Node copy on GPU time: 1.13942 ms.
+[CudaFKDTree] search completed for 314889 points in: 32.6538 ms.
+[FKDTree] Node set in: 66 ms.
+[FKDTree] search completed for 314889 points in: 418.661 ms.
+This event had a max NN count of 199
+Evaluating performance for 317038 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 65 ms.
+[CudaFKDTree] Node copy on GPU time: 1.14349 ms.
+[CudaFKDTree] search completed for 317038 points in: 32.5457 ms.
+[FKDTree] Node set in: 68 ms.
+[FKDTree] search completed for 317038 points in: 396.956 ms.
+This event had a max NN count of 199
+Evaluating performance for 319668 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 66 ms.
+[CudaFKDTree] Node copy on GPU time: 1.18058 ms.
+[CudaFKDTree] search completed for 319668 points in: 33.8643 ms.
+[FKDTree] Node set in: 68 ms.
+[FKDTree] search completed for 319668 points in: 401.973 ms.
+This event had a max NN count of 199
+Evaluating performance for 307871 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 64 ms.
+[CudaFKDTree] Node copy on GPU time: 1.09805 ms.
+[CudaFKDTree] search completed for 307871 points in: 31.6885 ms.
+[FKDTree] Node set in: 67 ms.
+[FKDTree] search completed for 307871 points in: 388.048 ms.
+This event had a max NN count of 199
+Evaluating performance for 309280 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 63 ms.
+[CudaFKDTree] Node copy on GPU time: 1.14182 ms.
+[CudaFKDTree] search completed for 309280 points in: 31.8882 ms.
+[FKDTree] Node set in: 67 ms.
+[FKDTree] search completed for 309280 points in: 372.914 ms.
+This event had a max NN count of 199
+Evaluating performance for 313288 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 65 ms.
+[CudaFKDTree] Node copy on GPU time: 1.13405 ms.
+[CudaFKDTree] search completed for 313288 points in: 32.0574 ms.
+[FKDTree] Node set in: 66 ms.
+[FKDTree] search completed for 313288 points in: 373.446 ms.
+This event had a max NN count of 199
+Evaluating performance for 310376 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 65 ms.
+[CudaFKDTree] Node copy on GPU time: 1.1256 ms.
+[CudaFKDTree] search completed for 310376 points in: 31.396 ms.
+[FKDTree] Node set in: 69 ms.
+[FKDTree] search completed for 310376 points in: 376.925 ms.
+This event had a max NN count of 199
+Evaluating performance for 317210 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 65 ms.
+[CudaFKDTree] Node copy on GPU time: 1.12771 ms.
+[CudaFKDTree] search completed for 317210 points in: 33.1579 ms.
+[FKDTree] Node set in: 68 ms.
+[FKDTree] search completed for 317210 points in: 382.256 ms.
+This event had a max NN count of 199
+Evaluating performance for 333971 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 70 ms.
+[CudaFKDTree] Node copy on GPU time: 1.20822 ms.
+[CudaFKDTree] search completed for 333971 points in: 35.4141 ms.
+[FKDTree] Node set in: 71 ms.
+[FKDTree] search completed for 333971 points in: 481.972 ms.
+This event had a max NN count of 199
+Evaluating performance for 318034 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 64 ms.
+[CudaFKDTree] Node copy on GPU time: 1.16019 ms.
+[CudaFKDTree] search completed for 318034 points in: 33.3549 ms.
+[FKDTree] Node set in: 69 ms.
+[FKDTree] search completed for 318034 points in: 424.84 ms.
+This event had a max NN count of 199
+Evaluating performance for 329915 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 69 ms.
+[CudaFKDTree] Node copy on GPU time: 1.17667 ms.
+[CudaFKDTree] search completed for 329915 points in: 35.3695 ms.
+[FKDTree] Node set in: 71 ms.
+[FKDTree] search completed for 329915 points in: 470.283 ms.
+This event had a max NN count of 199
+Evaluating performance for 332621 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 69 ms.
+[CudaFKDTree] Node copy on GPU time: 1.19366 ms.
+[CudaFKDTree] search completed for 332621 points in: 35.5419 ms.
+[FKDTree] Node set in: 70 ms.
+[FKDTree] search completed for 332621 points in: 437.158 ms.
+This event had a max NN count of 199
+Evaluating performance for 333694 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 67 ms.
+[CudaFKDTree] Node copy on GPU time: 1.19872 ms.
+[CudaFKDTree] search completed for 333694 points in: 35.7481 ms.
+[FKDTree] Node set in: 72 ms.
+[FKDTree] search completed for 333694 points in: 439.12 ms.
+This event had a max NN count of 199
+Evaluating performance for 319898 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 70 ms.
+[CudaFKDTree] Node copy on GPU time: 1.14867 ms.
+[CudaFKDTree] search completed for 319898 points in: 34.3352 ms.
+[FKDTree] Node set in: 67 ms.
+[FKDTree] search completed for 319898 points in: 422.047 ms.
+This event had a max NN count of 199
+Evaluating performance for 322199 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 67 ms.
+[CudaFKDTree] Node copy on GPU time: 1.15866 ms.
+[CudaFKDTree] search completed for 322199 points in: 33.7678 ms.
+[FKDTree] Node set in: 71 ms.
+[FKDTree] search completed for 322199 points in: 407.643 ms.
+This event had a max NN count of 199
+Evaluating performance for 327101 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 69 ms.
+[CudaFKDTree] Node copy on GPU time: 1.15578 ms.
+[CudaFKDTree] search completed for 327101 points in: 34.9619 ms.
+[FKDTree] Node set in: 69 ms.
+[FKDTree] search completed for 327101 points in: 410.127 ms.
+This event had a max NN count of 199
+Evaluating performance for 324656 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 67 ms.
+[CudaFKDTree] Node copy on GPU time: 1.15795 ms.
+[CudaFKDTree] search completed for 324656 points in: 34.4852 ms.
+[FKDTree] Node set in: 69 ms.
+[FKDTree] search completed for 324656 points in: 411.548 ms.
+This event had a max NN count of 199
+Evaluating performance for 333416 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 68 ms.
+[CudaFKDTree] Node copy on GPU time: 1.18509 ms.
+[CudaFKDTree] search completed for 333416 points in: 35.187 ms.
+[FKDTree] Node set in: 70 ms.
+[FKDTree] search completed for 333416 points in: 422.517 ms.
+This event had a max NN count of 199
+Evaluating performance for 345076 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 72 ms.
+[CudaFKDTree] Node copy on GPU time: 1.2119 ms.
+[CudaFKDTree] search completed for 345076 points in: 36.811 ms.
+[FKDTree] Node set in: 75 ms.
+[FKDTree] search completed for 345076 points in: 502.812 ms.
+This event had a max NN count of 199
+Evaluating performance for 333026 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 68 ms.
+[CudaFKDTree] Node copy on GPU time: 1.17619 ms.
+[CudaFKDTree] search completed for 333026 points in: 35.484 ms.
+[FKDTree] Node set in: 72 ms.
+[FKDTree] search completed for 333026 points in: 458.232 ms.
+This event had a max NN count of 199
+Evaluating performance for 343323 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 72 ms.
+[CudaFKDTree] Node copy on GPU time: 1.19398 ms.
+[CudaFKDTree] search completed for 343323 points in: 36.2663 ms.
+[FKDTree] Node set in: 74 ms.
+[FKDTree] search completed for 343323 points in: 496.142 ms.
+This event had a max NN count of 199
+Evaluating performance for 346910 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 72 ms.
+[CudaFKDTree] Node copy on GPU time: 1.2496 ms.
+[CudaFKDTree] search completed for 346910 points in: 37.5546 ms.
+[FKDTree] Node set in: 73 ms.
+[FKDTree] search completed for 346910 points in: 465.202 ms.
+This event had a max NN count of 199
+Evaluating performance for 353940 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 73 ms.
+[CudaFKDTree] Node copy on GPU time: 1.22086 ms.
+[CudaFKDTree] search completed for 353940 points in: 37.9082 ms.
+[FKDTree] Node set in: 76 ms.
+[FKDTree] search completed for 353940 points in: 471.74 ms.
+This event had a max NN count of 199
+Evaluating performance for 336951 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 71 ms.
+[CudaFKDTree] Node copy on GPU time: 1.17978 ms.
+[CudaFKDTree] search completed for 336951 points in: 35.9428 ms.
+[FKDTree] Node set in: 73 ms.
+[FKDTree] search completed for 336951 points in: 454.244 ms.
+This event had a max NN count of 199
+Evaluating performance for 337209 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 72 ms.
+[CudaFKDTree] Node copy on GPU time: 1.2183 ms.
+[CudaFKDTree] search completed for 337209 points in: 35.8353 ms.
+[FKDTree] Node set in: 73 ms.
+[FKDTree] search completed for 337209 points in: 438.74 ms.
+This event had a max NN count of 199
+Evaluating performance for 342900 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 71 ms.
+[CudaFKDTree] Node copy on GPU time: 1.19949 ms.
+[CudaFKDTree] search completed for 342900 points in: 36.4076 ms.
+[FKDTree] Node set in: 72 ms.
+[FKDTree] search completed for 342900 points in: 440.332 ms.
+This event had a max NN count of 199
+Evaluating performance for 334042 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 70 ms.
+[CudaFKDTree] Node copy on GPU time: 1.20349 ms.
+[CudaFKDTree] search completed for 334042 points in: 36.1101 ms.
+[FKDTree] Node set in: 73 ms.
+[FKDTree] search completed for 334042 points in: 436.457 ms.
+This event had a max NN count of 199
+Evaluating performance for 347665 points in range 6 and Max Results for GPU 200.
+Running on cuda device: Tesla K40c
+[CudaTree] Node set in: 73 ms.
+[CudaFKDTree] Node copy on GPU time: 1.23866 ms.
+[CudaFKDTree] search completed for 347665 points in: 37.1339 ms.
+[FKDTree] Node set in: 76 ms.
+[FKDTree] search completed for 347665 points in: 444.147 ms.
+This event had a max NN count of 199
+Print tabular for latex: 
+Points ($10^{3}$) & 135 & 177 & 210 & 238 & 259 & 276 & 293 & 316 & 333 & 345 \\
+CPU ($\unit{ms}$) & 151.6 & 198.7 & 250.6 & 301.5 & 349.3 & 378.4 & 405.2 & 444.3 & 482 & 502.8 \\
+GPU ($\unit{ms}$) & 12.61 & 15.83 & 18.76 & 21.21 & 24.77 & 25.94 & 29.03 & 32.59 & 35.41 & 36.81 \\
