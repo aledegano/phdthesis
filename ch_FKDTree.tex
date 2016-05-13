@@ -1,5 +1,5 @@
 \chapter{A better KD-tree implementation}\label{ch:fkdtree}
-In this chapter we describe a different implementation of a KD-tree that fixes the issues of the volume KD-tree explained in Section \ref{sec:volumeKdAssessment} and implements a search much more suitable to a highly parallel computation. The implementation is again wrote in \CC\ and CUDA for the GPU relevant parts.
+In this Chapter we describe a different implementation of a KD-tree that fixes the issues of the volume KD-tree explained in Section \ref{sec:volumeKdAssessment} and implements a search much more suitable to a highly parallel computation. The implementation is again wrote in \CC\ and CUDA for the GPU relevant parts.
 
 \section{Build of a left-balanced KD-tree}
 A left-balanced binary tree is a tree in which the leaves only occupy the leftmost positions in the last level. This positioning can be applied to the leaves of a KD-tree as well by chosing to assign the leaves of the tree to the leftmost available parent.\\
@@ -33,7 +33,9 @@ Algorithm \ref{fkdtree_build} shows how we implemented the features described ab
 
 \section{Iterative range search}
 To perform a range search the algorithm takes a ``search box'' as argument for which it finds the points in the data set that are enclosed in it.\\
-The search procedure, recursive by nature, is made iterative by exploiting the predictable nodes placement described by the build procedure. Particularly, starting from the root node, the algorithm checks if the node -along the splitting axis defined by the node's depth- is greater than the search box maximum vertex, smaller of the minimum vertex or if it lies in the search box. When the node is greater than the search box the search proceeds on the node's left-child, when is smaller on the right-child and when it lies within the search box both children are considered for the next step in the search and the node is recorded as a nearest neighbor and will not be checked again.\\
+The search procedure, recursive by nature, is made iterative by exploiting the predictable nodes placement described by the build procedure.
+Particularly, starting from the root node, the algorithm compares the coordinates of the node and the search box minimum and maximum verteces along the axis chosen by the depth of the tree.
+When the node coordinate along the axis is greater than both coordinates along the axis of the search box verteces the search proceeds on the node's left-child, when it is lower on the right-child and when it lies within the search box both children are considered for the next step in the search and the node is recorded as a nearest neighbor and will not be checked again.\\
 In order to make the above procedure iterative, avoiding the recursion, a loop is performed on all the nodes to compare the search box against. The iteration is initialized by adding to a \textit{queue} the root node index. The loop starts and compare the search box against the root, then one or both of its childrens are added to the queue while the node compared is removed from the queue. The next iteration of the cycle will compare the search box against the last element of the queue (e.g. the node(s) added on the previous step) and remove it from the queue while adding whichever children the search must proceed on. The loop repeats until the queue is empty which means that the leaves are all reached and all the nearest neighbors recorded.\\
 
 \subsection{Fast bitwise operations}
@@ -98,7 +100,7 @@ We implemented in the search algorithm the possibility to split the all nearest 
 To evaluate the performance of this implementation we use the same method applied to the volume KD-tree used in Section \ref{sec:volumeKd_performance} with further investigation where required.\\
 
 \subsection{Uniform random distribution}
-The first set of tests are performed by building the KD-tree off a uniform random distribution of points. The data sets are produced with a number of points ranging from $2 \times 10^4$ to $5 \times 10^5$. The maximum number of nearest neighbors saved by the GPU search code is again determined by an evaluation of the average points density in the same way we evaluated it in Section \ref{sec:volume_kdtree_gpuport} therefore limiting the time that would be used to copy an array with the majority of the entries empty.
+The first set of tests is performed by building the KD-tree off a uniform random distribution of points. The data sets are produced with a number of points ranging from $2 \times 10^4$ to $5 \times 10^5$. The maximum number of nearest neighbors saved by the GPU search code is again determined by an evaluation of the average points density in the same way we evaluated it in Section \ref{sec:volume_kdtree_gpuport} therefore limiting the time that would be used to copy an array with the majority of the entries empty.
 We measure the time spent building the tree, the search times differences for the GPU parallel code with different number of CUDA streams, the search times of the CPU sequential code and the speedup between the two.
 Figure \ref{fkdtree_build_times} shows the time spent building the KD-tree for the various number of data set points.
 
@@ -108,7 +110,7 @@ Figure \ref{fkdtree_build_times} shows the time spent building the KD-tree for t
 \label{fkdtree_build_times}
 \end{figure}
 
-Figure \ref{fkdtree_streams} shows the relative performance gain of the search performed with 2 to 16 CUDA streams with respect to the single stream for a number of generated points between $6 \times 10^4$ to $5 \times 10^5$.\\
+Figure \ref{fkdtree_streams} shows the relative performance gain of the search performed with 2 to 16 CUDA streams with respect to the single stream for a number of generated points between $6 \times 10^4$ to $5 \times 10^5$.
 \begin{figure}
 \includegraphics[width=\textwidth]{fkdtree/fkdStreams.png}
 \caption{Relative performance gain between multiple CUDA streams with respect to the single stream.}
@@ -147,7 +149,7 @@ GPU ($\unit{ms}$) & 3 & 7 & 13 & 21 & 31 & 42 & 54 & 68 & 84 & 101 \\
 \newpage
 
 \subsubsection{Fixed maximum nearest neighbors}
-In more realistic scenarios -like the data produced by the HGCAL subdetector- it is not possible to estimate the density of points based on the total number of points and the regions in which we search the nearest neighbors. For this reason we perform again the test of the previous Section avoiding the estimation on the number of nearest neighbors expected. For this test we simply use a fixed number of nearest neighbors expected for all the points generations, big enough to hold all the results for any number of generated points. We chose 200 as the maximum number of expected results, therefore the array that holds the GPU results is always of size $200 \times (number of generated points)$.\\
+In more realistic scenarios -like the data produced by the HGCAL subdetector- it is not possible to estimate the density of points based on the total number of points and the regions in which we search the nearest neighbors. For this reason we perform again the test of the previous Section avoiding the estimation on the number of nearest neighbors expected. For this test we simply use a fixed number of nearest neighbors expected for all the points generations, big enough to hold all the results for any number of generated points. We chose 200 as the maximum number of expected results, therefore the array that holds the GPU results is always of size $200 \times (number\_of\_generated\_points)$.\\
 Table \ref{fkdtree_times_fixedNN_tab} reports some selected results of the test. Figure \ref{fkdtree_times_fixedNN_searches} shows the timing of the CPU sequential and GPU parallel codes in a logarithmic scale and Figure \ref{fkdtree_times_fixedNN_speedup} shows the relative speedup between the two codes.\\
 
 \begin{center}
@@ -164,13 +166,13 @@ GPU ($\unit{ms}$) & 5.344 & 10.13 & 15.61 & 23.9 & 33.99 & 45.61 & 58.37 & 72.99
 
 \begin{figure}
 \includegraphics[width=\textwidth]{fkdtree/fixed200/fkdSearchTimes.png}
-\caption{Search times for CPU sequential and GPU parallel code.}
+\caption{Search times for CPU sequential and GPU parallel code for fixed maximum number of nearest neighbors.}
 \label{fkdtree_times_fixedNN_searches}
 \end{figure}
 
 \begin{figure}
 \includegraphics[width=\textwidth]{fkdtree/fixed200/fkdSpeedup.png}
-\caption{Search times for CPU sequential and GPU parallel code.}
+\caption{Speedup between CPU sequential and GPU parallel code for fixed maximum number of nearest neighbors.}
 \label{fkdtree_times_fixedNN_speedup}
 \end{figure}
 
