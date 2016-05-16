@@ -156,8 +156,9 @@ Table \ref{fkdtree_times_fixedNN_tab} reports some selected results of the test.
 \begin{table}[h]
 \begin{tabular}{ c || r r r r r r r r r r }
 Points ($10^{3}$) & 50 & 100 & 150 & 200 & 250 & 300 & 350 & 400 & 450 & 500 \\
-CPU ($\unit{ms}$) & 55.75 & 143.6 & 257.5 & 389.9 & 540.3 & 720.1 & 915.7 & 1145 & 1426 & 1691 \\
-GPU ($\unit{ms}$) & 5.344 & 10.13 & 15.61 & 23.9 & 33.99 & 45.61 & 58.37 & 72.99 & 88.44 & 105.7 \\
+\hline
+CPU ($\unit{ms}$) & 56 & 144 & 258 & 390 & 540 & 720 & 916 & 1145 & 1426 & 1691 \\
+GPU ($\unit{ms}$) & 5 & 10 & 16 & 24 & 34 & 46 & 58 & 73 & 88 & 106 \\
 \end{tabular}
 \caption{Selected search times for CPU sequential and GPU parallel code for fixed number of NN.}
 \label{fkdtree_times_fixedNN_tab}
@@ -180,8 +181,8 @@ GPU ($\unit{ms}$) & 5.344 & 10.13 & 15.61 & 23.9 & 33.99 & 45.61 & 58.37 & 72.99
 
 We evaluate the algorithm performances on a simple -albeit not very realistic- simulation.
 We instruct the simulation software to produce ten sets of ten events each where 100 electrons are generated with a transverse momentum ($P_t$) between 10 $\unit{GeV/c}$ and 100 $\unit{GeV/c}$, in the center of CMS and directed toward HGCAL, that is within a cone of pseudo-rapidity ($\eta$) comprised between 1.6 and 2.9.
-The generation of the electrons, the simulation of the detector response and the reconstruction of the \textit{rechits} -the points in HGCAL in which an energy deposit has been observed- are all handled by CMSSW: the CMS software package used by the collaboration to analyze and reconstruct the data from the experiment.\\
-The points obtained are then passed to the KD-tree algorithm along with the search boxes to perform the all nearest neighbors search and evaluate the performance. The search boxes are defined by the Molière radius of the layer of the detector in which the rechit for which the neighbors are searched lies. Thus when searching the nearest neighbors of a given rechit the layer of HGCAL it is situated on must be determined and so the Molière radius of that layer, as explained in Section \ref{sec:hgcal_clustering}.\\
+The generation of the electrons, the simulation of the detector response and the reconstruction of the \textit{rechits} -the points in HGCAL in which an energy deposit has been observed- are all handled by CMSSW: the CMS software package used by the collaboration to analyze and reconstruct the data from the experiment. Also in this test we consider a maximum number of nearest neighbors per search box of 200, indeed considering the pad density of HGCAL and the maximum Molière radius used in the clusterization we evaluate this esteem to be sufficient while allowing for a fair comparison between the simulated data and the random generated one.
+The points obtained are then passed to the KD-tree algorithm along with the search boxes to perform the all nearest neighbors search and evaluate the performance. The search boxes are defined by the Molière radius of the layer of the detector in which the rechit for which the neighbors are searched lies. Thus when searching the nearest neighbors of a given rechit the layer of HGCAL it is situated on must be determined and so the Molière radius of that layer, as explained in Section \ref{sec:hgcal_clustering}.
 Figure \ref{fkdtree_build_sim_times} shows the timing of the KD-tree build. Table \ref{fkdtree_times_sim_tab} reports some selected results of the search times of the CPU sequential search and the GPU parallel one. Figure \ref{fkdtree_search_times} shows all the times of the CPU and GPU searches on all the simulated data on a logarithmic scale. Lastly Figure \ref{fkdtree_speedup} shows the speedup between the two searches.\\
 
 \begin{figure}
@@ -194,8 +195,9 @@ Figure \ref{fkdtree_build_sim_times} shows the timing of the KD-tree build. Tabl
 \begin{table}[h]
 \begin{tabular}{ c || r r r r r r r r r r}
 Points ($10^{3}$) & 135 & 177 & 210 & 238 & 259 & 276 & 293 & 316 & 333 & 345 \\
-CPU ($\unit{ms}$) & 151.6 & 198.7 & 250.6 & 301.5 & 349.3 & 378.4 & 405.2 & 444.3 & 482 & 502.8 \\
-GPU ($\unit{ms}$) & 12.61 & 15.83 & 18.76 & 21.21 & 24.77 & 25.94 & 29.03 & 32.59 & 35.41 & 36.81 \\
+\hline
+CPU ($\unit{ms}$) & 152 & 199 & 251 & 302 & 349 & 378 & 405 & 444 & 482 & 503 \\
+GPU ($\unit{ms}$) & 13 & 16 & 19 & 21 & 25 & 26 & 29 & 33 & 35 & 37 \\
 \end{tabular}
 \caption{Selected search times for CPU sequential and GPU parallel code searching simulated data.}
 \label{fkdtree_times_sim_tab}
@@ -227,15 +229,17 @@ However the sequential code would still be too slow to process the HGCAL HLT for
 Figure \ref{cuda_streams} shows the impact of using multiple CUDA streams when performing the search over the uniformly distributed random points. Figure \ref{nvvp_streams} shows the execution time of all the kernels (teal colored bars) in a CUDA stream and all the time spent by the memory management (gold colored bars), in a sample run for $3 \times 10^5$ points. Observe the streams being executed asynchronously and, mostly important, how the memory load/offload is executed at the same time of another sets of kernel is executed in a different stream. It would seem that the highest number of streams yields the best performance but as shown by Figure \ref{cuda_streams}, 8 and 16 streams perform worse than lower number of streams for a small number of points. For this reason we chose to always use 8 streams for the performance analysis of the code throughout the tests, although our implementation allows the choice of any number of streams.\\
 The search times as reported in Tables \ref{fkdtree_times_tab}, \ref{fkdtree_times_fixedNN_tab} and \ref{fkdtree_times_sim_tab} shows very promising results. Indeed in any tests performed and for any number of points up to $5 \times 10^5$ the search time of the GPU parallel code is under $100 \unit{ms}$ making it suitable for the High Level Trigger reconstruction of HGCAL even under the harsher scenarios. Moreover the algorithm is very well performing also for a relatively small number of input points, which is an essential feature granting that the code scales well in the whole range where it is supposed to be used.
 
+\begin{center}
 \begin{figure}
-\includegraphics[width=\textwidth]{fkdtree/nvvp_streams.png}
+\includegraphics[width=0.9\textwidth]{fkdtree/nvvp_streams.png}
 \caption{Kernel execution time for different number of CUDA streams.}
 \label{nvvp_streams}
 \end{figure}
+\end{center}
 
 \subsection{Speedup}
 Lastly we evaluate the relative performance of the parallel code with respect to the sequential one.
 Figure \ref{fkdtree_speedup} shows the speedup when the GPU code is tuned to have a dynamic maximum number of nearest neighbors evaluated through the average density as explained in Section \ref{sec:volume_kdtree_gpuport}. The speedup is good and consistent across the wide range of number of points evaluated and it is almost always between 16 and 20. The figure shows a clear trend of speedup reduction with the increase in number of points evaluated, we attribute this decrease to the increase of memory management the GPU has to perform. Indeed while the CPU doesn't have to move the results once the search is complete the GPU has to move the output and also the KD-tree in input. Obviously with the increase in number of generated points also the memory moving overhead of the GPU increases.\\
 This effect becomes even more evident when considering Figure \ref{fkdtree_times_fixedNN_speedup} where the same test as before is performed while the maximum number of nearest neighbors has been fixed to 200. We observe a low speedup with increasing trend for a number of generated points smaller than $1.5 \times 10^5$ while the speedup is constant for the remaining points. We explain again the behavior with the memory moving overhead: with small number of input points the cost of always moving from the GPU to the host machine an array of size $200 \times number\_of\_points$ is very significant with respect to the actual time spent performing the search, while for bigger input numbers the cost of memory management becomes negligible with respect to the search time.\\
-Figure \ref{fkdtree_search_times} shows the speedup in the case of simulated data. Here the relative performance gain is smaller than the one obtained for the uniform random generated points as it ranges from 10 to 16 approximately. We noted in the absolute search times of the simulated data that both the sequential and the parallel code had better performance in the simulation case, however the GPU parallel search code does not improve as well as the sequential one. This is due once again to the memory movement time that introduces a fixed time for the GPU parallel code.\\
+Figure \ref{fkdtree_search_times} shows the speedup in the case of simulated data. Here the relative performance gain is smaller than the one obtained for the uniform random generated points as it ranges from 10 to 16 approximately. We noted in the absolute search times of the simulated data that both the sequential and the parallel code had better performance in the simulation case, however the GPU parallel search code does not improve as well as the sequential one. This is due once again to the memory movement time that introduces a fixed time for the GPU parallel code, resulting in a smaller ratio.\\
 
