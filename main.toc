@@ -1,5 +1,4 @@
 \select@language {italian}
-\select@language {italian}
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}LHC Phase 2 conditions}{1}{section.1.1}
 \contentsline {section}{\numberline {1.2}HGCAL description}{1}{section.1.2}
@@ -16,33 +15,33 @@
 \contentsline {subsection}{\numberline {3.1.2}Traversing a 3D tree}{4}{subsection.3.1.2}
 \contentsline {section}{\numberline {3.2}Volume kd-tree}{5}{section.3.2}
 \contentsline {subsection}{\numberline {3.2.1}Tree building}{6}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}Range search}{7}{subsection.3.2.2}
-\contentsline {section}{\numberline {3.3}Validation}{7}{section.3.3}
+\contentsline {subsection}{\numberline {3.2.2}Range search}{6}{subsection.3.2.2}
+\contentsline {section}{\numberline {3.3}Validation}{8}{section.3.3}
 \contentsline {section}{\numberline {3.4}GPU porting}{9}{section.3.4}
 \contentsline {section}{\numberline {3.5}Performance analysis}{10}{section.3.5}
 \contentsline {section}{\numberline {3.6}Algorithm assessment}{12}{section.3.6}
-\contentsline {chapter}{\numberline {4}A better KD-tree implementation}{14}{chapter.4}
-\contentsline {section}{\numberline {4.1}Build of a left-balanced KD-tree}{14}{section.4.1}
-\contentsline {section}{\numberline {4.2}Iterative range search}{15}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Fast bitwise operations}{16}{subsection.4.2.1}
-\contentsline {section}{\numberline {4.3}Validation}{17}{section.4.3}
-\contentsline {section}{\numberline {4.4}GPU porting}{18}{section.4.4}
-\contentsline {subsection}{\numberline {4.4.1}GPU queue}{18}{subsection.4.4.1}
-\contentsline {subsection}{\numberline {4.4.2}CUDA streams}{18}{subsection.4.4.2}
-\contentsline {section}{\numberline {4.5}Performance analysis}{19}{section.4.5}
-\contentsline {subsection}{\numberline {4.5.1}Uniform random distribution}{19}{subsection.4.5.1}
-\contentsline {subsubsection}{Fixed maximum nearest neighbors}{21}{section*.15}
-\contentsline {subsection}{\numberline {4.5.2}HGCAL simulated RecHits}{22}{subsection.4.5.2}
-\contentsline {section}{\numberline {4.6}Algorithm assessment}{26}{section.4.6}
-\contentsline {subsection}{\numberline {4.6.1}Build complexity}{26}{subsection.4.6.1}
-\contentsline {subsection}{\numberline {4.6.2}CPU sequential search time}{26}{subsection.4.6.2}
-\contentsline {subsection}{\numberline {4.6.3}GPU parallel search time}{26}{subsection.4.6.3}
-\contentsline {subsection}{\numberline {4.6.4}Speedup}{27}{subsection.4.6.4}
-\contentsline {chapter}{\numberline {5}Power consumption}{29}{chapter.5}
-\contentsline {section}{\numberline {5.1}Benchmark machine}{29}{section.5.1}
-\contentsline {section}{\numberline {5.2}TK 1}{29}{section.5.2}
-\contentsline {section}{\numberline {5.3}TX 1}{29}{section.5.3}
-\contentsline {section}{\numberline {5.4}Consumption comparisons}{29}{section.5.4}
-\contentsline {chapter}{\numberline {6}Conclusions}{30}{chapter.6}
-\contentsline {chapter}{Summary}{31}{chapter*.24}
-\contentsline {chapter}{Bibliography}{32}{chapter*.25}
+\contentsline {chapter}{\numberline {4}A better KD-tree implementation}{15}{chapter.4}
+\contentsline {section}{\numberline {4.1}Build of a left-balanced KD-tree}{15}{section.4.1}
+\contentsline {section}{\numberline {4.2}Iterative range search}{16}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Fast bitwise operations}{17}{subsection.4.2.1}
+\contentsline {section}{\numberline {4.3}Validation}{18}{section.4.3}
+\contentsline {section}{\numberline {4.4}GPU porting}{19}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}GPU queue}{19}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}CUDA streams}{19}{subsection.4.4.2}
+\contentsline {section}{\numberline {4.5}Performance analysis}{20}{section.4.5}
+\contentsline {subsection}{\numberline {4.5.1}Uniform random distribution}{20}{subsection.4.5.1}
+\contentsline {subsubsection}{Fixed maximum nearest neighbors}{22}{section*.3}
+\contentsline {subsection}{\numberline {4.5.2}HGCAL simulated RecHits}{23}{subsection.4.5.2}
+\contentsline {section}{\numberline {4.6}Algorithm assessment}{27}{section.4.6}
+\contentsline {subsection}{\numberline {4.6.1}Build complexity}{27}{subsection.4.6.1}
+\contentsline {subsection}{\numberline {4.6.2}CPU sequential search time}{27}{subsection.4.6.2}
+\contentsline {subsection}{\numberline {4.6.3}GPU parallel search time}{27}{subsection.4.6.3}
+\contentsline {subsection}{\numberline {4.6.4}Speedup}{28}{subsection.4.6.4}
+\contentsline {chapter}{\numberline {5}Energy consumption}{30}{chapter.5}
+\contentsline {section}{\numberline {5.1}Measurement methodology}{30}{section.5.1}
+\contentsline {section}{\numberline {5.2}Benchmark machine}{31}{section.5.2}
+\contentsline {section}{\numberline {5.3}TK 1}{31}{section.5.3}
+\contentsline {section}{\numberline {5.4}Consumption comparisons}{31}{section.5.4}
+\contentsline {chapter}{\numberline {6}Conclusions}{32}{chapter.6}
+\contentsline {chapter}{Summary}{33}{chapter*.4}
+\contentsline {chapter}{Bibliography}{34}{chapter*.5}
