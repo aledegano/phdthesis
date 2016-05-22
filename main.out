@@ -39,8 +39,11 @@
 \BOOKMARK [1][-]{section.5.1}{5.1 Measurement methodology}{chapter.5}% 39
 \BOOKMARK [1][-]{section.5.2}{5.2 Benchmark machine}{chapter.5}% 40
 \BOOKMARK [2][-]{subsection.5.2.1}{5.2.1 CPU energy consumption}{section.5.2}% 41
-\BOOKMARK [1][-]{section.5.3}{5.3 TK 1}{chapter.5}% 42
-\BOOKMARK [1][-]{section.5.4}{5.4 Consumption comparisons}{chapter.5}% 43
-\BOOKMARK [0][-]{chapter.6}{6 Conclusions}{}% 44
-\BOOKMARK [0][-]{chapter*.24}{Summary}{}% 45
-\BOOKMARK [0][-]{chapter*.25}{Bibliography}{}% 46
+\BOOKMARK [2][-]{subsection.5.2.2}{5.2.2 GPU energy consumption}{section.5.2}% 42
+\BOOKMARK [1][-]{section.5.3}{5.3 NVIDIDA Tegra K1}{chapter.5}% 43
+\BOOKMARK [2][-]{subsection.5.3.1}{5.3.1 TK1 CPU energy consumption}{section.5.3}% 44
+\BOOKMARK [2][-]{subsection.5.3.2}{5.3.2 TK1 GPU energy consumption}{section.5.3}% 45
+\BOOKMARK [1][-]{section.5.4}{5.4 Consumption comparisons}{chapter.5}% 46
+\BOOKMARK [0][-]{chapter.6}{6 Conclusions}{}% 47
+\BOOKMARK [0][-]{chapter*.25}{Summary}{}% 48
+\BOOKMARK [0][-]{chapter*.26}{Bibliography}{}% 49
