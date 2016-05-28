@@ -1,7 +1,45 @@
-\chapter{GPU Architecture}\label{ch:gpu}
+\chapter{Parallel computing}\label{ch:gpu}
+Ever since the chip manufacturing industry stopped increasing significantly the frequency of operation of the processing units and, instead, included an ever increasing number of computational \textit{cores}, the only way to fully exploit the performance of the newest hardware is the way of the parallelism.\\
+A parallel execution of a program is able to perform several computations, independent from each other, at the same time usually called \textit{threads}. If a \textit{multi-core} processing unit is available each core is able to process one of the computation at the same time another core is executing its task. However there are factors that complicates the writing of a functioning parallel program, for instance there is no guarantee in the order of execution of the different threads and if one depends upon the result of another that must be taken into account.\\
+In the following section we will give a brief overview of the most important principles of parallel computing.
 
-\section{Many-cores platform and memory hierarchy}\label{sec:gpu_arch}
+\section{Principles of parallel computing}
+Traditionally software has been written for serial execution. Which means that the series of instructions to be performed to execute a program are evaluated one by one, always in the same order. This approach requires that for hardware to execute a given program faster the time to evaluate a single instruction must be made shorter, and since a processing unit evaluates an instruction at every \textit{clock cycle}, the overall frequency has to increase.\\
+From the first microprocessor up to the early years 2000s the increase in frequency was indeed the driving factor in the improvement of the performance of sequential software. However, when processors hit the GigaHerz domain, it became apparent that the continuous increase in frequency could not hold for long as it required at same time an increase in the power required to operate the processing units, which also meant bigger and more complex systems to dissipate the resulting heat produced.\\
+At the same time, nevertheless, the manufacturing was still able, year after year, to reduce the size of the transistors inside the chip. Thus the first \textit{dual core} processor was born: including two processing cores able to perform arithmetic operations independently while accessing the data from a common memory.\\
 
-\section{CUDA}
+\subsection{Moore's law}
+In 1965 Gordon Moore, Intel co-founder, stated that the number of transitor on integrated circuits doubles about every two years \cite{moore}. Figure \ref{moore} shows that since the early '70 until today the law was proven to be quite accurate.
+
+\begin{figure}
+\includegraphics[width=0.8\textwidth]{architectures/moores.png}
+\caption{Number of transistor count in logarithmic scale with respect to the year of introduction. Credit to \href{https://commons.wikimedia.org/wiki/User:Wgsimon}{Wgsimon}, \href{http://creativecommons.org/licenses/by-sa/3.0/}{CC BY-SA 3.0}}
+\label{moore}
+\end{figure}
+\clearpage
+
+\subsection{Amdahl's Law}
+With multi-core processor available we can now parallelize a program to split up the load on as many cores are available, therefore one could expect, for an eight core machine for instance, to have an increase in performance of a factor eight. Unfortunately that is not the case, in every parallel program there is always a fraction of execution that has to be performed sequentially, this limit takes the name of \textit{Amdahl's Law} \cite{amdahl}.\\
+Let $T_S$ be the execution time of a sequential program, while $T_p$ the execution time of program performing the same task of the sequential one but in parallel over $p$ processing units. The \textit{speedup} is then defined as the ratio $S(p) = \dfrac{T_S}{T_p}$.
+Let $f$ be the fraction of the program running sequentially, the execution time of the parallel program is then $f T_S + (1 - f) T_p = f T_S + \dfrac{(1-f)T_S}{p}$. Which we can now substitute in the speedup formula to obtain its dependency with the fraction $f$ of sequential execution:
+\begin{equation}
+S(p,f) = \dfrac{T_S}{f T_S + \dfrac{(1-f)T_S}{p}}
+\end{equation}
+From which it is clear that even with an infinite number of parallel units there is a hard limit on the maximum obtainable speedup, indeed:
+\begin{equation}
+S_{max} \equiv \lim_{p\to\infty} S(p,f) = \dfrac{1}{f}
+\end{equation}
+As an example consider a program where only $5\%$ of its execution is sequential, the maximum speedup possible according to Amdahl's Law is then $S_{max} = \dfrac{1}{0.05} = 20$.
+Figure \ref{amdahl} shows the maximum speedup obtainable for different values of $f$ as a function of $p$.
+
+\begin{figure}
+\centerline{\includegraphics[width=0.8\textwidth]{architectures/amdahl.png}}
+\caption{Maximum theoretical speedup for various values of $f$ as a function of the number of parallel processes. Credit to \href{https://en.wikipedia.org/wiki/User:Daniels220}{Daniels220}, \href{http://creativecommons.org/licenses/by-sa/3.0/}{CC BY-SA 3.0}}
+\label{amdahl}
+\end{figure}
+
+\section{Architectures}\label{sec:gpu_arch}
+
+\section{CUDA C}
 
 \section{Testing hardware}\label{sec:benchmark}

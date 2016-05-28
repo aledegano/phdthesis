@@ -1,5 +1,14 @@
 \begin{thebibliography}{1}
 
+\bibitem{moore}
+G.~Moore, ``{Cramming more components onto integrated circuits},'' {\em
+  Proceedings of the IEEE}, vol.~86, no.~1, pp.~82, 85, 1998.
+
+\bibitem{amdahl}
+G.~Amdahl, ``{Validity of the single processor approach to achieving
+  large-scale computing capabilities},'' {\em AFIPS Conference proceedings},
+  vol.~30, pp.~483, 485, 1967.
+
 \bibitem{worst-case-search}
 {D. T. Lee, C. K. Wong}, ``{Worst-case analysis for region and partial region
   searches in multidimensional binary search trees and balanced quad trees},''
