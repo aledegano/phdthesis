@@ -3,10 +3,10 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {3.1}{\ignorespaces Volume Kd-tree selected search times for CPU sequential and GPU parallel code\relax }}{14}{table.caption.8}
+\contentsline {table}{\numberline {3.1}{\ignorespaces Volume Kd-tree selected search times for CPU sequential and GPU parallel code\relax }}{16}{table.caption.10}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {4.1}{\ignorespaces Selected search times for CPU sequential and GPU parallel code.\relax }}{23}{table.caption.15}
-\contentsline {table}{\numberline {4.2}{\ignorespaces Selected search times for CPU sequential and GPU parallel code for fixed number of NN.\relax }}{25}{table.caption.18}
-\contentsline {table}{\numberline {4.3}{\ignorespaces Selected search times for CPU sequential and GPU parallel code searching simulated data.\relax }}{27}{table.caption.22}
+\contentsline {table}{\numberline {4.1}{\ignorespaces Selected search times for CPU sequential and GPU parallel code.\relax }}{25}{table.caption.17}
+\contentsline {table}{\numberline {4.2}{\ignorespaces Selected search times for CPU sequential and GPU parallel code for fixed number of NN.\relax }}{27}{table.caption.20}
+\contentsline {table}{\numberline {4.3}{\ignorespaces Selected search times for CPU sequential and GPU parallel code searching simulated data.\relax }}{29}{table.caption.24}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
