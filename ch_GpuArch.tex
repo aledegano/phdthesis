@@ -74,5 +74,63 @@ Figure \ref{kepler} shows the general layout of a NVIDIA Kepler architecture, si
 \end{figure}
 
 \section{CUDA C}
+CUDA C is a set of extensions to the C programming language that allows to organize the execution of a program on a NVIDIA GPU.
+The CUDA programming model establish two separate memory spaces: the \textit{host memory} that is the space of the computer hosting the GPU device and the \textit{device memory} which is the DRAM that only the GPU has direct access to.\\
+The general concept of a CUDA program is that it starts with a serial code executing on the host machine that sets up the parallel code which then is executed in a large number of threads on as many GPU cores. When the GPU elaboration ends the control goes back to host where the data is gathered from the device and the program terminates.
+
+\subsection{Threads and Memory Hierarchy} 
+In order to fully profit of the high number of cores of a GPU it is necessary to have a tight control on the generation and coordination of the threads.
+To fullfil this need CUDA organizes the groups of threads that can cooperate in \textit{blocks} and the set of all blocks in a single \textit{grid}.
+Therefore every thread has an index representing its position inside its block and an index representing the position of its block in the grid.
+Knowing those two indices and the dimension of the block each thread knows its absolute index with respect to the whole grid, knowing exactly which part of the parallel task to perform.
+The reason behind the grouping of the threads in blocks which are subset of the grid is the memory hierarchy of the GPU. As a matter of fact the memory available on the GPU is organized in three groups of different size, visibility, lifetime and access time. Table \ref{tabMemory} presents the main characteristic of the memory types available in a NVIDIA GPU, with the sizes of the Teska k40 for reference.
+
+\begin{center}
+\begin{table}[h]
+\begin{tabular}{ l | l | l | l | l}
+\textbf{Memory} & \textbf{Visibility} & \textbf{Lifetime} & \textbf{Access time} & \textbf{Size (k40)}\\
+\hline
+Registers & Thread & Thread & Very fast & 90 Bytes \\
+Shared mem. & Block & Block & Fast & 48 kBytes \\
+Global mem. & Grid & Application & 150 $\times$ slower than SM & 12 GB \\
+\end{tabular}
+\caption{Characteristics of the memories in a typical NVIDIA GPU and sizes of the Tesla k40 for reference.}
+\label{tabMemory}
+\end{table}
+\end{center}
+
+\subsection{Memory management}
+CUDA requires from the user to explicitly indicate the area of memory on the host where the data will be taken from and the area where the output will be saved on the host.
+It also requires from the user to request the global memory space on the device that needs to be allocated for the process to be executed.
+To accomplish those requirements CUDA provides the following functions to manage the memory on the device:
+\begin{itemize}
+\item \textbf{cudaMalloc()} Works similarly to the C malloc() function allocating a given size of memory in the device global memory addressed by the pointer passed as argument to the function.
+\item \textbf{cudaFree()} Frees the global memory at the address passed as argument making it available again.
+\item \textbf{cudaMemcpy()} Takes as arguments the address of a memory area on the host and that of an area in the device, the size of the transfer and then the direction the transfer should be made: \textbf{hostToDevice} to copy the data from the host to the GPU, \textbf{deviceToHost} to copy the data from the GPU to the host.
+\item \textbf{cudaMemcpy()} Works exactly as the former but asynchronously, that is the CPU is free to perform the next instruction while the memory copy to/from the GPU is undergoing.
+\end{itemize}
+
+\subsection{Streams}
+Most recent NVIDIA GPUs are able to perform three operations at the same time:
+\begin{itemize}
+\item memory copy from the host to the device
+\item threads execution 
+\item memory copy from device to host
+\end{itemize}
+ To fully exploit this feature the whole GPU execution must be divided in \textit{streams}. Each stream performs the three operation sequentially, however different streams can interleave each operation in order to maximise the occupancy of the calculation cores and the memory copy engines. Figure \ref{streams} shows a scheme of how two streams could interleave.
+
+\begin{figure}
+\centerline{\includegraphics[width=0.9\textwidth]{architectures/streams.png}}
+\caption{Example of two CUDA streams execution.}
+\label{streams}
+\end{figure}
+\newpage
 
 \section{Testing hardware}\label{sec:benchmark}
+The Research $\&$ Development of this work has been performed mainly on a workstatation equipped with a recent CPU and a NVIDIA Tesla k40c.
+The relevant specification of the important hardware of the benchmark machine are reported below:
+\begin{itemize}
+\item \textbf{CPU} Intel i7-3770 - Max frequency: 3.9 $\unit{GHz}$, cores: 4, cache: 8 $\unit{MB}$
+\item \textbf{System memory} DDR3 - size: 8 $\unit{GB}$, frequency: 1600 $\unit{MHz}$
+\item \textbf{GPU} NVIDIA Tesla k40c - Max frequency: 850 $\unit{MHz}$, CUDA cores: 2880, onboard GDDR5 size: 12 $\unit{GB}$
+\end{itemize}
