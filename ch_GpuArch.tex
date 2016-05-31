@@ -1,11 +1,11 @@
 \chapter{Parallel computing}\label{ch:gpu}
 Ever since the chip manufacturing industry stopped increasing significantly the frequency of operation of the processing units and, instead, included an ever increasing number of computational \textit{cores}, the only way to fully exploit the performance of the newest hardware is the way of the parallelism.\\
-A parallel execution of a program is able to perform several computations, independent from each other, at the same time usually called \textit{threads}. If a \textit{multi-core} processing unit is available, each core is able to process one of the computation at the same time another core is executing its task. However, there are factors that complicates the writing of a functioning parallel program, for instance there is no guarantee in the order of execution of the different threads and, if one depends upon the result of another, that must be taken into account.\\
+A parallel execution of a program is able to perform several computations, independent from each other, at the same time, usually called \textit{threads}. If a \textit{multi-core} processing unit is available, each core is able to process one of the computation at the same time another core is executing its task. However, there are factors that complicates the writing of a functioning parallel program, for instance there is no guarantee in the order of execution of the different threads and, if one depends upon the result of another, that must be taken into account.\\
 In the following section we will give a brief overview of the most important principles of parallel computing.
 
 \section{Principles of parallel computing}
 Traditionally software has been written for serial execution. Which means that the series of instructions to be performed to execute a program are evaluated one by one, always in the same order. This approach requires that for hardware to execute a given program faster the time to evaluate a single instruction must be made shorter, and since a processing unit evaluates an instruction at every \textit{clock cycle}, the overall frequency has to increase.\\
-From the first microprocessor up to the early years 2000s the increase in frequency was indeed the driving factor in the improvement of the performance of sequential software. However, when processors hit the higahertz domain, it became apparent that the continuous increase in frequency could not hold for long as it required at the same time an increase in the power required to operate the processing units, which also meant bigger and more complex systems to dissipate the resulting heat produced.\\
+From the first microprocessor up to the early years 2000s the increase in frequency was indeed the driving factor in the improvement of the performance of sequential software. However, when processors hit the gigahertz domain, it became apparent that the continuous increase in frequency could not hold for long as it required at the same time an increase in the power required to operate the processing units, which also meant bigger and more complex systems to dissipate the resulting heat produced.\\
 At the same time, nevertheless, the manufacturing was still able, year after year, to reduce the size of the transistors inside the chip. Thus the first \textit{dual core} processor was born: including two processing cores able to perform arithmetic operations independently while accessing the data from a common memory.\\
 
 \subsection{Moore's law}
@@ -18,10 +18,12 @@ In 1965 Gordon Moore, Intel co-founder, stated that the number of transitor on i
 \end{figure}
 \clearpage
 
+Until today the exponential growth predicted by Moore yielded an ever increasing number of cores in the CPUs and even more in the GPUs. Thus making a correct parallelization of the software mandatory to fully profit of the newest hardware.
+
 \subsection{Amdahl's Law}
-With multi-core processor available we can now parallelize a program to split up the load on as many cores available, therefore one could expect, for an eight core machine for instance, to have an increase in performance of a factor eight. Unfortunately that is not the case: in every parallel program there is always a fraction of execution that has to be performed sequentially limiting the overall gain in performance, this limit takes the name of \textit{Amdahl's Law} \cite{amdahl}.\\
+With multi-core processors available we can now parallelize a program to split up the load on as many cores available, therefore one could expect, for an eight core machine for instance, to have an increase in performance of a factor eight. Unfortunately that is not the case: in every parallel program there is always a fraction of execution that has to be performed sequentially limiting the overall gain in performance, this limit takes the name of \textit{Amdahl's Law} \cite{amdahl}.\\
 Let $T_S$ be the execution time of a sequential program, while $T_p$ the execution time of a program performing the same task of the sequential one but in parallel over $p$ processing units. The \textit{speedup} is then defined as the ratio $S(p) = \dfrac{T_S}{T_p}$.
-Let $f$ be the fraction of the program running sequentially, the execution time of the parallel program is then $f T_S + (1 - f) T_p = f T_S + \dfrac{(1-f)T_S}{p}$. Which we can now substitute in the speedup formula to obtain its dependency with the fraction $f$ of sequential execution:
+Let $f$ be the fraction of the program running sequentially, the execution time of the parallel program is then $f T_S + (1 - f) T_p = f T_S + \dfrac{(1-f)T_S}{p}$. Which we can now substitute in the speedup formula to obtain its dependency with respect to the fraction $f$ of sequential execution:
 \begin{equation}
 S(p,f) = \dfrac{T_S}{f T_S + \dfrac{(1-f)T_S}{p}}
 \end{equation}
@@ -59,9 +61,9 @@ The main goal of the CPU design is to optimize the instruction execution latency
 \subsection{GPU architecture}
 The GPU is, instead, designed to have a high \textit{throughput} of instructions, that is to perform a high number of instructions at the same time. The main design features oriented toward this results are:
 \begin{itemize}
-\item{As many ALUs as possible} The whole point of the GPU architecture is to have the highest amount of simple ALUs so that many simple operations can be performed at the same time.
-\item{Simple control unit} Neither branch prediction nor operand forwarding are available. Branches are instead predicated meaning that all the branches are translated in machine code and only the active branch is executed while the other one is idling.
-\item{Small caches} Caches are just used to stage the memory before execution preventing the ALU to access directly the DRAM.
+\item{\textbf{As many ALUs as possible}} The whole point of the GPU architecture is to have the highest amount of simple ALUs so that many simple operations can be performed at the same time.
+\item{\textbf{Simple control unit}} Neither branch prediction nor operand forwarding are available. Branches are instead predicated meaning that all the branches are translated in machine code and only the active branch is executed while the other one is idling.
+\item{\textbf{Small caches}} Caches are just used to stage the memory before execution preventing the ALU to access directly the DRAM.
 \end{itemize}
 
 In this work we focus on the GPUs manufactured by NVIDIA and programmed through the APIs called \textit{Compute Unified Device Architecture} (CUDA).
@@ -107,7 +109,7 @@ To accomplish those requirements CUDA provides the following functions to manage
 \item \textbf{cudaMalloc()} Works similarly to the C malloc() function allocating a given size of memory in the device global memory addressed by the pointer passed as argument to the function.
 \item \textbf{cudaFree()} Frees the global memory at the address passed as argument making it available again.
 \item \textbf{cudaMemcpy()} Takes as arguments the address of a memory area on the host and that of an area in the device, the size of the transfer and then the direction the transfer should be made: \textbf{hostToDevice} to copy the data from the host to the GPU, \textbf{deviceToHost} to copy the data from the GPU to the host.
-\item \textbf{cudaMemcpy()} Works exactly as the former but asynchronously, that is the CPU is free to perform the next instruction while the memory copy to/from the GPU is undergoing.
+\item \textbf{cudaMemcpyAsync()} Works exactly as the former but asynchronously, that is the CPU is free to perform the next instruction while the memory copy to/from the GPU is undergoing.
 \end{itemize}
 
 \subsection{Streams}

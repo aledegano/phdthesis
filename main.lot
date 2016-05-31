@@ -1,12 +1,13 @@
 \select@language {italian}
+\select@language {italian}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {2.1}{\ignorespaces Characteristics of the memories in a typical NVIDIA GPU and sizes of the Tesla k40 for reference.}}{8}{table.2.1}
+\contentsline {table}{\numberline {2.1}{\ignorespaces Characteristics of the memories in a typical NVIDIA GPU and sizes of the Tesla k40 for reference.\relax }}{8}{table.caption.8}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {3.1}{\ignorespaces Volume Kd-tree selected search times for CPU sequential and GPU parallel code}}{20}{table.3.1}
+\contentsline {table}{\numberline {3.1}{\ignorespaces Volume Kd-tree selected search times for CPU sequential and GPU parallel code\relax }}{19}{table.caption.12}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {4.1}{\ignorespaces Selected search times for CPU sequential and GPU parallel code.}}{29}{table.4.1}
-\contentsline {table}{\numberline {4.2}{\ignorespaces Selected search times for CPU sequential and GPU parallel code for fixed number of NN.}}{31}{table.4.2}
-\contentsline {table}{\numberline {4.3}{\ignorespaces Selected search times for CPU sequential and GPU parallel code searching simulated data.}}{34}{table.4.3}
+\contentsline {table}{\numberline {4.1}{\ignorespaces Selected search times for CPU sequential and GPU parallel code.\relax }}{28}{table.caption.19}
+\contentsline {table}{\numberline {4.2}{\ignorespaces Selected search times for CPU sequential and GPU parallel code for fixed number of NN.\relax }}{30}{table.caption.22}
+\contentsline {table}{\numberline {4.3}{\ignorespaces Selected search times for CPU sequential and GPU parallel code searching simulated data.\relax }}{32}{table.caption.26}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
