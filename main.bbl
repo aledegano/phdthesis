@@ -1,5 +1,17 @@
 \begin{thebibliography}{1}
 
+\bibitem{tdr}
+J.~Butler, D.~Contardo, M.~Klute, J.~Mans, and L.~Silvestris, ``{Technical
+  Proposal for the Phase-II Upgrade of the CMS Detector},'' Tech. Rep.
+  CERN-LHCC-2015-010. LHCC-P-008, CERN, Geneva. Geneva, Jun 2015.
+\newblock Upgrade Project Leader Deputies: Lucia Silvestris (INFN-Bari), Jeremy
+  Mans (University of Minnesota) Additional contacts: Lucia.Silvestris@cern.ch,
+  Jeremy.Mans@cern.ch.
+
+\bibitem{cms}
+S.~Chatrchyan {\em et~al.}, ``The {CMS} experiment at the {CERN} {LHC},'' {\em
+  JINST}, vol.~3, p.~S08004, 2008.
+
 \bibitem{moore}
 G.~Moore, ``{Cramming more components onto integrated circuits},'' {\em
   Proceedings of the IEEE}, vol.~86, no.~1, pp.~82, 85, 1998.

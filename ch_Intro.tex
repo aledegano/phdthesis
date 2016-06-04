@@ -1,15 +1,62 @@
 \chapter{Introduction}\label{ch:intro}
-The Large Hadron Collider (LHC) is the world's largest and most powerful particle collider. It was built by the European Organization for Nuclear Research (CERN) between 1998 and 2008. From the early 2010 up until today it has produced several proton run yielding a great amount of data gathered by the four main experiments (CMS, ATLAS, ALICE and LHCB). The data allowed for the publication of hundreds of articles and between those one of the most important: the experimental confirmation of the Higgs Boson existence.\\ The current configuration of LHC will remain substantially unvaried until 2023 when, during the Long Shutdown 3 (LS3), several upgrades of the accelerator, will allow a significant increase of the instantaneous luminosity delivered. The upgraded version of the collider is referred as High Luminosity Large Hadron Collider (HL-LHC).
+The Large Hadron Collider (LHC) is the world's largest and most powerful particle collider. It was built by the European Organization for Nuclear Research (CERN) between 1998 and 2008. From the early 2010 up until today it has produced several proton run yielding a great amount of data gathered by the four main experiments (CMS, ATLAS, ALICE and LHCB). The data allowed for the publication of hundreds of articles and between those one of the most important: the experimental confirmation of the Higgs Boson existence.\\ The current configuration of LHC will remain substantially unvaried until 2023 when, during the Long Shutdown 3 (LS3), several upgrades of the accelerator, will allow a significant increase of the instantaneous luminosity delivered. The upgraded version of the collider is referred to as High Luminosity Large Hadron Collider (HL-LHC).
 
 \section{HL-LHC}
 It is expected that by 2023 the quadrupoles magnet that focus the proton beans of LHC for the two biggest experiment (CMS and ATLAS) will be close to the end of their life cycle due to radiation exposure. The substitution of those quadrupoles and the addition of new upgrades to optimize the bunch overlap at the interaction region, will result in a significant increase of the delivered luminosity.
-The proposed operating scenario is to have $5 \times 10^{34} \unit{cm^{-2}s^{-1}$ of instantaneous luminosity, roughly five times more than the current one.\\
-As a direct consequence of the increase in luminosity a high number of events happening during the same bunch crossing is expected, this phenomena is often referred to as \textit{pileup}. 
+The proposed operating scenario is to have $5 \times 10^{34} \unit{cm^{-2}s^{-1}}$ of instantaneous luminosity, roughly five times more than the current one.\\
+As a direct consequence of the increase in luminosity a high number of events happening during the same bunch crossing is expected, this phenomenon is often referred to as \textit{pileup}.\\
+It is expected that an average of 140 pileup events \cite{tdr} per bunch crossing will take place as a result of the upgrade to LHC, up to spikes of 200 (while at the time of the writing the average is 22). All the main experiments will need to upgrade their detectors in order to solve the tracks originating from so many verteces and also in order to replace the components damaged by ten years of radiations with new ones able to sustain ten more years of even higher radiation.\\
+As we developed this work within the CMS collaboration we focus here on the upgrades of that experiment only.
 
-\section{HGCAL description}
+\section{CMS Phase-II upgrade}
+\begin{figure}
+\centerline{\includegraphics[width=0.8\textwidth]{intro/cms.jpg}}
+\caption{An exploded view of the CMS detector in its current configuration.}
+\label{cms}
+\end{figure}
+
+The Compact Muon Solenoid (CMS) is an hermetic particle detector gathering data from LHC collisions. Its general design consists of a cylinder parallel to the beam lines, called \textit{Barrel} and two discs, called \textit{EndCaps}, closing the cylinder at both ends, perpendicular to the beam lines.\\
+The barrel is actually made of a series of cylindrical sub-detector each one enclosing the smaller detectors closer to the beam line. Starting from the innermost detector there is the silicon pixel tracker, followed by the silicon strips tracker. Around the tracker lies the Electromagnetic Calorimeter (ECAL), made of Lead-Tungsten crystals and followed by the Hadronic Calorimeter (HCAL) featuring brass plates interleaved by plastic scintillators. The superconducting solenoid encloses all the above and provides an inner magnetic field of 3.8 Tesla. The outermost cylinder is the one hosting the muon chambers placed between the steel return yoke that also allows the external magnetic field lines to be parallel to the beam lines and uniform. The endcaps features a similar sequence of sub-detector organized in discs of increasing radius. A detailed description of the CMS detector is given in reference \cite{cms}.\\
+
+Following we will give a brief overview of the upgrades proposed for CMS to comply with the predicted conditions of \textit{Phase II}.
+
+\begin{itemize}
+\item \textbf{Tracker} By the time LS3 will begin the tracker, both the barrel and the endcaps, will suffer significant radiation damage -especially being the first material to be irradiated by the collisions products- and must be completely replaced. To maintain adequate track reconstructions capabilities at the conditions of HL-LHC the granularity of all the elements of the sub-detector will be increased by roughly a factor four.
+\item \textbf{Calorimeter Endcaps} The forward regions of a collider detector receive the most radiation. Therefore by LS3 the Calorimeters Endcaps will also need replacement. The new calorimeter is called High Granularity Calorimiter (HGCAL) had has electromagnetic and hadronic sections with excellent segmentation. It is a sampling calorimeter where the active layers of silicon detectors are interleaved with copper and tungsten plates.
+\item \textbf{Muon Endcaps} The forward muon system will receive additional chambers to maintain a good trigger acceptance. A combination of Gas Electron Multiplier and and Resistive Plate Chambers will be installed to increase the performance of the overall muon system.
+\item \textbf{Low and High Level Triggers} The hardware trigger, also called Level 1, will be improved by upgrading the readout electronics in some of the sub-detectors that will be kept for Phase-II. Thus the hardware trigger rate will increase from the current 100 $\unit{kHz}$ to 750 $\unit{kHz}$ needed for the peak 200 events pileup predicted for Phase-II. Also the software trigger: called High Level Trigger (HLT), that is the one taking into account multiple sub-detectors for each event, will need to be upgraded to keep up with the increase in data rate. It is predicted that the computational power today dedicated to the HLT will need to increase up to a factor of 12.
+\end{itemize}
+
+In this work we are particularly interested by the new calorimeters endcaps, HGCAL, and the effect that the new design will have on the online reconstruction performed by the High Level Trigger. As the major difference with respect to the current sub-detector is the part dedicated to the electromagnetic detection, that is the part we mainly focus our work on.
+
+\section{The High Granularity Calorimeter}
+As mentioned above the Electromagnetic part of the HGCAL is a sampling calorimeter where layers of silicon detectors are interleaved by absorber of Tungsten-Copper.
+The calorimetry usually express the thickness of the materials traversed by the electromagnetic radiations in terms of their \textit{radiation length}, denoted $X_0$, which is the mean path length required to reduce the energy of relativistic charged particles by a factor $1/\mathrm {e}$. The calorimeter is then composed of 28 layers each having an absorber and a plane of silicon detector. In details the thickness of the layers, in order from inward to outward, are as follow:
+\begin{itemize}
+\item 10 layers: 0.65 $X_0$
+\item 10 layers: 0.88 $X_0$
+\item 8 layers: 1.26 $X_0$
+\end{itemize}
+Resulting in a total length of 26 $X_0$.\\
+The modules are shaped as two adjacent hexagons as shown in figure \ref{hgcalMod}, then they will be mounted in several copper and tungsten absorber ``petals'' which in turns will be inserted in the ``cassettes'' of the final carbon fiber structure \ref{hgcalStruct}.
+
+\begin{figure}
+\centerline{\includegraphics[width=0.8\textwidth]{intro/hgcalMod.png}}
+\caption{(Left) A module of HGCAL, consisting of printed circuit board, silicon sensor and absorber. (Right) Two modules mounted on either sides of a copper tungsten absorber also used for the cooling of the system.}
+\label{hgcalMod}
+\end{figure}
+
+\begin{figure}
+\centerline{\includegraphics[width=0.8\textwidth]{intro/hgcalStruct.png}}
+\caption{(Left) The final Electromagnetic HGCAL endcap carbon-fiber structure. (Right) The petals inserted into the slots of the structure.}
+\label{hgcalStruct}
+\end{figure}
+
+The modules have an active area of 1.05 $\unit{cm^2}$ or 0.53 $\unit{cm^2}$ depending on their position in the endcap. Totally approximately 22000 modules will constitute the calorimeter providing a total area of active silicon of 320 $\unit{m^2}$ that will be read out by 4.3 million channels.\\
+
 
 \section{Clustering overview}\label{sec:hgcal_clustering}
 
 \section{HLT for HGCAL needs}
 
-\section{Computation challanges}
+\section{Computation challenges}
