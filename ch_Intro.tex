@@ -21,10 +21,10 @@ The barrel is actually made of a series of cylindrical sub-detector each one enc
 Following we will give a brief overview of the upgrades proposed for CMS to comply with the predicted conditions of \textit{Phase II}.
 
 \begin{itemize}
-\item \textbf{Tracker} By the time LS3 will begin the tracker, both the barrel and the endcaps, will suffer significant radiation damage -especially being the first material to be irradiated by the collisions products- and must be completely replaced. To maintain adequate track reconstructions capabilities at the conditions of HL-LHC the granularity of all the elements of the sub-detector will be increased by roughly a factor four.
-\item \textbf{Calorimeter Endcaps} The forward regions of a collider detector receive the most radiation. Therefore by LS3 the Calorimeters Endcaps will also need replacement. The new calorimeter is called High Granularity Calorimiter (HGCAL) had has electromagnetic and hadronic sections with excellent segmentation. It is a sampling calorimeter where the active layers of silicon detectors are interleaved with copper and tungsten plates.
+\item \textbf{Tracker} By the time LS3 will begin, the tracker, the barrel part and the endcaps parts, will suffer significant radiation damage -especially being the first material to be irradiated by the collisions products- and must be completely replaced. To maintain adequate track reconstructions capabilities at the conditions of HL-LHC the granularity of all the elements of the sub-detector will be increased by roughly a factor four.
+\item \textbf{Calorimeter Endcaps} The forward regions of a collider detector receive the most radiation. Therefore by LS3 the Calorimeters Endcaps will also need replacement. The new calorimeter is called High Granularity Calorimiter (HGCAL) and has electromagnetic and hadronic sections with excellent segmentation. It is a sampling calorimeter where the active layers of silicon detectors are interleaved with copper and tungsten plates.
 \item \textbf{Muon Endcaps} The forward muon system will receive additional chambers to maintain a good trigger acceptance. A combination of Gas Electron Multiplier and and Resistive Plate Chambers will be installed to increase the performance of the overall muon system.
-\item \textbf{Low and High Level Triggers} The hardware trigger, also called Level 1, will be improved by upgrading the readout electronics in some of the sub-detectors that will be kept for Phase-II. Thus the hardware trigger rate will increase from the current 100 $\unit{kHz}$ to 750 $\unit{kHz}$ needed for the peak 200 events pileup predicted for Phase-II. Also the software trigger: called High Level Trigger (HLT), that is the one taking into account multiple sub-detectors for each event, will need to be upgraded to keep up with the increase in data rate. It is predicted that the computational power today dedicated to the HLT will need to increase up to a factor of 12.
+\item \textbf{Low and High Level Triggers} The hardware trigger, also called Level 1, will be improved by upgrading the readout electronics in some of the sub-detectors that will be kept for Phase-II. Thus the hardware trigger rate will increase from the current 100 $\unit{kHz}$ to the 750 $\unit{kHz}$ needed for the peak 200 events pileup predicted for Phase-II. Also the software trigger: called High Level Trigger (HLT), that is the one taking into account the information of multiple sub-detectors for each event, will need to be upgraded to keep up with the increase in data rate. It is predicted that the computational power today dedicated to the HLT will need to increase up to a factor of 12.
 \end{itemize}
 
 In this work we are particularly interested by the new calorimeters endcaps, HGCAL, and the effect that the new design will have on the online reconstruction performed by the High Level Trigger. As the major difference with respect to the current sub-detector is the part dedicated to the electromagnetic detection, that is the part we mainly focus our work on.
@@ -38,7 +38,7 @@ The calorimetry usually express the thickness of the materials traversed by the 
 \item 8 layers: 1.26 $X_0$
 \end{itemize}
 Resulting in a total length of 26 $X_0$.\\
-The modules are shaped as two adjacent hexagons as shown in figure \ref{hgcalMod}, then they will be mounted in several copper and tungsten absorber ``petals'' which in turns will be inserted in the ``cassettes'' of the final carbon fiber structure \ref{hgcalStruct}.
+The modules are shaped as two adjacent hexagons as shown in Figure \ref{hgcalMod}, they will be mounted in several copper and tungsten absorber ``petals'' which in turns will be inserted in the ``cassettes'' of the final carbon fiber structure, Figure \ref{hgcalStruct}.
 
 \begin{figure}
 \centerline{\includegraphics[width=0.8\textwidth]{intro/hgcalMod.png}}
@@ -56,6 +56,31 @@ The modules have an active area of 1.05 $\unit{cm^2}$ or 0.53 $\unit{cm^2}$ depe
 
 
 \section{Clustering overview}\label{sec:hgcal_clustering}
+Following we describe how the electromagnetic particles interacts in an electromagnetic calorimeter and how this interaction is exploited to best detects the properties of the radiation. We describe also how the readout electronics of the calorimeter interprets the signals coming for the detectors and lastly how the reconstruction software can piece together those information to evaluate the direction and the energy of the incoming particle.
+
+\subsection{The electromagnetic shower}
+When a photon enter a material three possible interactions can take place, depending on its energy:
+\begin{itemize}
+\item \textbf{Photoelectric effect} The photon interacts with an atom of the material if its energy is greater than the binding energy of one of the atom's electron. The photon is absobed and an electron is scattered off the atom with the same energy of the incoming photon.
+\item \textbf{Compton scattering} Inside the electromagnetic field of an atom the photon scatters with one of the electrons of the atom. The photon loses a fraction of energy which is transferred to the emitted electron.
+\item \textbf{Pair production} When the photon is highly energetic and passes by the nucleus of an atom a pair production can occur. The incoming photon interacts with the Coulomb field of the nucleus of the atom and is absorbed creating a pair electron-positron that shares the initial energy of the photon.
+\end{itemize}
+
+It is important to note that all the above interactions produces one or more electrons at the expense of the initial energy of the photon.
+When it is an electron to enter a material the possible interactions are somewhat similar:
+\begin{itemize}
+\item \textbf{Ionization} The incoming electron scatters off another electron of the atoms, leaving the atom ionizied. The incoming electron loses some energy transferred to the electron emitted by the atom.
+\item \textbf{Bremsstrahlung} ``Braking radiation'' from the German. It occurs when a high energy electron interacts with the Coulomb field of the nucleus of an atom. The incoming electron is slowed by the electric attraction of the nucleus and this decelleration causes the electron to emit a photon.
+\item \textbf{Cherenkov radiation} When a charged particle passes through a dielectric material at a speed greater than the phase velocity of the light in that material a characteristic radiation is emitted. 
+\end{itemize}
+
+Again note that the above described interactions results in the production of one or more photons.\\
+
+The net effect of an electron or a photon interacting with some materials is therefore a chain reaction that results in splitting the initial energy of the incoming particle in more photons and electrons of increasingly smaller energy, until their energy is too low to generate more interactions.
+The development of this chain reaction is named \textit{electromagnetic shower} because while generating more particles those scatters off in a slight different direction respect the original particle. Therefore the shower transverse size -that perpendicular to the original particle- gets bigger and bigger until it stops. The final size of the shower is determined by the \textit{Molière radius} which is a property of the material and is such that $90\%$ of the electromagnetic shower is contained in a cylinder of one Molière radius.
+
+\subsection{HGCAL digitization}
+
 
 \section{HLT for HGCAL needs}
 
