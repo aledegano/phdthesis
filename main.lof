@@ -3,29 +3,30 @@
 \contentsline {figure}{\numberline {1.1}{\ignorespaces An exploded view of the CMS detector in its current configuration.}}{2}{figure.1.1}
 \contentsline {figure}{\numberline {1.2}{\ignorespaces (Left) A module of HGCAL, consisting of printed circuit board, silicon sensor and absorber. (Right) Two modules mounted on either sides of a copper tungsten absorber also used for the cooling of the system.}}{4}{figure.1.2}
 \contentsline {figure}{\numberline {1.3}{\ignorespaces (Left) The final Electromagnetic HGCAL endcap carbon-fiber structure. (Right) The petals inserted into the slots of the structure.}}{5}{figure.1.3}
+\contentsline {figure}{\numberline {1.4}{\ignorespaces Moli\IeC {\`e}re radii, $\rho $, containing $68\%$ and $90\%$ of the energy deposited in a single layer by a shower, as a function of the silicon layer. The colour-coded rectangles indicate the fraction of total energy deposited inside the $68\%$ and $90\%$ containment radii of each layer.}}{7}{figure.1.4}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Number of transistor count in logarithmic scale with respect to the year of introduction. Credit to \href {https://commons.wikimedia.org/wiki/User:Wgsimon}{Wgsimon}, \href {http://creativecommons.org/licenses/by-sa/3.0/}{CC BY-SA 3.0}}}{8}{figure.2.1}
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Maximum theoretical speedup for various values of $f$ as a function of the number of parallel processes. Credit to \href {https://en.wikipedia.org/wiki/User:Daniels220}{Daniels220}, \href {http://creativecommons.org/licenses/by-sa/3.0/}{CC BY-SA 3.0}}}{10}{figure.2.2}
-\contentsline {figure}{\numberline {2.3}{\ignorespaces a) Scheme of a CPU where most of the transistors are dedicated to caches and control unit. b) Scheme of a GPU with most of the resources used for the numerous execution units.}}{10}{figure.2.3}
-\contentsline {figure}{\numberline {2.4}{\ignorespaces A NVIDIA Kepler GPU equipped with 192 single-precision CUDA cores.}}{12}{figure.2.4}
-\contentsline {figure}{\numberline {2.5}{\ignorespaces Example of two CUDA streams execution.}}{15}{figure.2.5}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Number of transistor count in logarithmic scale with respect to the year of introduction. Credit to \href {https://commons.wikimedia.org/wiki/User:Wgsimon}{Wgsimon}, \href {http://creativecommons.org/licenses/by-sa/3.0/}{CC BY-SA 3.0}}}{11}{figure.2.1}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Maximum theoretical speedup for various values of $f$ as a function of the number of parallel processes. Credit to \href {https://en.wikipedia.org/wiki/User:Daniels220}{Daniels220}, \href {http://creativecommons.org/licenses/by-sa/3.0/}{CC BY-SA 3.0}}}{13}{figure.2.2}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces a) Scheme of a CPU where most of the transistors are dedicated to caches and control unit. b) Scheme of a GPU with most of the resources used for the numerous execution units.}}{13}{figure.2.3}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces A NVIDIA Kepler GPU equipped with 192 single-precision CUDA cores.}}{15}{figure.2.4}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Example of two CUDA streams execution.}}{18}{figure.2.5}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Example of a 2D tree building. $1^{st}$ step: find the middle point with respect to the $x$ axis and split the area in two equal sub-areas with a line passing through the point (blue line). $2^{nd}$ step: in each children find the median points and split further the children by a line constant in $y$ passing through them (red lines). $N^{th}$ step: all points belong to a leaf and all volumes are created.}}{17}{figure.3.1}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Volume Kd-tree build timings.}}{24}{figure.3.2}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Volume Kd-tree search times for CPU sequential and GPU parallel code}}{25}{figure.3.3}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Volume Kd-tree speedup between CPU sequential and GPU parallel search code}}{26}{figure.3.4}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Example of a 2D tree building. $1^{st}$ step: find the middle point with respect to the $x$ axis and split the area in two equal sub-areas with a line passing through the point (blue line). $2^{nd}$ step: in each children find the median points and split further the children by a line constant in $y$ passing through them (red lines). $N^{th}$ step: all points belong to a leaf and all volumes are created.}}{20}{figure.3.1}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Volume Kd-tree build timings.}}{27}{figure.3.2}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Volume Kd-tree search times for CPU sequential and GPU parallel code}}{28}{figure.3.3}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Volume Kd-tree speedup between CPU sequential and GPU parallel search code}}{29}{figure.3.4}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Interleaving of four asyncronous CUDA streams. H2D: host to device process, D2H: device to host, Kernel: code execution.}}{33}{figure.4.1}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Time spent by the build of the KD-tree.}}{34}{figure.4.2}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Relative performance gain between multiple CUDA streams with respect to the single stream.}}{35}{figure.4.3}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Search times for CPU sequential and GPU parallel code.}}{35}{figure.4.4}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Speedup between CPU sequential and GPU parallel code.}}{36}{figure.4.5}
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Search times for CPU sequential and GPU parallel code for fixed maximum number of nearest neighbors.}}{37}{figure.4.6}
-\contentsline {figure}{\numberline {4.7}{\ignorespaces Speedup between CPU sequential and GPU parallel code for fixed maximum number of nearest neighbors.}}{37}{figure.4.7}
-\contentsline {figure}{\numberline {4.8}{\ignorespaces Time spent by the build of the KD-tree on simulated data.}}{38}{figure.4.8}
-\contentsline {figure}{\numberline {4.9}{\ignorespaces Search times for CPU sequential and GPU parallel code on simulated data.}}{39}{figure.4.9}
-\contentsline {figure}{\numberline {4.10}{\ignorespaces Speedup between CPU sequential and GPU parallel code on simulated data.}}{39}{figure.4.10}
-\contentsline {figure}{\numberline {4.11}{\ignorespaces Kernel execution time for different number of CUDA streams.}}{42}{figure.4.11}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Interleaving of four asyncronous CUDA streams. H2D: host to device process, D2H: device to host, Kernel: code execution.}}{36}{figure.4.1}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Time spent by the build of the KD-tree.}}{37}{figure.4.2}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Relative performance gain between multiple CUDA streams with respect to the single stream.}}{38}{figure.4.3}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Search times for CPU sequential and GPU parallel code.}}{38}{figure.4.4}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Speedup between CPU sequential and GPU parallel code.}}{39}{figure.4.5}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Search times for CPU sequential and GPU parallel code for fixed maximum number of nearest neighbors.}}{40}{figure.4.6}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Speedup between CPU sequential and GPU parallel code for fixed maximum number of nearest neighbors.}}{40}{figure.4.7}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Time spent by the build of the KD-tree on simulated data.}}{41}{figure.4.8}
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Search times for CPU sequential and GPU parallel code on simulated data.}}{42}{figure.4.9}
+\contentsline {figure}{\numberline {4.10}{\ignorespaces Speedup between CPU sequential and GPU parallel code on simulated data.}}{42}{figure.4.10}
+\contentsline {figure}{\numberline {4.11}{\ignorespaces Kernel execution time for different number of CUDA streams.}}{45}{figure.4.11}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Setup of the Tegra K1 board and the power meter.}}{46}{figure.5.1}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Setup of the Tegra K1 board and the power meter.}}{49}{figure.5.1}
 \addvspace {10\p@ }
