@@ -61,7 +61,7 @@ Following we describe how the electromagnetic particles interacts in an electrom
 \subsection{The electromagnetic shower}
 When a photon enter a material three possible interactions can take place, depending on its energy:
 \begin{itemize}
-\item \textbf{Photoelectric effect} The photon interacts with an atom of the material if its energy is greater than the binding energy of one of the atom's electron. The photon is absobed and an electron is scattered off the atom with the same energy of the incoming photon.
+\item \textbf{Photoelectric effect} The photon interacts with an atom of the material if its energy is greater than the binding energy of one of the atom's electron. The photon is absorbed and an electron is scattered off the atom with the same energy of the incoming photon.
 \item \textbf{Compton scattering} Inside the electromagnetic field of an atom the photon scatters with one of the electrons of the atom. The photon loses a fraction of energy which is transferred to the emitted electron.
 \item \textbf{Pair production} When the photon is highly energetic and passes by the nucleus of an atom a pair production can occur. The incoming photon interacts with the Coulomb field of the nucleus of the atom and is absorbed creating a pair electron-positron that shares the initial energy of the photon.
 \end{itemize}
@@ -69,8 +69,8 @@ When a photon enter a material three possible interactions can take place, depen
 It is important to note that all the above interactions produces one or more electrons at the expense of the initial energy of the photon.
 When it is an electron to enter a material the possible interactions are somewhat similar:
 \begin{itemize}
-\item \textbf{Ionization} The incoming electron scatters off another electron of the atoms, leaving the atom ionizied. The incoming electron loses some energy transferred to the electron emitted by the atom.
-\item \textbf{Bremsstrahlung} ``Braking radiation'' from the German. It occurs when a high energy electron interacts with the Coulomb field of the nucleus of an atom. The incoming electron is slowed by the electric attraction of the nucleus and this decelleration causes the electron to emit a photon.
+\item \textbf{Ionization} The incoming electron scatters off another electron of the atoms, leaving the atom ionized. The incoming electron loses some energy transferred to the electron emitted by the atom.
+\item \textbf{Bremsstrahlung} ``Braking radiation'' from the German. It occurs when a high energy electron interacts with the Coulomb field of the nucleus of an atom. The incoming electron is slowed by the electric attraction of the nucleus and this deceleration causes the electron to emit a photon.
 \item \textbf{Cherenkov radiation} When a charged particle passes through a dielectric material at a speed greater than the phase velocity of the light in that material a characteristic radiation is emitted. 
 \end{itemize}
 
@@ -86,26 +86,40 @@ Since the Molière radius of the shower depends on the $X_0$ thickness of materi
 
 \begin{figure}
 \centerline{\includegraphics[width=0.8\textwidth]{intro/moliereHgcal.png}}
-\caption{Molière radii, $\rho$, containing $68\%$ and $90\%$ of the energy deposited in a single layer by a shower, as a function of the silicon layer. The colour-coded rectangles indicate
+\caption{Molière radii, $\rho$, containing $68\%$ and $90\%$ of the energy deposited in a single layer by a shower, as a function of the silicon layer. The color-coded rectangles indicate
 the fraction of total energy deposited inside the $68\%$ and $90\%$ containment radii of each layer.}
 \label{moliereHgcal}
 \end{figure}
 \clearpage
 
 We can now use the information of the maximum Molière radius ($6.0 \unit{cm}$) and the minimum silicon pad size ($0.53 \unit{cm^2}$) to evaluate the maximum number of rechits recorded in a given layer for a given shower. This quantity will be useful later when discussing the algorithm used to perform the reconstruction.\\
-We want to be conservative and consider the energy deposited in two Molière radii, which correspond to $95\%$ of the shower. The maxium number of possible rechits in a square of side $2 \times \rho_m$ in the modules where the pads have the smallest area is then: $(6.0 \unit{cm} * 2)^2/0.53 \unit{cm^2} \simeq 273$.
+We want to be conservative and consider the energy deposited in two Molière radii, which correspond to $95\%$ of the shower. The maximum number of possible rechits in a square of side $2 \times \rho_m$ in the modules where the pads have the smallest area is then: $(6.0 \unit{cm} * 2)^2/0.53 \unit{cm^2} \simeq 273$.
 
 \subsection{Clusterization}
 A critical step in the reconstruction of the calorimeter electromagnetic shower is the \textit{clusterization}, that is the procedure by which the groups of rechits belonging to the same shower are identified.\\
 There are many known, and some very complex, clustering algorithms, however, in the case of a calorimetric shower the information on the Molière radius is a very powerfull one as it limits \textit{a priori} the area where to find all the rechits belonging to a given initial particle.\\
-Throughout this work we implent a clustering algorithm based on the above principle: for each rechit found in the calorimeter we search for all its \textit{nearest neighbors} rechits lying in a square of two Molière radii centered around the rechit for which we search the neighbors.\\
+Throughout this work we implement a clustering algorithm based on the above principle: for each rechit found in the calorimeter we search for all its \textit{nearest neighbors} rechits lying in a square of two Molière radii centered around the rechit for which we search the neighbors.\\
 Although it might seem a very simple algorithm, the simulation of the Phase II conditions along with the very high granularity of the HGCAL shows that the number of rechits per events that will be necessary to process can be as high as $3 \times 10^5$ and more. We will show on this work how a simple algorithm would not be sufficient to perform an all nearest neighbors search of so many points in a reasonable amount of time.
 
 \subsection{Reconstruction}
 Once the cluster in each layer of the calorimeter are built, the reconstruction software can proceed in \textit{linking} them. There are several different technique to achieve the linking of the cluster. A simple, yet effective, one consists in searching the clusters of the different layers inside a cone centered in the interaction point of CMS and linking one by one starting from the inner layer to the next one and when more than one cluster is present in the next layer the one with the minimal distance is chosen.\\
-Once all the clusters are linked togheter their total energy and the direction of the incoming particle can be evaluated.
+Once all the clusters are linked together their total energy and the direction of the incoming particle can be evaluated.
 
-\section{HLT and computation challanges}
-It is forseen that the Level 1 trigger will need to operate five times faster than the current one, that is at $500 \unit{kHz}$. It is also expected that the L1 trigger will maintain its current rejection factor of roughly a 100. The High Level Trigger is, therefore, expected to operate at $5 \unit{kHz}$, which means that the events will have to be processed at $0.2 \unit{ms}$.\\
-This time constraint will pose an extremely hard challange for the clusterization of the HGCAL rechits. This is the reason of this work, that aims to tackle the challange through the use of what is currently new technology, and hardware, that is expected to greatly increase its performance in the years to come before the Long Shutdown 3.
+\section{HLT and computation challenges}
+It is foreseen that the Level 1 trigger will need to operate five times faster than the current one, that is at $500 \unit{kHz}$. It is also expected that the L1 trigger will maintain its current rejection factor of roughly a 100. The High Level Trigger is, therefore, expected to operate at $5 \unit{kHz}$, which means that the events will have to be processed at $0.2 \unit{ms}$.\\
+This time constraint will pose an extremely hard challenge for the clusterization of the HGCAL rechits. This is the reason of this work, that aims to tackle the challenge through the use of what is currently new technology, and hardware, that is expected to greatly increase its performance in the years to come before the Long Shutdown 3.
 
+\section{Rechits}
+To estimate the number of rechits that the clusterization need to process for each event we consider two simulated scenarios.
+In both cases the main interaction is a Drell-Yan scattering: from the annihilation of a quark and an anti-quark a virtual Z boson is produced that then decays in a pair of lepton and anti-lepton. 
+In both simulations the Drell-Yan process has been configured to produce a Muon pair of energy 20 $\unit{GeV}$ total. The only difference of the two simulation is the number of Pileup events that acts as background: in one case is set to be 140, as the average expected pileup of Phase-II, while the other is set to 200 pileup events, the maximum expected pileup of Phase-II.
+The Drell-Yan events are generated using \code{MadGraph} software then passed to \code{Pythia6} with \code{TuneZ2} for simulating parton showers, multiple interactions and fragmentation processes. Figure \ref{rechitsHisto} shows the distribution of the number of Rechits per event in the two simulations, normalized at 100.
+\clearpage
+
+\begin{figure}
+\centerline{\includegraphics[width=0.9\textwidth]{intro/rechitsHisto.png}}
+\caption{Distribution of the number of Rechits recorded in simulation events with 140 and 200 pileup events. The red bars represents the number of Rechits at 140 pileup while the blue bars at 200.}
+\label{rechitsHisto}
+\end{figure}
+
+As expected the average number of rechits changes whether the scenario at 140 or at 200 pileup is considered. In order to gauge the range where the clusterization program is expected to perform at its best, however, we are more interested in the limits cases: we can expect most of the events passing the L1 trigger to have more than 150000 rechits to be clusterized. Even more important is the upper limit: as the complexity of the clustering algorithm will be worse than linear, even few events with a very high number of rechits might significantly dominate the time required to reconstruct the clusters of the event. Therefore, when evaluating the performances of the clusterization algorithm, we require that at least up to 350000 rechits the performance to be reasonably good.
