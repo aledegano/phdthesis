@@ -1,27 +1,27 @@
 \chapter{Parallel computing}\label{ch:gpu}
-Ever since the chip manufacturing industry stopped increasing significantly the frequency of operation of the processing units and, instead, included an ever increasing number of computational \textit{cores}, the only way to fully exploit the performance of the newest hardware is the way of the parallelism.\\
-A parallel execution of a program is able to perform several computations, independent from each other, at the same time, usually called \textit{threads}. If a \textit{multi-core} processing unit is available, each core is able to process one of the computation at the same time another core is executing its task. However, there are factors that complicates the writing of a functioning parallel program, for instance there is no guarantee in the order of execution of the different threads and, if one depends upon the result of another, that must be taken into account.\\
+Ever since the chip manufacturing industry stopped the rapid increase in the frequency of operation of the processing units and, instead, included an ever increasing number of computational \textit{cores}, the only way to fully take advantage the performance of the newest hardware has been exploting the parallel architecture.\\
+By parallel execution a program is able to perform several computations, independent from each other, usually called \textit{threads}, at the same time. If a \textit{multi-core} processing unit is available, each core processes one of the computations while another core is executing its task. However, there are factors that complicates the writing of a functioning parallel program, for instance there is no guarantee in the order of execution of the different threads and, if one depends upon the result of another, that must be taken into account.\\
 In the following section we will give a brief overview of the most important principles of parallel computing.
 
 \section{Principles of parallel computing}
-Traditionally software has been written for serial execution. Which means that the series of instructions to be performed to execute a program are evaluated one by one, always in the same order. This approach requires that for hardware to execute a given program faster the time to evaluate a single instruction must be made shorter, and since a processing unit evaluates an instruction at every \textit{clock cycle}, the overall frequency has to increase.\\
+Traditionally software has been written for serial execution. This means that the series of instructions to be performed to execute a program are evaluated one by one, always in the same order. In order to decrease the execution time, the evaluation of a a single instruction must be made shorter, and since a processing unit evaluates an instruction at every \textit{clock cycle}, the overall clock frequency has to increase.\\
 From the first microprocessor up to the early years 2000s the increase in frequency was indeed the driving factor in the improvement of the performance of sequential software. However, when processors hit the gigahertz domain, it became apparent that the continuous increase in frequency could not hold for long as it required at the same time an increase in the power required to operate the processing units, which also meant bigger and more complex systems to dissipate the resulting heat produced.\\
-At the same time, nevertheless, the manufacturing was still able, year after year, to reduce the size of the transistors inside the chip. Thus the first \textit{dual core} processor was born: including two processing cores able to perform arithmetic operations independently while accessing the data from a common memory.\\
+Nevertheless, the manufacturing was still able, year after year, to reduce the size of the transistors inside the chip. Thus the first \textit{dual core} processor was born: including two processing cores able to perform arithmetic operations independently while accessing the data from a common memory.\\
 
 \subsection{Moore's law}
 In 1965 Gordon Moore, Intel co-founder, stated that the number of transitor on integrated circuits doubles about every two years \cite{moore}. Figure \ref{moore} shows that since the early '70 until today the law has proven to be quite accurate.
 
 \begin{figure}
 \includegraphics[width=0.8\textwidth]{architectures/moores.png}
-\caption{Number of transistor count in logarithmic scale with respect to the year of introduction. Credit to \href{https://commons.wikimedia.org/wiki/User:Wgsimon}{Wgsimon}, \href{http://creativecommons.org/licenses/by-sa/3.0/}{CC BY-SA 3.0}}
+\caption{Number of transistor count in logarithmic scale with respect to the year of introduction. From \href{https://commons.wikimedia.org/wiki/User:Wgsimon}{Wgsimon}, \href{http://creativecommons.org/licenses/by-sa/3.0/}{CC BY-SA 3.0}}
 \label{moore}
 \end{figure}
 \clearpage
 
-Until today the exponential growth predicted by Moore yielded an ever increasing number of cores in the CPUs and even more in the GPUs. Thus making a correct parallelization of the software mandatory to fully profit of the newest hardware.
+Until today the exponential growth predicted by Moore yielded an ever increasing number of cores in the CPUs and even more in the GPUs. A correct parallelization of the software is therefore mandatory to fully profit of the newest hardware.
 
 \subsection{Amdahl's Law}
-With multi-core processors available we can now parallelize a program to split up the load on as many cores available, therefore one could expect, for an eight core machine for instance, to have an increase in performance of a factor eight. Unfortunately that is not the case: in every parallel program there is always a fraction of execution that has to be performed sequentially limiting the overall gain in performance, this limit takes the name of \textit{Amdahl's Law} \cite{amdahl}.\\
+With multi-core processors available we can now parallelize a program to split up the load on as many cores as available, therefore one could expect, for an eight core machine for instance, to have an increase in performance of a factor eight. Unfortunately that is not the case: in every parallel program there is always a fraction of execution that has to be performed sequentially limiting the overall gain in performance. This limit takes the name of \textit{Amdahl's Law} \cite{amdahl}.\\
 Let $T_S$ be the execution time of a sequential program, while $T_p$ the execution time of a program performing the same task of the sequential one but in parallel over $p$ processing units. The \textit{speedup} is then defined as the ratio $S(p) = \dfrac{T_S}{T_p}$.
 Let $f$ be the fraction of the program running sequentially, the execution time of the parallel program is then $f T_S + (1 - f) T_p = f T_S + \dfrac{(1-f)T_S}{p}$. Which we can now substitute in the speedup formula to obtain its dependency with respect to the fraction $f$ of sequential execution:
 \begin{equation}
@@ -36,7 +36,7 @@ Figure \ref{amdahl} shows the maximum speedup obtainable for different values of
 
 \begin{figure}
 \centerline{\includegraphics[width=0.8\textwidth]{architectures/amdahl.png}}
-\caption{Maximum theoretical speedup for various values of $f$ as a function of the number of parallel processes. Credit to \href{https://en.wikipedia.org/wiki/User:Daniels220}{Daniels220}, \href{http://creativecommons.org/licenses/by-sa/3.0/}{CC BY-SA 3.0}}
+\caption{Maximum theoretical speedup for various values of $f$ as a function of the number of parallel processes. From \href{https://en.wikipedia.org/wiki/User:Daniels220}{Daniels220}, \href{http://creativecommons.org/licenses/by-sa/3.0/}{CC BY-SA 3.0}}
 \label{amdahl}
 \end{figure}
 
@@ -51,7 +51,7 @@ The architectures of a CPU and a GPU differs greatly. While the CPU focus on hav
 \end{figure}
 
 \subsection{CPU architecture}
-The main goal of the CPU design is to optimize the instruction execution latency, in order to achieve that there are some key design techniques:
+The main goal of the CPU design is to optimize the instruction execution latency. In order to achieve this result some key design techniques are available:
 \begin{itemize}
 \item \textbf{Large cache memories} These memories are designed to reduce the data access time by keeping as many useful data as possible thus reducing the need to access the DRAM which, by comparison, is much slower.
 \item \textbf{Complex control unit} This unit performs several evaluations in order to increase the efficiency of the CPU. Among those two are fundamental: \textbf{Branch prediction}, the control unit tries to guess the result of a branch in the code (e.g. an if-then-else statement) and fetch the data for that path before the branch is executed. \textbf{Operand forwarding} takes place when an operation needs the result of the previous one, in this case the operand forwarding bypass the write/read of the data into a register and simply pass it to the next operation, saving two CPU cycles and avoiding the stall of the second operation during those cycles.
@@ -76,7 +76,7 @@ Figure \ref{kepler} shows the general layout of a NVIDIA Kepler architecture, si
 \end{figure}
 
 \section{CUDA C}
-CUDA C is a set of extensions to the C programming language that allows to organize the execution of a program on a NVIDIA GPU.
+CUDA C is a set of extensions to the C programming language that allows to organize the execution of a program on a NVIDIA GPU \cite{cuda}.
 The CUDA programming model establish two separate memory spaces: the \textit{host memory} that is the space of the computer hosting the GPU device and the \textit{device memory} which is the DRAM that only the GPU has direct access to.\\
 The general concept of a CUDA program is that it starts with a serial code executing on the host machine that sets up the parallel code which then is executed in a large number of threads on as many GPU cores. When the GPU elaboration ends the control goes back to host where the data is gathered from the device and the program terminates.
 
@@ -85,7 +85,7 @@ In order to fully profit of the high number of cores of a GPU it is necessary to
 To fullfil this need CUDA organizes the groups of threads that can cooperate in \textit{blocks} and the set of all blocks in a single \textit{grid}.
 Therefore every thread has an index representing its position inside its block and an index representing the position of its block in the grid.
 Knowing those two indices and the dimension of the block each thread knows its absolute index with respect to the whole grid, knowing exactly which part of the parallel task to perform.
-The reason behind the grouping of the threads in blocks which are subset of the grid is the memory hierarchy of the GPU. As a matter of fact the memory available on the GPU is organized in three groups of different size, visibility, lifetime and access time. Table \ref{tabMemory} presents the main characteristic of the memory types available in a NVIDIA GPU, with the sizes of the Teska k40 for reference.
+The reason behind the grouping of the threads in blocks which are subset of the grid is the memory hierarchy of the GPU. As a matter of fact the memory available on the GPU is organized in three groups of different size, visibility, lifetime and access time. Table \ref{tabMemory} presents the main characteristic of the memory types available in a NVIDIA GPU, with the sizes of the Tesla k40 for reference.
 
 \begin{center}
 \begin{table}[h]
@@ -102,9 +102,9 @@ Global mem. & Grid & Application & 150 $\times$ slower than SM & 12 GB \\
 \end{center}
 
 \subsection{Memory management}
-CUDA requires from the user to explicitly indicate the area of memory on the host where the data will be taken from and the area where the output will be saved on the host.
+CUDA requires the user to explicitly indicate the area of memory on the host where the data will be taken from and the area where the output will be saved on the host.
 It also requires from the user to request the global memory space on the device that needs to be allocated for the process to be executed.
-To accomplish those requirements CUDA provides the following functions to manage the memory on the device:
+To accomplish this CUDA provides the following functions to manage the memory on the device:
 \begin{itemize}
 \item \textbf{cudaMalloc()} Works similarly to the C malloc() function allocating a given size of memory in the device global memory addressed by the pointer passed as argument to the function.
 \item \textbf{cudaFree()} Frees the global memory at the address passed as argument making it available again.

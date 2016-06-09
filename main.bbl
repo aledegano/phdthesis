@@ -1,4 +1,14 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{atlasHiggs}
+G.~Aad and al, ``Observation of a new particle in the search for the standard
+  model higgs boson with the \{ATLAS\} detector at the \{LHC\},'' {\em Physics
+  Letters B}, vol.~716, no.~1, pp.~1 -- 29, 2012.
+
+\bibitem{CMSHiggs}
+S.~Chatrchyan and al, ``Observation of a new boson at a mass of 125 gev with
+  the \{CMS\} experiment at the \{LHC\},'' {\em Physics Letters B}, vol.~716,
+  no.~1, pp.~30 -- 61, 2012.
 
 \bibitem{tdr}
 J.~Butler, D.~Contardo, M.~Klute, J.~Mans, and L.~Silvestris, ``{Technical
@@ -20,6 +30,14 @@ G.~Moore, ``{Cramming more components onto integrated circuits},'' {\em
 G.~Amdahl, ``{Validity of the single processor approach to achieving
   large-scale computing capabilities},'' {\em AFIPS Conference proceedings},
   vol.~30, pp.~483, 485, 1967.
+
+\bibitem{cuda}
+Nvidia, {\em CUDA C programming guide}.
+\newblock 2015.
+
+\bibitem{kdtree}
+J.~L. Bentley, ``Multidimensional binary search trees used for associative
+  searching,'' {\em Commun. ACM}, vol.~18, pp.~509--517, Sept. 1975.
 
 \bibitem{worst-case-search}
 {D. T. Lee, C. K. Wong}, ``{Worst-case analysis for region and partial region
