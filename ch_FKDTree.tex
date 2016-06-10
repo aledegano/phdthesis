@@ -81,7 +81,6 @@ In order to port the algorithm described in \ref{fkdtree_search} to CUDA there a
 \subsection{GPU queue}
 CUDA does not support STL containers and does not provide a variable size queue (at least in version 7.5 used in this work). Therefore we made our own implementation to save the nodes indices to visit in each loop cycle.\\
 The motivations to have a variable size queue are mainly two: the tree could be arbitrarily long and if the visited node index was not removed at each cycle the size of the array containing the visited nodes could become too big for the very limited registry memory each CUDA core has access to (see Section \ref{sec:gpu_arch}). The second reason is that by having a dynamic size it is always known which is the last element of the queue allowing the search to access it at every cycle and then remove it.\\
-The implementation is reported in Appendix \ref{ch:appendixFKDTree}.
 
 \subsection{CUDA streams}
 The array of search boxes and the array of the nodes (the tree structure) must be both moved on the GPU memory before executing the code that performs the range search, also, the array of the index of the nearest neighbors must be copied back on the host computer once the search is completed. The time necessary to perform those copy can be a relevant fraction of the total time spent for the range search.\\

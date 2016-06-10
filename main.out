@@ -1,64 +1,61 @@
-\BOOKMARK [0][-]{chapter.1}{1 Introduction}{}
-\BOOKMARK [1][-]{section.1.1}{1.1 HL-LHC}{chapter.1}
-\BOOKMARK [1][-]{section.1.2}{1.2 CMS Phase-II upgrade}{chapter.1}
-\BOOKMARK [1][-]{section.1.3}{1.3 The High Granularity Calorimeter}{chapter.1}
-\BOOKMARK [1][-]{section.1.4}{1.4 Calorimeter reconstruction}{chapter.1}
-\BOOKMARK [2][-]{subsection.1.4.1}{1.4.1 The electromagnetic shower}{section.1.4}
-\BOOKMARK [2][-]{subsection.1.4.2}{1.4.2 HGCAL digitization}{section.1.4}
-\BOOKMARK [2][-]{subsection.1.4.3}{1.4.3 Clusterization}{section.1.4}
-\BOOKMARK [2][-]{subsection.1.4.4}{1.4.4 Reconstruction}{section.1.4}
-\BOOKMARK [1][-]{section.1.5}{1.5 HLT and computation challenges}{chapter.1}
-\BOOKMARK [1][-]{section.1.6}{1.6 Rechits}{chapter.1}
-\BOOKMARK [0][-]{chapter.2}{2 Parallel computing}{}
-\BOOKMARK [1][-]{section.2.1}{2.1 Principles of parallel computing}{chapter.2}
-\BOOKMARK [2][-]{subsection.2.1.1}{2.1.1 Moore's law}{section.2.1}
-\BOOKMARK [2][-]{subsection.2.1.2}{2.1.2 Amdahl's Law}{section.2.1}
-\BOOKMARK [1][-]{section.2.2}{2.2 Architectures}{chapter.2}
-\BOOKMARK [2][-]{subsection.2.2.1}{2.2.1 CPU architecture}{section.2.2}
-\BOOKMARK [2][-]{subsection.2.2.2}{2.2.2 GPU architecture}{section.2.2}
-\BOOKMARK [1][-]{section.2.3}{2.3 CUDA C}{chapter.2}
-\BOOKMARK [2][-]{subsection.2.3.1}{2.3.1 Threads and Memory Hierarchy}{section.2.3}
-\BOOKMARK [2][-]{subsection.2.3.2}{2.3.2 Memory management}{section.2.3}
-\BOOKMARK [2][-]{subsection.2.3.3}{2.3.3 Streams}{section.2.3}
-\BOOKMARK [1][-]{section.2.4}{2.4 Testing hardware}{chapter.2}
-\BOOKMARK [0][-]{chapter.3}{3 K-Dimensional binary search tree}{}
-\BOOKMARK [1][-]{section.3.1}{3.1 General description of the KD-tree}{chapter.3}
-\BOOKMARK [2][-]{subsection.3.1.1}{3.1.1 Building a 3D tree}{section.3.1}
-\BOOKMARK [2][-]{subsection.3.1.2}{3.1.2 Traversing a 3D tree}{section.3.1}
-\BOOKMARK [1][-]{section.3.2}{3.2 Volume kd-tree}{chapter.3}
-\BOOKMARK [2][-]{subsection.3.2.1}{3.2.1 Tree building}{section.3.2}
-\BOOKMARK [2][-]{subsection.3.2.2}{3.2.2 Range search}{section.3.2}
-\BOOKMARK [1][-]{section.3.3}{3.3 Validation}{chapter.3}
-\BOOKMARK [1][-]{section.3.4}{3.4 GPU porting}{chapter.3}
-\BOOKMARK [1][-]{section.3.5}{3.5 Performance analysis}{chapter.3}
-\BOOKMARK [1][-]{section.3.6}{3.6 Algorithm assessment}{chapter.3}
-\BOOKMARK [0][-]{chapter.4}{4 A better KD-tree implementation}{}
-\BOOKMARK [1][-]{section.4.1}{4.1 Build of a left-balanced KD-tree}{chapter.4}
-\BOOKMARK [1][-]{section.4.2}{4.2 Iterative range search}{chapter.4}
-\BOOKMARK [2][-]{subsection.4.2.1}{4.2.1 Fast bitwise operations}{section.4.2}
-\BOOKMARK [1][-]{section.4.3}{4.3 Validation}{chapter.4}
-\BOOKMARK [1][-]{section.4.4}{4.4 GPU porting}{chapter.4}
-\BOOKMARK [2][-]{subsection.4.4.1}{4.4.1 GPU queue}{section.4.4}
-\BOOKMARK [2][-]{subsection.4.4.2}{4.4.2 CUDA streams}{section.4.4}
-\BOOKMARK [1][-]{section.4.5}{4.5 Performance analysis}{chapter.4}
-\BOOKMARK [2][-]{subsection.4.5.1}{4.5.1 Uniform random distribution}{section.4.5}
-\BOOKMARK [2][-]{subsection.4.5.2}{4.5.2 HGCAL simulated RecHits}{section.4.5}
-\BOOKMARK [1][-]{section.4.6}{4.6 Algorithm assessment}{chapter.4}
-\BOOKMARK [2][-]{subsection.4.6.1}{4.6.1 Build complexity}{section.4.6}
-\BOOKMARK [2][-]{subsection.4.6.2}{4.6.2 CPU sequential search time}{section.4.6}
-\BOOKMARK [2][-]{subsection.4.6.3}{4.6.3 GPU parallel search time}{section.4.6}
-\BOOKMARK [2][-]{subsection.4.6.4}{4.6.4 Speedup}{section.4.6}
-\BOOKMARK [0][-]{chapter.5}{5 Energy consumption}{}
-\BOOKMARK [1][-]{section.5.1}{5.1 Measurement methodology}{chapter.5}
-\BOOKMARK [1][-]{section.5.2}{5.2 Benchmark machine}{chapter.5}
-\BOOKMARK [2][-]{subsection.5.2.1}{5.2.1 CPU energy consumption}{section.5.2}
-\BOOKMARK [2][-]{subsection.5.2.2}{5.2.2 GPU energy consumption}{section.5.2}
-\BOOKMARK [1][-]{section.5.3}{5.3 NVIDIA Tegra K1}{chapter.5}
-\BOOKMARK [2][-]{subsection.5.3.1}{5.3.1 TK1 CPU energy consumption}{section.5.3}
-\BOOKMARK [2][-]{subsection.5.3.2}{5.3.2 TK1 GPU energy consumption}{section.5.3}
-\BOOKMARK [1][-]{section.5.4}{5.4 Consumption comparisons}{chapter.5}
-\BOOKMARK [0][-]{chapter.6}{6 Conclusions}{}
-\BOOKMARK [0][-]{section*.4}{Appendices}{}
-\BOOKMARK [0][-]{Appendix.1.A}{A Volume KD-tree code}{}
-\BOOKMARK [0][-]{Appendix.1.B}{B Cuda KD-tree}{}
-\BOOKMARK [0][-]{chapter*.5}{Bibliography}{}
+\BOOKMARK [0][-]{chapter.1}{1 Introduction}{}% 1
+\BOOKMARK [1][-]{section.1.1}{1.1 HL-LHC}{chapter.1}% 2
+\BOOKMARK [1][-]{section.1.2}{1.2 CMS Phase-II upgrade}{chapter.1}% 3
+\BOOKMARK [1][-]{section.1.3}{1.3 The High Granularity Calorimeter}{chapter.1}% 4
+\BOOKMARK [1][-]{section.1.4}{1.4 Calorimeter reconstruction}{chapter.1}% 5
+\BOOKMARK [2][-]{subsection.1.4.1}{1.4.1 The electromagnetic shower}{section.1.4}% 6
+\BOOKMARK [2][-]{subsection.1.4.2}{1.4.2 HGCAL digitization}{section.1.4}% 7
+\BOOKMARK [2][-]{subsection.1.4.3}{1.4.3 Clusterization}{section.1.4}% 8
+\BOOKMARK [2][-]{subsection.1.4.4}{1.4.4 Reconstruction}{section.1.4}% 9
+\BOOKMARK [1][-]{section.1.5}{1.5 HLT and computation challenges}{chapter.1}% 10
+\BOOKMARK [1][-]{section.1.6}{1.6 Rechits}{chapter.1}% 11
+\BOOKMARK [0][-]{chapter.2}{2 Parallel computing}{}% 12
+\BOOKMARK [1][-]{section.2.1}{2.1 Principles of parallel computing}{chapter.2}% 13
+\BOOKMARK [2][-]{subsection.2.1.1}{2.1.1 Moore's law}{section.2.1}% 14
+\BOOKMARK [2][-]{subsection.2.1.2}{2.1.2 Amdahl's Law}{section.2.1}% 15
+\BOOKMARK [1][-]{section.2.2}{2.2 Architectures}{chapter.2}% 16
+\BOOKMARK [2][-]{subsection.2.2.1}{2.2.1 CPU architecture}{section.2.2}% 17
+\BOOKMARK [2][-]{subsection.2.2.2}{2.2.2 GPU architecture}{section.2.2}% 18
+\BOOKMARK [1][-]{section.2.3}{2.3 CUDA C}{chapter.2}% 19
+\BOOKMARK [2][-]{subsection.2.3.1}{2.3.1 Threads and Memory Hierarchy}{section.2.3}% 20
+\BOOKMARK [2][-]{subsection.2.3.2}{2.3.2 Memory management}{section.2.3}% 21
+\BOOKMARK [2][-]{subsection.2.3.3}{2.3.3 Streams}{section.2.3}% 22
+\BOOKMARK [1][-]{section.2.4}{2.4 Testing hardware}{chapter.2}% 23
+\BOOKMARK [0][-]{chapter.3}{3 K-Dimensional binary search tree}{}% 24
+\BOOKMARK [1][-]{section.3.1}{3.1 General description of the KD-tree}{chapter.3}% 25
+\BOOKMARK [2][-]{subsection.3.1.1}{3.1.1 Building a 3D tree}{section.3.1}% 26
+\BOOKMARK [2][-]{subsection.3.1.2}{3.1.2 Traversing a 3D tree}{section.3.1}% 27
+\BOOKMARK [1][-]{section.3.2}{3.2 Volume kd-tree}{chapter.3}% 28
+\BOOKMARK [2][-]{subsection.3.2.1}{3.2.1 Tree building}{section.3.2}% 29
+\BOOKMARK [2][-]{subsection.3.2.2}{3.2.2 Range search}{section.3.2}% 30
+\BOOKMARK [1][-]{section.3.3}{3.3 Validation}{chapter.3}% 31
+\BOOKMARK [1][-]{section.3.4}{3.4 GPU porting}{chapter.3}% 32
+\BOOKMARK [1][-]{section.3.5}{3.5 Performance analysis}{chapter.3}% 33
+\BOOKMARK [1][-]{section.3.6}{3.6 Algorithm assessment}{chapter.3}% 34
+\BOOKMARK [0][-]{chapter.4}{4 A better KD-tree implementation}{}% 35
+\BOOKMARK [1][-]{section.4.1}{4.1 Build of a left-balanced KD-tree}{chapter.4}% 36
+\BOOKMARK [1][-]{section.4.2}{4.2 Iterative range search}{chapter.4}% 37
+\BOOKMARK [2][-]{subsection.4.2.1}{4.2.1 Fast bitwise operations}{section.4.2}% 38
+\BOOKMARK [1][-]{section.4.3}{4.3 Validation}{chapter.4}% 39
+\BOOKMARK [1][-]{section.4.4}{4.4 GPU porting}{chapter.4}% 40
+\BOOKMARK [2][-]{subsection.4.4.1}{4.4.1 GPU queue}{section.4.4}% 41
+\BOOKMARK [2][-]{subsection.4.4.2}{4.4.2 CUDA streams}{section.4.4}% 42
+\BOOKMARK [1][-]{section.4.5}{4.5 Performance analysis}{chapter.4}% 43
+\BOOKMARK [2][-]{subsection.4.5.1}{4.5.1 Uniform random distribution}{section.4.5}% 44
+\BOOKMARK [2][-]{subsection.4.5.2}{4.5.2 HGCAL simulated RecHits}{section.4.5}% 45
+\BOOKMARK [1][-]{section.4.6}{4.6 Algorithm assessment}{chapter.4}% 46
+\BOOKMARK [2][-]{subsection.4.6.1}{4.6.1 Build complexity}{section.4.6}% 47
+\BOOKMARK [2][-]{subsection.4.6.2}{4.6.2 CPU sequential search time}{section.4.6}% 48
+\BOOKMARK [2][-]{subsection.4.6.3}{4.6.3 GPU parallel search time}{section.4.6}% 49
+\BOOKMARK [2][-]{subsection.4.6.4}{4.6.4 Speedup}{section.4.6}% 50
+\BOOKMARK [0][-]{chapter.5}{5 Energy consumption}{}% 51
+\BOOKMARK [1][-]{section.5.1}{5.1 Measurement methodology}{chapter.5}% 52
+\BOOKMARK [1][-]{section.5.2}{5.2 Benchmark machine}{chapter.5}% 53
+\BOOKMARK [2][-]{subsection.5.2.1}{5.2.1 CPU energy consumption}{section.5.2}% 54
+\BOOKMARK [2][-]{subsection.5.2.2}{5.2.2 GPU energy consumption}{section.5.2}% 55
+\BOOKMARK [1][-]{section.5.3}{5.3 NVIDIA Tegra K1}{chapter.5}% 56
+\BOOKMARK [2][-]{subsection.5.3.1}{5.3.1 TK1 CPU energy consumption}{section.5.3}% 57
+\BOOKMARK [2][-]{subsection.5.3.2}{5.3.2 TK1 GPU energy consumption}{section.5.3}% 58
+\BOOKMARK [1][-]{section.5.4}{5.4 Consumption comparisons}{chapter.5}% 59
+\BOOKMARK [0][-]{chapter.6}{6 Conclusions}{}% 60
+\BOOKMARK [0][-]{chapter*.36}{Bibliography}{}% 61

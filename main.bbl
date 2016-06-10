@@ -50,6 +50,10 @@ J.~Reinders, {\em Intel Threading Building Blocks}.
 
 \bibitem{iso_stl}
 {ISO/IEC. (2014). ISO International Standard ISO/IEC}, ``14882:2014 –
-  programming language c++,'' 2014.
+  programming language c++.'' \url{https://isocpp.org/std/the-standard}, 2014.
+
+\bibitem{github}
+A.~Degano, ``Cudakdtree and performance tests.''
+  \url{https://github.com/degano/simplekdtree}, 2016.
 
 \end{thebibliography}
