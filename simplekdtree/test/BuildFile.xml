@@ -1,0 +1,36 @@
+<use   name="root"/>
+<use   name="rootgraphics"/>
+<use   name="CudaKDtree/KDTree"/>
+<bin   file="testAllNN.cc" name="testallnn">
+</bin>
+<bin   file="allnnplots.cc" name="allnnplots">
+</bin>
+<bin   file="unitAllNN.cc" name="unitAllNN">
+</bin>
+<bin   file="healthChecks.cc" name="healthChecks">
+</bin>
+<bin   file="performance.cc" name="performance">
+</bin>
+<bin   file="memoryCheck.cc" name="memoryCheck">
+</bin>
+<bin   file="searchHealth.cc" name="searchHealth">
+</bin>
+<bin   file="testFKDTree.cc" name="testFKDTree">
+</bin>
+<bin   file="arrayPerf.cc" name="arrayPerf">
+</bin>
+<bin   file="dummyTester.cc" name="dummyTester">
+</bin>
+<bin   file="performanceNew.cc" name="performanceNew">
+</bin>
+<bin   file="unitFKD.cc" name="unitFKD">
+</bin>
+<bin   file="streamsPlot.cc" name="streamsPlot">
+</bin>
+<bin   file="rechitsTestFKDtree.cc" name="rechitsTestFKDtree">
+</bin>
+<bin   file="powerFKD.cc" name="powerFKD">
+</bin>
+<bin   file="rechitsHisto/RootHisto.cpp" name="RootHisto">
+</bin>
+<flags CXXFLAGS="-g -DCUDA_ERROR_CHECK"/>

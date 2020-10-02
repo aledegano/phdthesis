@@ -1,0 +1,7 @@
+<use name="cuda"/>
+<use name="tbb"/>
+<flags CXXFLAGS="-std=c++11 -g -DCUDA_ERROR_CHECK"/>
+<flags CUDA_FLAGS="-gencode arch=compute_35,code=sm_35 -std=c++11 -Xcompiler -std=c++11"/>
+<export>
+  <lib   name="1"/>
+</export>
